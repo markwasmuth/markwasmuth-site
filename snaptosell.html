@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapToSell — AI-Powered Marketplace Selling | Mark Wasmuth</title>
+    <meta name="description" content="Snap a photo. AI identifies it. Prices it. Lists it. Done. Built-in fraud detection, photo verification, and trust scores. Selling in 2 minutes, not 15.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SnapToSell — AI-Powered Marketplace Selling">
+    <meta property="og:description" content="Snap a photo. AI identifies it. Prices it. Lists it. Done. What if selling took 2 minutes instead of 15?">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://markwasmuth.com/snaptosell.html">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // SnapToSell Brand Colors
+                        brand: {
+                            blue: '#0052FF',      // CTAs, links, primary
+                            charcoal: '#1F2937',  // Headers, nav, dark sections
+                            orange: '#F97316',    // Prices, highlights, accents
+                            green: '#22C55E',     // Sold, verified, confirmed
+                            surface: '#F9FAFB',   // Light backgrounds
+                        },
+                        navy: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
+                        },
+                        amber: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
+                        },
+                        warm: {
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
+                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Nav styles */
+        #main-nav.scrolled { 
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e8e4de;
+        }
+        #main-nav.scrolled .nav-logo { color: #102a43; }
+        #main-nav.scrolled .nav-link { color: #334e68; }
+        #main-nav.scrolled .nav-link:hover { color: #102a43; }
+        #main-nav.scrolled #mobile-menu-btn { color: #102a43; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-500 { animation-delay: 0.5s; opacity: 0; }
+        
+        .question-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SnapToSell",
+        "description": "AI-powered marketplace selling. Snap a photo, get instant pricing, list everywhere in 2 minutes with built-in fraud protection.",
+        "url": "https://markwasmuth.com/snaptosell.html",
+        "author": {
+            "@type": "Person",
+            "name": "Mark Wasmuth"
+        },
+        "applicationCategory": "BusinessApplication"
+    }
+    </script>
+</head>
+
+<body class="bg-warm-50 text-navy-900">
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-white nav-logo">Mark Wasmuth</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/" class="text-sm font-medium text-gray-300 hover:text-white nav-link transition">Home</a>
+                    <a href="/advising.html" class="text-sm font-medium text-gray-300 hover:text-white nav-link transition">Advising</a>
+                    <a href="/book.html" class="text-sm font-medium text-gray-300 hover:text-white nav-link transition">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-white nav-link transition">SnapToSell</a>
+                    <a href="#early-access" class="bg-brand-blue hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition">Get Early Access</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <div class="flex flex-col gap-4">
+                    <a href="/" class="text-sm font-medium text-gray-300 py-2">Home</a>
+                    <a href="/advising.html" class="text-sm font-medium text-gray-300 py-2">Advising</a>
+                    <a href="/book.html" class="text-sm font-medium text-gray-300 py-2">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-white py-2">SnapToSell</a>
+                    <a href="#early-access" class="bg-brand-blue text-white px-5 py-2.5 rounded-lg text-sm font-bold text-center">Get Early Access</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-brand-charcoal">
+        <!-- Subtle gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-charcoal via-brand-charcoal to-gray-800"></div>
+        <!-- Ambient glow effects -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-brand-blue/10 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center">
+                <!-- Logo -->
+                <div class="mb-8 animate-fade-in">
+                    <img src="snaptosell-logo.jpg" alt="SnapToSell Logo" class="h-48 mx-auto">
+                </div>
+                
+                <p class="text-brand-orange font-semibold mb-2 tracking-widest uppercase text-sm animate-fade-in">Snap. Post. Sold.</p>
+                
+                <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8 text-white animate-fade-in delay-100">
+                    Why does listing one item take so long? And what are the chances someone's going to try to scam you?
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-100 mb-6 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-200">
+                    Tired of dodging scammers every time you buy or sell something online?
+                </p>
+                
+                <div class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto animate-fade-in delay-300">
+                    <p><span class="text-brand-orange font-semibold">73%</span> of Facebook Marketplace users have been scammed.</p>
+                    <p><span class="text-brand-orange font-semibold">$2.7 billion</span> lost last year to marketplace fraud.</p>
+                    <p class="mt-4 text-gray-200">It's exhausting.</p>
+                </div>
+                
+                <div class="animate-fade-in delay-400">
+                    <a href="#the-problems" class="inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-blue-400 transition">
+                        Keep reading
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problems -->
+    <section id="the-problems" class="py-24 bg-warm-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="space-y-16">
+                
+                <!-- Problem 1 - Business -->
+                <div class="question-card bg-white rounded-2xl p-8 md:p-10 shadow-lg border-2 border-brand-orange/20">
+                    <p class="text-brand-orange font-semibold text-sm uppercase tracking-wide mb-3">For Businesses & Resellers</p>
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-navy-900 mb-4">
+                        How much inventory is sitting there—taking up space, eating up cash—because listing takes too long?
+                    </h2>
+                    <p class="text-lg text-navy-600 leading-relaxed">
+                        Every item you haven't listed is money you're not making. That's not a storage problem—it's a cash flow problem.
+                    </p>
+                </div>
+                
+                <!-- Problem 2 -->
+                <div class="question-card bg-white rounded-2xl p-8 md:p-10 shadow-lg">
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-navy-900 mb-4">
+                        Is selling this thing really worth 15 minutes of my time?
+                    </h2>
+                    <p class="text-lg text-navy-600 leading-relaxed">
+                        Research the price. Write a description. Take photos. Post it. Repeat for every item. Most people just don't bother. The stuff sits in the garage.
+                    </p>
+                </div>
+                
+                <!-- Problem 3 -->
+                <div class="question-card bg-white rounded-2xl p-8 md:p-10 shadow-lg">
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-navy-900 mb-4">
+                        What is this even worth?
+                    </h2>
+                    <p class="text-lg text-navy-600 leading-relaxed">
+                        Price too high, it never sells. Price too low, you leave money on the table. And you're just guessing.
+                    </p>
+                </div>
+                
+                <!-- Problem 4 -->
+                <div class="question-card bg-white rounded-2xl p-8 md:p-10 shadow-lg">
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-navy-900 mb-4">
+                        What am I sitting on that someone would actually pay for?
+                    </h2>
+                    <p class="text-lg text-navy-600 leading-relaxed">
+                        You've got stuff. You just don't know what it's worth—or if it's worth the hassle to find out.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution -->
+    <section class="py-24 bg-brand-charcoal text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">
+                    What if...
+                </h2>
+                <div class="space-y-4 text-xl md:text-2xl text-gray-300">
+                    <p>What if selling took <span class="text-brand-orange font-semibold">2 minutes</span> instead of 15?</p>
+                    <p>What if the app told you <span class="text-brand-orange font-semibold">what you have</span> and <span class="text-brand-orange font-semibold">what it's worth</span>?</p>
+                    <p>What if buyers and sellers were <span class="text-brand-green font-semibold">verified</span>—and you knew they were real?</p>
+                    <p>What if the scammers got <span class="text-brand-blue font-semibold">filtered out</span> before they ever reached you?</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-brand-orange font-semibold text-xl mb-6">That's SnapToSell.</p>
+                <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-8">
+                    Snap a photo. AI identifies it. Prices it. Lists it. Done.
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-24 bg-brand-surface">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-charcoal mb-3">Built-in Fraud Detection</h3>
+                    <p class="text-gray-600">Scammers get filtered out before they ever reach you.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-12 h-12 bg-brand-orange/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-charcoal mb-3">Photo Verification</h3>
+                    <p class="text-gray-600">Real photos. Real items. Real people.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-12 h-12 bg-brand-green/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-charcoal mb-3">Trust Scores</h3>
+                    <p class="text-gray-600">Know who you're dealing with before you meet.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-charcoal mb-3">Real Notifications</h3>
+                    <p class="text-gray-600">Know when real people are interested—not bots.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Market -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-lg text-gray-600 mb-4">The secondhand market is</p>
+            <p class="font-display text-4xl md:text-5xl font-bold text-brand-charcoal mb-4">$197 billion today.</p>
+            <p class="text-lg text-gray-600 mb-8">It's headed to <span class="font-semibold">$1 trillion</span>.</p>
+            <p class="text-xl text-brand-charcoal mb-4">And right now, it's broken.</p>
+            <p class="font-display text-2xl font-bold text-brand-blue">I'm fixing it.</p>
+        </div>
+    </section>
+
+    <!-- Early Access -->
+    <section id="early-access" class="py-24 bg-brand-charcoal text-white">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <p class="text-brand-orange font-semibold mb-4 tracking-widest uppercase text-sm">Coming Soon</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+                Want early access?
+            </h2>
+            <p class="text-lg text-gray-300 mb-4">
+                Or interested in investing?
+            </p>
+            <p class="text-lg text-gray-300 mb-10">
+                Check out <a href="https://snaptosell.com" class="text-brand-blue hover:text-blue-400 underline font-semibold">SnapToSell.com</a>
+            </p>
+            <a href="#contact" class="inline-block bg-brand-blue hover:bg-blue-600 text-white px-10 py-5 rounded-lg font-bold text-lg transition transform hover:scale-[1.02]">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white py-16 border-t border-navy-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
+                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">Entrepreneur, author, and advisor. Simplifying the complicated puzzles of life and business using God's principles.</p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/advising.html" class="hover:text-white transition">Business Advising</a></li>
+                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
+                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
+                        <li><a href="/#about" class="hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-navy-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll behavior
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+    </script>
+
+</body>
+</html>

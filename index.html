@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Wasmuth "” Entrepreneur, Author, Advisor | Smart Brands Inc.</title>
+    <meta name="description" content="Mark Wasmuth helps business owners build companies that run without them, shares documented truth about the systems we live in, and builds AI tools that multiply your time.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mark Wasmuth "” Entrepreneur, Author, Advisor">
+    <meta property="og:description" content="Business advisory, investigative research, and AI tools for people who want freedom.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://markwasmuth.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
+                        },
+                        amber: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
+                        },
+                        warm: {
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
+                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Nav styles - transparent on dark hero, solid when scrolled */
+        #main-nav.scrolled { 
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e8e4de;
+        }
+        #main-nav.scrolled .nav-logo { color: #102a43; }
+        #main-nav.scrolled .nav-link { color: #334e68; }
+        #main-nav.scrolled .nav-link:hover { color: #102a43; }
+        #main-nav.scrolled #mobile-menu-btn { color: #102a43; }
+        
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .path-card { position: relative; overflow: hidden; }
+        .path-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        }
+        .path-card:hover::before { transform: scaleX(1); }
+        .path-coaching { --accent-start: #102a43; --accent-end: #334e68; }
+        .path-book { --accent-start: #d97706; --accent-end: #f59e0b; }
+        .path-snaptosell { --accent-start: #102a43; --accent-end: #d97706; }
+        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
+        .link-underline { position: relative; }
+        .link-underline::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+            background: #d97706; transition: width 0.3s ease;
+        }
+        .link-underline:hover::after { width: 100%; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-500 { animation-delay: 0.5s; opacity: 0; }
+        input:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mark Wasmuth",
+        "jobTitle": "Entrepreneur, Author, Business Advisor",
+        "description": "Serial entrepreneur with 8-figure exit experience, author of The Enemy Within, and business advisor helping owners build companies that run as assets.",
+        "url": "https://markwasmuth.com",
+        "worksFor": { "@type": "Organization", "name": "Smart Brands Inc.", "url": "https://markwasmuth.com" },
+        "knowsAbout": ["Business Advisory", "Entrepreneurship", "AI Technology", "Constitutional History", "Biblical Studies"]
+    }
+    </script>
+</head>
+
+<body class="bg-warm-50 text-navy-900">
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-white nav-logo">Mark Wasmuth</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">About</a>
+                    <a href="#paths" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">What I Do</a>
+                    <a href="#newsletter" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">Newsletter</a>
+                    <a href="#contact" class="bg-amber-500 hover:bg-amber-400 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold transition">Get in Touch</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <div class="flex flex-col gap-4">
+                    <a href="#about" class="text-sm font-medium text-navy-200 py-2">About</a>
+                    <a href="#paths" class="text-sm font-medium text-navy-200 py-2">What I Do</a>
+                    <a href="#newsletter" class="text-sm font-medium text-navy-200 py-2">Newsletter</a>
+                    <a href="#contact" class="bg-amber-500 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold text-center">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-navy-900">
+        <!-- Subtle gradient overlay matching book graphic -->
+        <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-900 to-navy-800"></div>
+        <!-- Ambient glow effects -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-navy-600/20 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-amber-400 font-semibold mb-6 tracking-widest uppercase text-sm animate-fade-in">Entrepreneur · Author · Advisor</p>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-white animate-fade-in delay-100">I'm Mark Wasmuth.</h1>
+                    <p class="text-xl md:text-2xl text-navy-100 mb-6 leading-relaxed animate-fade-in delay-200">
+                        I simplify the complicated puzzles of life and business using God's principles. Starting with the very first command: <em class="text-amber-400 not-italic">Be fruitful, multiply, and have dominion.</em>
+                    </p>
+                    <p class="text-lg text-navy-300 mb-10 animate-fade-in delay-300">
+                        Decades of building, scaling, and exiting businesses—I've signed both sides of the check.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 animate-fade-in delay-400">
+                        <a href="/advising.html" class="bg-amber-500 hover:bg-amber-400 text-navy-900 px-6 py-4 rounded-lg font-bold text-center transition transform hover:scale-[1.02]">Learn About My Advising</a>
+                        <a href="#about" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About Me</a>
+                        <a href="/book.html" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About My Book</a>
+                        <a href="/snaptosell.html" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About SnapToSell</a>
+                    </div>
+                </div>
+                <div class="hidden lg:block animate-fade-in delay-500">
+                    <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-navy-700/50">
+                        <img 
+                            src="mark-headshot.jpg" 
+                            alt="Mark Wasmuth - Entrepreneur, Author, and Business Advisor" 
+                            class="w-full h-full object-cover object-center"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Band -->
+    <section class="py-16 bg-navy-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="font-display text-xl md:text-2xl leading-relaxed text-navy-100">
+                "We were made to create. I help business owners apply creation principles to business: solid foundations, clear numbers, smart AI, and proven practices"”so your company becomes what you always intended it to be."
+            </p>
+        </div>
+    </section>
+
+    <!-- Three Paths Section -->
+    <section id="paths" class="py-24 bg-warm-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">What I Do</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">Three Ways I Can Help</h2>
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto">Pick the path that fits where you are right now.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Path 1: Business Advisory -->
+                <a href="/advising.html" class="path-card path-coaching bg-white rounded-2xl p-8 shadow-lg card-lift block">
+                    <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <p class="text-amber-600 text-sm font-semibold mb-2">For Business Owners</p>
+                    <h3 class="font-display text-2xl font-bold text-navy-900 mb-4">Business Advisory</h3>
+                    <p class="text-navy-600 mb-6 leading-relaxed">Stop being an operator. Start being an owner. I help you build a business that runs without you"”using proven frameworks and AI integration.</p>
+                    <div class="flex items-center gap-2 text-navy-900 font-semibold">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </a>
+                
+                <!-- Path 2: The Book -->
+                <a href="/book.html" class="path-card path-book bg-white rounded-2xl p-8 shadow-lg card-lift block">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <p class="text-amber-600 text-sm font-semibold mb-2">For Truth Seekers</p>
+                    <h3 class="font-display text-2xl font-bold text-navy-900 mb-4">The Enemy Within</h3>
+                    <p class="text-navy-600 mb-6 leading-relaxed">20 years of primary source research reveals the hidden legal architecture you were never taught. Facts. Not theories. Congressional records. Treasury documents.</p>
+                    <div class="flex items-center gap-2 text-navy-900 font-semibold">
+                        Get the Book
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </a>
+                
+                <!-- Path 3: SnapToSell -->
+                <a href="/snaptosell.html" class="path-card path-snaptosell bg-white rounded-2xl p-8 shadow-lg card-lift block">
+                    <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <p class="text-amber-600 text-sm font-semibold mb-2">For Sellers</p>
+                    <h3 class="font-display text-2xl font-bold text-navy-900 mb-4">SnapToSell</h3>
+                    <p class="text-navy-600 mb-6 leading-relaxed">Let AI Multiply Your Results. Not Your Hours. Snap a photo, get instant pricing, list everywhere in 2 minutes with built-in fraud protection.</p>
+                    <div class="flex items-center gap-2 text-navy-900 font-semibold">
+                        Try It Free
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">About Me</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-8">The Short Version</h2>
+                    <div class="space-y-6 text-navy-600 leading-relaxed">
+                        <p>I've spent my career building businesses"”and helping others do the same. I've had an 8-figure exit. I've also had failures. Both taught me things you can't learn in books.</p>
+                        <p>For over 20 years, I've conducted primary source research at the Library of Congress, National Archives, and Treasury Department. I wanted to understand how the systems we live in actually work"”not how we're told they work. That research became a book.</p>
+                        <p>Now I combine what I've learned about business, truth, and technology to help others. I believe we were made to create"”and that our businesses should serve our lives, not consume them.</p>
+                    </div>
+                    <div class="mt-10 pt-8 border-t border-warm-200">
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Serial Entrepreneur</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">8-Figure Exit</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">20+ Years Research</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Pittsboro, NC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-warm-50 rounded-2xl p-8 md:p-10">
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-6">Background</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900 mb-1">Business Exits</h4>
+                                <p class="text-navy-600 text-sm">Carsmart Collision, Mr. Engine, Stirs Disaster Services, and more</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900 mb-1">Research</h4>
+                                <p class="text-navy-600 text-sm">Library of Congress, National Archives, Treasury Department</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900 mb-1">Training</h4>
+                                <p class="text-navy-600 text-sm">Tony Robbins' Business Mastery, Jay Abraham, Keith Cunningham</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900 mb-1">Location</h4>
+                                <p class="text-navy-600 text-sm">Pittsboro, North Carolina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-24 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-2xl mx-auto px-6 relative z-10 text-center">
+            <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Stay Connected</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Join the Newsletter</h2>
+            <p class="text-lg text-navy-200 mb-10">Insights on business, truth, and building a life of freedom. No spam. Unsubscribe anytime.</p>
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" id="email" name="email" required class="flex-1 px-5 py-4 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder-navy-400" placeholder="Enter your email">
+                <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition whitespace-nowrap">Subscribe</button>
+            </form>
+            <p class="mt-6 text-sm text-navy-400">Your privacy matters. No spam, ever.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-warm-100">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Get in Touch</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">Let's Talk</h2>
+            <p class="text-lg text-navy-600 mb-10 max-w-2xl mx-auto">Whether you're interested in business advisory, have questions about the book, or want to explore SnapToSell"”I'd love to hear from you.</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="mailto:mark@markwasmuth.com" class="inline-flex items-center justify-center gap-3 bg-white px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition">
+                    <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span class="font-semibold text-navy-900">mark@markwasmuth.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
+                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.</p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. "¢ Pittsboro, NC</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/advising.html" class="hover:text-white transition">Business Advisory</a></li>
+                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
+                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-white transition">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-navy-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll behavior
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            console.log('Newsletter signup:', email);
+            alert('Thanks for subscribing! Check your inbox to confirm.');
+            newsletterForm.reset();
+        });
+    </script>
+
+</body>
+</html>

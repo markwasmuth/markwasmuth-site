@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Enemy Within — Mark Wasmuth</title>
+    <meta name="description" content="Why is nobody talking about this? 20 years of primary source research reveals the root of the problem—not just the symptoms. It's time to discover the truth.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Enemy Within — Mark Wasmuth">
+    <meta property="og:description" content="Why is nobody talking about this? This book goes to the root of the problem—not just the symptoms.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://markwasmuth.com/book.html">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
+                        },
+                        amber: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
+                        },
+                        warm: {
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
+                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Nav styles */
+        #main-nav.scrolled { 
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e8e4de;
+        }
+        #main-nav.scrolled .nav-logo { color: #102a43; }
+        #main-nav.scrolled .nav-link { color: #334e68; }
+        #main-nav.scrolled .nav-link:hover { color: #102a43; }
+        #main-nav.scrolled #mobile-menu-btn { color: #102a43; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-500 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "The Enemy Within",
+        "author": {
+            "@type": "Person",
+            "name": "Mark Wasmuth"
+        },
+        "description": "20 years of primary source research reveals the root of the problem—not just the symptoms.",
+        "url": "https://markwasmuth.com/book.html"
+    }
+    </script>
+</head>
+
+<body class="bg-warm-50 text-navy-900">
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-white nav-logo">Mark Wasmuth</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">Home</a>
+                    <a href="/advising.html" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">Advising</a>
+                    <a href="/book.html" class="text-sm font-medium text-white nav-link transition">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">SnapToSell</a>
+                    <a href="#contact" class="bg-amber-500 hover:bg-amber-400 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold transition">Get Notified When the Book is Released</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <div class="flex flex-col gap-4">
+                    <a href="/" class="text-sm font-medium text-navy-200 py-2">Home</a>
+                    <a href="/advising.html" class="text-sm font-medium text-navy-200 py-2">Advising</a>
+                    <a href="/book.html" class="text-sm font-medium text-white py-2">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-200 py-2">SnapToSell</a>
+                    <a href="#contact" class="bg-amber-500 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold text-center">Get Notified When the Book is Released</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-navy-900">
+        <!-- Subtle gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-900 to-navy-800"></div>
+        <!-- Ambient glow effects -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-navy-600/20 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center">
+                <p class="text-amber-400 font-semibold mb-6 tracking-widest uppercase text-sm animate-fade-in">The Enemy Within</p>
+                
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-8 text-white animate-fade-in delay-100">
+                    Why is nobody talking about this?
+                </h1>
+                
+                <div class="text-lg md:text-xl text-navy-200 mb-8 leading-relaxed max-w-3xl mx-auto space-y-6 animate-fade-in delay-200">
+                    <p>
+                        How do states violate Article One, Section 10 of the Constitution—and nobody holds them accountable? Does the Constitution even apply today? Why did the government classify you as their enemy? How does it affect you and your family? Do you have to wait for someone to get elected to fix it? Can it even be fixed? What can one person do about it?
+                    </p>
+                </div>
+                
+                <div class="text-xl md:text-2xl text-navy-100 mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-300">
+                    <p class="font-semibold text-amber-400 mb-4">Until now, nobody's been talking about it.</p>
+                    <p class="mb-4">
+                        This is not another book telling you a different version of what you've already heard. This isn't going to talk about problems without solutions.
+                    </p>
+                    <p>
+                        You haven't heard the root of the problem—you've only ever heard people talk about the symptoms.
+                    </p>
+                </div>
+                
+                <p class="font-display text-2xl md:text-3xl text-white font-bold mb-10 animate-fade-in delay-400">
+                    It's time to discover the root. And learn how to cure the disease.
+                </p>
+                
+                <div class="animate-fade-in delay-500">
+                    <a href="#get-the-book" class="inline-block bg-amber-500 hover:bg-amber-400 text-navy-900 px-10 py-5 rounded-lg font-bold text-lg transition transform hover:scale-[1.02]">
+                        Get Notified When the Book is Released
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes This Different -->
+    <section class="py-24 bg-warm-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                    This is not theory. This is not opinion.
+                </h2>
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
+                    20 years of primary source research. Congressional records. Treasury documents. The actual paper trail that reveals what you were never taught.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-4">What You've Been Told</h3>
+                    <ul class="space-y-3 text-navy-600">
+                        <li class="flex items-start gap-3">
+                            <span class="text-navy-400 mt-1">—</span>
+                            <span>The Constitution protects your rights</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-navy-400 mt-1">—</span>
+                            <span>Vote for the right person and things will change</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-navy-400 mt-1">—</span>
+                            <span>The system works the way you learned in school</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-navy-400 mt-1">—</span>
+                            <span>There's nothing you can do about it</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-navy-900 rounded-2xl p-8 shadow-lg">
+                    <h3 class="font-display text-xl font-bold text-white mb-4">What You'll Discover</h3>
+                    <ul class="space-y-3 text-navy-200">
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-400 mt-1">→</span>
+                            <span>Why the Constitution may not apply the way you think</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-400 mt-1">→</span>
+                            <span>Why elections alone can't fix what's actually broken</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-400 mt-1">→</span>
+                            <span>The documented history that explains what you see today</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-400 mt-1">→</span>
+                            <span>What one person can actually do about it</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Author -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                    About the Author
+                </h2>
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto mb-8">
+                    Mark Wasmuth spent over 20 years conducting primary source research at the Library of Congress, National Archives, and Treasury Department. Not YouTube videos. Not secondhand theories. The actual documents.
+                </p>
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
+                    He wanted to understand how the systems we live in actually work—not how we're told they work. This book is the result of that research.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Notified When the Book is Released -->
+    <section id="get-the-book" class="py-24 bg-navy-900 text-white">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+                Ready to discover the root?
+            </h2>
+            <p class="text-lg text-navy-200 mb-10">
+                Stop treating symptoms. Learn what's actually going on—and what you can do about it.
+            </p>
+            <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-navy-900 px-10 py-5 rounded-lg font-bold text-lg transition transform hover:scale-[1.02]">
+                Get Notified When the Book is Released
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white py-16 border-t border-navy-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
+                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">Entrepreneur, author, and advisor. Simplifying the complicated puzzles of life and business using God's principles.</p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/advising.html" class="hover:text-white transition">Business Advising</a></li>
+                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
+                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
+                        <li><a href="/#about" class="hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-navy-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll behavior
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+    </script>
+
+</body>
+</html>
