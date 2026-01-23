@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Wasmuth "” Entrepreneur, Author, Advisor | Smart Brands Inc.</title>
+    <title>Mark Wasmuth â€” Entrepreneur, Author, Advisor | Smart Brands Inc.</title>
     <meta name="description" content="Mark Wasmuth helps business owners build companies that run without them, shares documented truth about the systems we live in, and builds AI tools that multiply your time.">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Mark Wasmuth "” Entrepreneur, Author, Advisor">
+    <meta property="og:title" content="Mark Wasmuth â€” Entrepreneur, Author, Advisor">
     <meta property="og:description" content="Business advisory, investigative research, and AI tools for people who want freedom.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://markwasmuth.com">
@@ -53,19 +53,7 @@
         body { font-family: 'DM Sans', system-ui, sans-serif; }
         .font-display { font-family: 'Source Serif 4', Georgia, serif; }
         html { scroll-behavior: smooth; }
-        
-        /* Nav styles - transparent on dark hero, solid when scrolled */
-        #main-nav.scrolled { 
-            background: rgba(250, 249, 247, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid #e8e4de;
-        }
-        #main-nav.scrolled .nav-logo { color: #102a43; }
-        #main-nav.scrolled .nav-link { color: #334e68; }
-        #main-nav.scrolled .nav-link:hover { color: #102a43; }
-        #main-nav.scrolled #mobile-menu-btn { color: #102a43; }
-        
+        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-lift:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
         .path-card { position: relative; overflow: hidden; }
@@ -94,6 +82,7 @@
         .delay-400 { animation-delay: 0.4s; opacity: 0; }
         .delay-500 { animation-delay: 0.5s; opacity: 0; }
         input:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
+        .nav-link.active { color: #d97706; }
     </style>
     
     <script type="application/ld+json">
@@ -113,64 +102,65 @@
 <body class="bg-warm-50 text-navy-900">
 
     <!-- Navigation -->
-    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-warm-50/90 border-b border-warm-200">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-xl font-bold tracking-tight text-white nav-logo">Mark Wasmuth</a>
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">About</a>
-                    <a href="#paths" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">What I Do</a>
-                    <a href="#newsletter" class="text-sm font-medium text-navy-200 hover:text-white nav-link transition">Newsletter</a>
-                    <a href="#contact" class="bg-amber-500 hover:bg-amber-400 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold transition">Get in Touch</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-navy-700 hover:text-amber-600 transition">About</a>
+                    <a href="#paths" class="nav-link text-sm font-medium text-navy-700 hover:text-amber-600 transition">What I Do</a>
+                    <a href="#newsletter" class="nav-link text-sm font-medium text-navy-700 hover:text-amber-600 transition">Newsletter</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-navy-700 hover:text-amber-600 transition">Get in Touch</a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
             <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
                 <div class="flex flex-col gap-4">
-                    <a href="#about" class="text-sm font-medium text-navy-200 py-2">About</a>
-                    <a href="#paths" class="text-sm font-medium text-navy-200 py-2">What I Do</a>
-                    <a href="#newsletter" class="text-sm font-medium text-navy-200 py-2">Newsletter</a>
-                    <a href="#contact" class="bg-amber-500 text-navy-900 px-5 py-2.5 rounded-lg text-sm font-bold text-center">Get in Touch</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-navy-700 py-2">About</a>
+                    <a href="#paths" class="nav-link text-sm font-medium text-navy-700 py-2">What I Do</a>
+                    <a href="#newsletter" class="nav-link text-sm font-medium text-navy-700 py-2">Newsletter</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-navy-700 py-2">Get in Touch</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-navy-900">
-        <!-- Subtle gradient overlay matching book graphic -->
-        <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-900 to-navy-800"></div>
-        <!-- Ambient glow effects -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-navy-600/20 rounded-full filter blur-3xl"></div>
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-navy-50/50 to-transparent hidden lg:block"></div>
+        <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
         
         <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <p class="text-amber-400 font-semibold mb-6 tracking-widest uppercase text-sm animate-fade-in">Entrepreneur · Author · Advisor</p>
-                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-white animate-fade-in delay-100">I'm Mark Wasmuth.</h1>
-                    <p class="text-xl md:text-2xl text-navy-100 mb-6 leading-relaxed animate-fade-in delay-200">
-                        I simplify the complicated puzzles of life and business using God's principles. Starting with the very first command: <em class="text-amber-400 not-italic">Be fruitful, multiply, and have dominion.</em>
+                    <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Entrepreneur · Author · Advisor</p>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-in delay-100">I simplify the complicated puzzles of life and business using God's principles.</h1>
+                    <p class="text-xl md:text-2xl text-navy-700 mb-4 animate-fade-in delay-200">
+                        Starting with the very first command: Be fruitful, multiply, and have dominion.
                     </p>
-                    <p class="text-lg text-navy-300 mb-10 animate-fade-in delay-300">
+                    <p class="text-xl md:text-2xl text-navy-600 italic mb-8 animate-fade-in delay-300">
+                        What if there was a blueprint for success written into creation itself?
+                    </p>
+                    <p class="text-lg text-navy-600 mb-10 animate-fade-in delay-400">
                         Decades of building, scaling, and exiting businesses—I've signed both sides of the check.
                     </p>
-                    <div class="grid grid-cols-2 gap-4 animate-fade-in delay-400">
-                        <a href="/advising.html" class="bg-amber-500 hover:bg-amber-400 text-navy-900 px-6 py-4 rounded-lg font-bold text-center transition transform hover:scale-[1.02]">Learn About My Advising</a>
-                        <a href="#about" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About Me</a>
-                        <a href="/book.html" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About My Book</a>
-                        <a href="/snaptosell.html" class="border-2 border-amber-400/60 text-amber-400 px-6 py-4 rounded-lg font-semibold text-center hover:bg-amber-400 hover:text-navy-900 transition">Learn About SnapToSell</a>
+                    <div class="flex flex-wrap gap-4 animate-fade-in delay-500">
+                        <a href="/snaptosell.html" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold text-center">SnapToSell — Sell Safer, Smarter, Faster</a>
+                        <a href="#book" class="border-2 border-navy-900 text-navy-900 px-6 py-3 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">The Enemy Within — Coming Soon</a>
+                        <a href="/coaching.html" class="border-2 border-navy-900 text-navy-900 px-6 py-3 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">Business Advisory</a>
+                        <a href="#about" class="border-2 border-navy-900 text-navy-900 px-6 py-3 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">About Me</a>
                     </div>
                 </div>
                 <div class="hidden lg:block animate-fade-in delay-500">
-                    <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-navy-700/50">
-                        <img 
-                            src="mark-headshot.jpg" 
-                            alt="Mark Wasmuth - Entrepreneur, Author, and Business Advisor" 
-                            class="w-full h-full object-cover object-center"
-                        >
+                    <div class="aspect-square max-h-[70vh] bg-gradient-to-br from-navy-100 to-warm-200 rounded-2xl flex items-center justify-center shadow-2xl">
+                        <div class="text-center p-8">
+                            <div class="w-32 h-32 bg-navy-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-navy-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            </div>
+                            <p class="text-navy-500 text-sm">Professional photo coming soon</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +171,7 @@
     <section class="py-16 bg-navy-900 text-white">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <p class="font-display text-xl md:text-2xl leading-relaxed text-navy-100">
-                "We were made to create. I help business owners apply creation principles to business: solid foundations, clear numbers, smart AI, and proven practices"”so your company becomes what you always intended it to be."
+                "God designed us to create, build, and have dominion — not to be slaves to what we've built. He told us to be about our own business. Did He tell us how to make it successful? He wrote it into the fabric of creation itself. I help business owners apply those principles so their companies become what they were always meant to be: assets that serve your life, not consume it."
             </p>
         </div>
     </section>
@@ -197,13 +187,13 @@
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Path 1: Business Advisory -->
-                <a href="/advising.html" class="path-card path-coaching bg-white rounded-2xl p-8 shadow-lg card-lift block">
+                <a href="/coaching.html" class="path-card path-coaching bg-white rounded-2xl p-8 shadow-lg card-lift block">
                     <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
                     </div>
                     <p class="text-amber-600 text-sm font-semibold mb-2">For Business Owners</p>
                     <h3 class="font-display text-2xl font-bold text-navy-900 mb-4">Business Advisory</h3>
-                    <p class="text-navy-600 mb-6 leading-relaxed">Stop being an operator. Start being an owner. I help you build a business that runs without you"”using proven frameworks and AI integration.</p>
+                    <p class="text-navy-600 mb-6 leading-relaxed">Stop being an operator. Start being an owner. I help you build a business that runs without youâ€”using proven frameworks and AI integration.</p>
                     <div class="flex items-center gap-2 text-navy-900 font-semibold">
                         Learn More
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -241,6 +231,29 @@
         </div>
     </section>
 
+    <!-- B'Do'Hav Framework Section -->
+    <section id="framework" class="py-24 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
+            <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">The Framework</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">The B'Do'Hav Principles</h2>
+            <p class="text-xl text-navy-200 mb-10">The principles God built into creation that govern success in every area of life.</p>
+            
+            <form id="framework-form" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" id="framework-email" name="email" required class="flex-1 px-5 py-4 bg-navy-800 border border-navy-700 rounded-lg text-white placeholder-navy-400" placeholder="Enter your email">
+                <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition whitespace-nowrap">Get the Framework</button>
+            </form>
+            <p class="mt-6 text-sm text-navy-400">Free PDF download. No spam, ever.</p>
+            <div id="framework-success" class="hidden mt-6">
+                <p class="text-amber-400 font-semibold">Check your inbox — the framework is on its way!</p>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
@@ -249,16 +262,16 @@
                     <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">About Me</p>
                     <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-8">The Short Version</h2>
                     <div class="space-y-6 text-navy-600 leading-relaxed">
-                        <p>I've spent my career building businesses"”and helping others do the same. I've had an 8-figure exit. I've also had failures. Both taught me things you can't learn in books.</p>
-                        <p>For over 20 years, I've conducted primary source research at the Library of Congress, National Archives, and Treasury Department. I wanted to understand how the systems we live in actually work"”not how we're told they work. That research became a book.</p>
-                        <p>Now I combine what I've learned about business, truth, and technology to help others. I believe we were made to create"”and that our businesses should serve our lives, not consume them.</p>
+                        <p>My first 10 years in business were good — but not what they could have been. 20 years ago I discovered God's principles of creation — principles He told us to apply in every part of our lives. He said apply them to business. I did. Zero to 8 figures in 7 years.</p>
+                        <p>Around the same time, I stumbled across a legal document that didn't add up — a definition buried in a statute that shouldn't have been there. I started pulling the thread. What began as curiosity became a two-decade investigation through original source documents most Americans have never seen.</p>
+                        <p>What I discovered changed everything I thought I knew about how our system actually works. The truth isn't hidden — the education to read it is. That research became a book: <em>The Enemy Within</em>.</p>
                     </div>
                     <div class="mt-10 pt-8 border-t border-warm-200">
                         <div class="flex flex-wrap gap-4">
                             <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Serial Entrepreneur</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">8-Figure Exit</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Successful Business Exit</span>
                             <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">20+ Years Research</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Pittsboro, NC</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">North Carolina</span>
                         </div>
                     </div>
                 </div>
@@ -270,8 +283,8 @@
                                 <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-navy-900 mb-1">Business Exits</h4>
-                                <p class="text-navy-600 text-sm">Carsmart Collision, Mr. Engine, Stirs Disaster Services, and more</p>
+                                <h4 class="font-semibold text-navy-900 mb-1">Business</h4>
+                                <p class="text-navy-600 text-sm">SnapToSell, Smart Brands, CarSmart Collision, Stirs Disaster Services, Mr Engine, Real Estate</p>
                             </div>
                         </div>
                         <div class="flex gap-4">
@@ -285,20 +298,11 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="w-12 h-12 bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900 mb-1">Training</h4>
-                                <p class="text-navy-600 text-sm">Tony Robbins' Business Mastery, Jay Abraham, Keith Cunningham</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             </div>
                             <div>
                                 <h4 class="font-semibold text-navy-900 mb-1">Location</h4>
-                                <p class="text-navy-600 text-sm">Pittsboro, North Carolina</p>
+                                <p class="text-navy-600 text-sm">North Carolina</p>
                             </div>
                         </div>
                     </div>
@@ -330,11 +334,11 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Get in Touch</p>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">Let's Talk</h2>
-            <p class="text-lg text-navy-600 mb-10 max-w-2xl mx-auto">Whether you're interested in business advisory, have questions about the book, or want to explore SnapToSell"”I'd love to hear from you.</p>
+            <p class="text-lg text-navy-600 mb-10 max-w-2xl mx-auto">Whether you're interested in business advisory, have questions about the book, or want to explore SnapToSellâ€”I'd love to hear from you.</p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="mailto:mark@markwasmuth.com" class="inline-flex items-center justify-center gap-3 bg-white px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition">
+                <a href="mailto:markwasmuth@gmail.com" class="inline-flex items-center justify-center gap-3 bg-white px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition">
                     <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    <span class="font-semibold text-navy-900">mark@markwasmuth.com</span>
+                    <span class="font-semibold text-navy-900">markwasmuth@gmail.com</span>
                 </a>
             </div>
         </div>
@@ -347,12 +351,12 @@
                 <div class="md:col-span-2">
                     <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
                     <p class="text-navy-300 mb-6 max-w-md leading-relaxed">Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.</p>
-                    <p class="text-navy-400 text-sm">Smart Brands Inc. "¢ Pittsboro, NC</p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. â€¢ North Carolina</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Explore</h4>
                     <ul class="space-y-3 text-navy-300">
-                        <li><a href="/advising.html" class="hover:text-white transition">Business Advisory</a></li>
+                        <li><a href="/coaching.html" class="hover:text-white transition">Business Advisory</a></li>
                         <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
                         <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
                         <li><a href="#about" class="hover:text-white transition">About</a></li>
@@ -369,7 +373,7 @@
                 </div>
             </div>
             <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
+                <p class="text-navy-400 text-sm">Â© 2026 Mark Wasmuth. All rights reserved.</p>
                 <div class="flex gap-6 text-sm text-navy-400">
                     <a href="#" class="hover:text-white transition">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition">Terms of Service</a>
@@ -379,23 +383,10 @@
     </footer>
 
     <script>
-        // Nav scroll behavior
-        const nav = document.getElementById('main-nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-        
-        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-        
-        // Newsletter form
         const newsletterForm = document.getElementById('newsletter-form');
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -404,6 +395,42 @@
             alert('Thanks for subscribing! Check your inbox to confirm.');
             newsletterForm.reset();
         });
+        
+        // B'Do'Hav Framework form
+        const frameworkForm = document.getElementById('framework-form');
+        const frameworkSuccess = document.getElementById('framework-success');
+        frameworkForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('framework-email').value;
+            console.log('Framework download request:', email, 'Tag: bdohav-framework');
+            // TODO: Connect to Beehiiv with bdohav-framework tag
+            frameworkForm.classList.add('hidden');
+            frameworkSuccess.classList.remove('hidden');
+        });
+        
+        // Active nav highlighting on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        function highlightNav() {
+            const scrollPos = window.scrollY + 150;
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                if (scrollPos >= top && scrollPos < top + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', highlightNav);
+        highlightNav();
     </script>
 
 </body>
