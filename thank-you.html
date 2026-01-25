@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In – Mark Wasmuth</title>
+    <meta name="description" content="Thanks for reaching out. Here's what happens next.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
+                        },
+                        amber: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
+                        },
+                        warm: {
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
+                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-checkmark { animation: checkmark 0.6s ease forwards; }
+        .animate-fade-in { animation: fadeInUp 0.6s ease forwards; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-500 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+</head>
+
+<body class="bg-warm-50 text-navy-900 min-h-screen flex flex-col">
+
+    <!-- Simple Header -->
+    <header class="py-6 border-b border-warm-200">
+        <div class="max-w-6xl mx-auto px-6">
+            <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center py-16 px-6">
+        <div class="max-w-xl text-center">
+            
+            <!-- Checkmark Animation -->
+            <div class="mb-8 animate-checkmark">
+                <div class="w-24 h-24 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full mx-auto flex items-center justify-center shadow-lg">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Headline -->
+            <h1 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-4 animate-fade-in delay-200">
+                You're In.
+            </h1>
+            
+            <!-- Subheadline - changes based on form type -->
+            <p id="message-newsletter" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                Check your inbox for a confirmation email. Once you confirm, you'll start receiving insights on business mastery, documented truth, and creation principles.
+            </p>
+            
+            <p id="message-framework" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                Check your inbox—the Be Do Have Principles PDF is on its way. This framework changed everything for me. I think it will for you too.
+            </p>
+            
+            <p id="message-book" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                You're on the list. I'll let you know the moment The Enemy Within is available—plus share insights from the research along the way.
+            </p>
+            
+            <p id="message-snaptosell" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                You're on the early access list for SnapToSell. I'll reach out as soon as it's ready to launch.
+            </p>
+            
+            <p id="message-contact" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                I've received your message and will get back to you within 48 hours. In the meantime, feel free to explore more of what I do.
+            </p>
+            
+            <p id="message-advisory" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
+                I review every application personally. If we're a fit, I'll reach out within 48 hours to schedule your discovery call.
+            </p>
+            
+            <p id="message-default" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300">
+                Thanks for reaching out. I'll be in touch soon.
+            </p>
+            
+            <!-- What's Next Box -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-8 text-left animate-fade-in delay-400">
+                <h2 class="font-display text-lg font-bold text-navy-900 mb-4">What Happens Next</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-navy-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-sm font-bold text-navy-700">1</span>
+                        </div>
+                        <p class="text-navy-600">Check your email inbox (and spam folder, just in case)</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-navy-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-sm font-bold text-navy-700">2</span>
+                        </div>
+                        <p class="text-navy-600">Confirm your subscription or wait for my personal response</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-sm font-bold text-amber-700">3</span>
+                        </div>
+                        <p class="text-navy-600">Start applying creation principles to your business and life</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-500">
+                <a href="/" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
+                    Back to Home
+                </a>
+                <a href="/coaching.html" class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">
+                    Explore Business Advisory
+                </a>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="py-8 border-t border-warm-200">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-navy-500 text-sm">© 2026 Mark Wasmuth · Smart Brands Inc. · Pittsboro, NC</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check URL parameters to show the right message
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('source');
+        
+        // Hide default message and show appropriate one
+        const defaultMsg = document.getElementById('message-default');
+        
+        if (source === 'newsletter') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-newsletter').classList.remove('hidden');
+        } else if (source === 'framework') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-framework').classList.remove('hidden');
+        } else if (source === 'book') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-book').classList.remove('hidden');
+        } else if (source === 'snaptosell') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-snaptosell').classList.remove('hidden');
+        } else if (source === 'contact') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-contact').classList.remove('hidden');
+        } else if (source === 'advisory') {
+            defaultMsg.classList.add('hidden');
+            document.getElementById('message-advisory').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>

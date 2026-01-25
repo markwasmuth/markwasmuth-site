@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Wasmuth â€” Entrepreneur, Author, Coach | Smart Brands Inc.</title>
-    <meta name="description" content="Build businesses that run without you. Understand the system you're in. Sell smarter with AI. Mark Wasmuth helps entrepreneurs create freedom through business mastery, truth, and technology.">
+    <title>Business Advisory – Mark Wasmuth | Build a Business That Runs Without You</title>
+    <meta name="description" content="Stop being an operator. Start being an owner. Mark Wasmuth helps business owners build companies that run without them using proven frameworks, creation principles, and AI integration.">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Mark Wasmuth â€” Entrepreneur, Author, Coach">
-    <meta property="og:description" content="Build businesses that run without you. Understand the system you're in. Sell smarter with AI.">
+    <meta property="og:title" content="Business Advisory – Mark Wasmuth">
+    <meta property="og:description" content="Stop being an operator. Start being an owner. Build a business that runs without you.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://markwasmuth.com">
+    <meta property="og:url" content="https://markwasmuth.com/coaching">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,40 +25,19 @@
                 extend: {
                     colors: {
                         navy: {
-                            50: '#f0f4f8',
-                            100: '#d9e2ec',
-                            200: '#bcccdc',
-                            300: '#9fb3c8',
-                            400: '#829ab1',
-                            500: '#627d98',
-                            600: '#486581',
-                            700: '#334e68',
-                            800: '#243b53',
-                            900: '#102a43',
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
                         },
                         amber: {
-                            50: '#fffbeb',
-                            100: '#fef3c7',
-                            200: '#fde68a',
-                            300: '#fcd34d',
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                            800: '#92400e',
-                            900: '#78350f',
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
                         },
                         warm: {
-                            50: '#faf9f7',
-                            100: '#f5f3f0',
-                            200: '#e8e4de',
-                            300: '#d6d0c7',
-                            400: '#b8b0a3',
-                            500: '#9a9184',
-                            600: '#7d7568',
-                            700: '#635c52',
-                            800: '#4a453d',
-                            900: '#332f2a',
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
                         }
                     },
                     fontFamily: {
@@ -71,163 +50,28 @@
     </script>
     
     <style>
-        body {
-            font-family: 'DM Sans', system-ui, sans-serif;
-        }
-        .font-display {
-            font-family: 'Source Serif 4', Georgia, serif;
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Navigation blur */
-        .nav-blur {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        
-        /* Card hover effects */
-        .card-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-lift:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #102a43 0%, #334e68 50%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Subtle grain texture overlay */
-        .grain::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-        
-        /* Pillar card styling */
-        .pillar-card {
-            position: relative;
-            overflow: hidden;
-        }
-        .pillar-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #102a43, #d97706);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        .pillar-card:hover::after {
-            transform: scaleX(1);
-        }
-        
-        /* Button styles */
-        .btn-primary {
-            background: linear-gradient(135deg, #102a43 0%, #243b53 100%);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5);
-        }
-        
-        .btn-secondary {
-            border: 2px solid #102a43;
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background: #102a43;
-            color: white;
-        }
-        
-        /* Form focus states */
-        input:focus, select:focus {
-            outline: none;
-            border-color: #d97706;
-            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
-        }
-        
-        /* Animated underline for links */
-        .link-underline {
-            position: relative;
-        }
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
+        .link-underline { position: relative; }
         .link-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #d97706;
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+            background: #d97706; transition: width 0.3s ease;
         }
-        .link-underline:hover::after {
-            width: 100%;
-        }
-
-        /* Fade in animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
+        .link-underline:hover::after { width: 100%; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        input:focus, textarea:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12); }
     </style>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Mark Wasmuth",
-        "jobTitle": "Entrepreneur, Author, Business Coach",
-        "description": "Serial entrepreneur with 8-figure exit experience, author of 'The Enemy Within', and business coach helping owners build companies that run as assets.",
-        "url": "https://markwasmuth.com",
-        "sameAs": [],
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Smart Brands Inc.",
-            "url": "https://markwasmuth.com"
-        },
-        "knowsAbout": [
-            "Business Coaching",
-            "Entrepreneurship",
-            "AI Technology",
-            "Constitutional History",
-            "Biblical Studies"
-        ]
-    }
-    </script>
 </head>
 
 <body class="bg-warm-50 text-navy-900">
@@ -236,302 +80,304 @@
     <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-warm-50/90 border-b border-warm-200">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">
-                    Mark Wasmuth
-                </a>
-                
-                <!-- Desktop Navigation -->
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">About</a>
-                    <a href="#coaching" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Coaching</a>
-                    <a href="#book" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">The Book</a>
-                    <a href="#snaptosell" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">SnapToSell</a>
-                    <a href="#contact" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
-                        Get in Touch
-                    </a>
+                    <a href="/" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Home</a>
+                    <a href="/book.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">SnapToSell</a>
+                    <a href="#apply" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Apply Now</a>
                 </div>
-                
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
                 <div class="flex flex-col gap-4">
-                    <a href="#about" class="text-sm font-medium text-navy-700 py-2">About</a>
-                    <a href="#coaching" class="text-sm font-medium text-navy-700 py-2">Coaching</a>
-                    <a href="#book" class="text-sm font-medium text-navy-700 py-2">The Book</a>
-                    <a href="#snaptosell" class="text-sm font-medium text-navy-700 py-2">SnapToSell</a>
-                    <a href="#contact" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">
-                        Get in Touch
-                    </a>
+                    <a href="/" class="text-sm font-medium text-navy-700 py-2">Home</a>
+                    <a href="/book.html" class="text-sm font-medium text-navy-700 py-2">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 py-2">SnapToSell</a>
+                    <a href="#apply" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Apply Now</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 grain">
-        <div class="max-w-6xl mx-auto px-6 py-20">
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-navy-50/50 to-transparent hidden lg:block"></div>
+        <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
             <div class="max-w-3xl">
-                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm animate-fade-in">
-                    Entrepreneur Â· Author Â· Advisor
-                </p>
+                <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Business Advisory</p>
                 
-                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-in delay-100">
-                    Do You Run Your Businessâ€”Or Does It Run You?
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-8 animate-fade-in delay-100">
+                    Do You Run Your Business—Or Does It Run You?
                 </h1>
                 
-                <div class="space-y-2 mb-6 animate-fade-in delay-150">
-                    <p class="text-xl md:text-2xl text-navy-700 font-medium">Learn How to Be an Owner, Not an Operator.</p>
-                    <p class="text-xl md:text-2xl text-navy-600">Let AI Multiply Your Results. Not Your Hours.</p>
-                </div>
-                
-                <p class="text-lg md:text-xl text-navy-600 mb-10 leading-relaxed max-w-2xl animate-fade-in delay-200">
-                    I help entrepreneurs transform their companies into assets, discover what's actually standing between them and the freedom they wanted when they started, and leverage AI to multiply their time.
+                <p class="text-xl md:text-2xl text-navy-700 mb-4 animate-fade-in delay-200">
+                    Stop being an operator. Start being an owner.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-300">
-                    <a href="#pillars" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
-                        Explore My Work
+                <p class="text-lg text-navy-600 mb-10 leading-relaxed max-w-2xl animate-fade-in delay-300">
+                    I help business owners build companies that run without them—using proven frameworks, creation principles, and AI integration. Zero to 8 figures in 7 years. I've signed both sides of the check.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-400">
+                    <a href="#apply" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
+                        Book a Discovery Call
                     </a>
-                    <a href="#newsletter" class="btn-secondary text-navy-900 px-8 py-4 rounded-lg font-semibold text-center">
-                        Join the Newsletter
+                    <a href="#approach" class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">
+                        See My Approach
                     </a>
                 </div>
             </div>
         </div>
-        
-        <!-- Decorative element -->
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-96 bg-gradient-to-l from-amber-100/50 to-transparent rounded-l-full hidden lg:block"></div>
     </section>
 
-    <!-- Mission Statement -->
-    <section class="py-20 bg-navy-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <p class="text-amber-400 font-medium mb-6 tracking-wide uppercase text-sm">The Mission</p>
-            <blockquote class="font-display text-2xl md:text-3xl lg:text-4xl font-semibold leading-relaxed">
-                "God designed us to create, build, and have dominion — not to be slaves to what we've built. He told us to be about our own business. Did He tell us how to make it successful? He wrote it into the fabric of creation itself. I help business owners apply those principles so their companies become what they were always meant to be: assets that serve your life, not consume it."
-            </blockquote>
-            <p class="mt-8 text-navy-300 text-lg">— Mark Wasmuth</p>
+    <!-- Problem Section -->
+    <section class="py-20 bg-navy-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-amber-400 font-semibold mb-6 tracking-wide uppercase text-sm">The Real Problem</p>
+            <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-semibold leading-relaxed mb-8">
+                Most business owners don't dream bigger because bigger looks like harder.
+            </h2>
+            <p class="text-lg text-navy-200 leading-relaxed">
+                You built something real. But somewhere along the way, it became a job you can't leave. You're trapped in the day-to-day, putting out fires, and the freedom you wanted when you started feels further away than ever. It doesn't have to be this way.
+            </p>
         </div>
     </section>
 
-    <!-- Three Pillars Section -->
-    <section id="pillars" class="py-24 bg-warm-100">
+    <!-- Approach Section -->
+    <section id="approach" class="py-24 bg-warm-100">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">What I Do</p>
+                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">The Approach</p>
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                    Three Paths to Freedom
+                    Three Pillars of Business Mastery
                 </h2>
-                <p class="text-lg text-navy-600 max-w-3xl mx-auto leading-relaxed">
-                    Most business owners are really just operatorsâ€”trading time for money in a company they built. They don't dream bigger because bigger looks like harder. But when you work intentionally with proven principles, your effort multiplies. You stop surviving and start building something that gives you what you actually wanted when you started.
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
+                    Built on Tony Robbins' 7 Forces, Jay Abraham's Preeminence, Keith Cunningham's Financial Optics, and 20+ years of building and exiting businesses.
                 </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                
-                <!-- Pillar 1: Business Coaching -->
-                <div id="coaching" class="pillar-card bg-white rounded-2xl p-8 shadow-lg card-lift">
+                <!-- Pillar 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
                     <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Business Advisory</h3>
-                    <p class="text-navy-600 mb-6 leading-relaxed">
-                        Transform your business from a job you own into an asset that runs without you. Built on Tony Robbins' 7 Forces, Jay Abraham's Preeminence, and real-world exits.
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Foundation</h3>
+                    <p class="text-navy-600 leading-relaxed">
+                        Clarify your personal vision and business goals. Challenge limiting beliefs. Build the systems, people, and structures that let your business run as an asset—not a job.
                     </p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">8-figure exit experience</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">90-day action plans</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">AI integration strategies</span>
-                        </div>
-                    </div>
-                    <a href="#" class="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-amber-600 transition">
-                        Book a Discovery Call
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
                 </div>
                 
-                <!-- Pillar 2: The Book -->
-                <div id="book" class="pillar-card bg-white rounded-2xl p-8 shadow-lg card-lift">
+                <!-- Pillar 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
                     <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">The Enemy Within</h3>
-                    <p class="text-navy-600 mb-6 leading-relaxed">
-                        The Architecture of Control â€” 20 years of primary source research revealing the hidden legal framework you were never taught. Facts. Not theories.
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Strategy</h3>
+                    <p class="text-navy-600 leading-relaxed">
+                        Clear numbers. Financial optics that show you where the money actually goes. Marketing and sales systems that acquire customers predictably. Strategy that scales.
                     </p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">152,000 words â€¢ 42 chapters</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">Congressional records cited</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">The Daniel Protocol included</span>
-                        </div>
-                    </div>
-                    <a href="#" class="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-amber-600 transition">
-                        Get the Book
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
                 </div>
                 
-                <!-- Pillar 3: SnapToSell -->
-                <div id="snaptosell" class="pillar-card bg-white rounded-2xl p-8 shadow-lg card-lift">
+                <!-- Pillar 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
                     <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">SnapToSell</h3>
-                    <p class="text-navy-600 mb-6 leading-relaxed">
-                        AI-powered marketplace selling. Snap a photo, get instant pricing, list everywhere in 2 minutes. Speed is important. Trust is essential.
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Execution</h3>
+                    <p class="text-navy-600 leading-relaxed">
+                        90-day action plans with clear accountability. AI integration that multiplies your team's output. SOPs and automation that buy back your time.
                     </p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">93-96% AI accuracy</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">87% time reduction</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-sm text-navy-700">Built-in fraud detection</span>
-                        </div>
-                    </div>
-                    <a href="#" class="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-amber-600 transition">
-                        Try It Free
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
                 </div>
-                
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
+    <!-- Be Do Have Framework Section -->
+    <section class="py-20 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-10">
+                <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">The Framework</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+                    The Be Do Have Principles
+                </h2>
+                <p class="text-lg text-navy-200 max-w-2xl mx-auto">
+                    The principles God built into creation that govern success in every area of life. This is the foundation everything else is built on.
+                </p>
+            </div>
+            
+            <div class="bg-navy-800/50 backdrop-blur rounded-2xl p-8 md:p-10 max-w-xl mx-auto">
+                <form id="framework-form" class="space-y-4">
+                    <div>
+                        <input 
+                            type="email" 
+                            id="framework-email" 
+                            name="email"
+                            required
+                            class="w-full px-5 py-4 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400 focus:border-amber-500"
+                            placeholder="Enter your email"
+                        >
+                    </div>
+                    <button 
+                        type="submit"
+                        class="w-full bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition transform hover:scale-[1.02]"
+                    >
+                        Get the Free PDF
+                    </button>
+                </form>
+                <div class="flex items-center justify-center gap-6 mt-6 text-sm text-navy-400">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>Free PDF</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>No spam, ever</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Mark Section -->
+    <section class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Photo placeholder -->
+                <!-- Photo -->
                 <div class="relative">
-                    <div class="aspect-[4/5] bg-gradient-to-br from-navy-100 to-warm-200 rounded-2xl flex items-center justify-center">
-                        <div class="text-center p-8">
-                            <div class="w-32 h-32 bg-navy-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <svg class="w-16 h-16 text-navy-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                </svg>
-                            </div>
-                            <p class="text-navy-500 text-sm">Professional photo coming soon</p>
-                        </div>
-                    </div>
-                    <!-- Decorative element -->
-                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-amber-100 rounded-2xl -z-10"></div>
+                    <img 
+                        src="/familyphoto.jpg" 
+                        alt="Mark Wasmuth with his wife Meridith, kids, and dogs on their farm in Pittsboro, NC" 
+                        class="rounded-2xl shadow-2xl w-full object-cover"
+                    >
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-amber-100 rounded-2xl -z-10"></div>
                 </div>
                 
-                <!-- Bio content -->
+                <!-- Bio -->
                 <div>
                     <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">About Mark</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                        Serial Entrepreneur. 20-Year Researcher. Tell-It-Like-It-Is Advisor.
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-8">
+                        I Didn't Build Businesses to Stay Chained to Them
                     </h2>
-                    
-                    <div class="space-y-4 text-navy-600 leading-relaxed">
+                    <div class="space-y-6 text-navy-600 leading-relaxed">
                         <p>
-                            I built CarSmart Collision from zero to an 8-figure exit in 7 years. I know what it takes to build a business that actually runs without you.
+                            I live on a farm in Pittsboro, North Carolina with my wife Meridith, two young adult kids, and a small zoo—dogs, cats, chickens, ducks, and horses.
                         </p>
                         <p>
-                            For over 20 years, I've conducted primary source research at the Library of Congress, National Archives, and Treasury Department. Not theories. Not YouTube videos. Actual documents.
+                            I built businesses to create freedom—time with family, land to enjoy, and work that matters. That's what I help other business owners do.
                         </p>
                         <p>
-                            Today, through Smart Brands Inc., I combine spiritual truth, business mastery, and AI-driven efficiency to help business owners build lives of freedom and purpose.
+                            I've had the business exits. I've also had the 100+ hour work weeks and the businesses that owned me instead of the other way around. I know both sides. And I know the principles that make the difference.
                         </p>
                     </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-warm-200">
-                        <p class="text-navy-900 font-semibold mb-4">Based in Pittsboro, North Carolina</p>
-                        <div class="flex flex-wrap gap-4">
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700">Business Mastery</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700">Constitutional Research</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700">AI Integration</span>
+                    <div class="mt-8 pt-6 border-t border-warm-200">
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">8-Figure Exit</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">20+ Years Research</span>
+                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Pittsboro, NC</span>
                         </div>
                     </div>
                 </div>
                 
+                <div class="bg-warm-50 rounded-2xl p-8 md:p-10">
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-6">What You Get</h3>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900">1-on-1 Advisory Sessions</h4>
+                                <p class="text-navy-600 text-sm">Deep-dive coaching focused on your specific business challenges</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900">90-Day Action Plans</h4>
+                                <p class="text-navy-600 text-sm">Clear priorities, measurable outcomes, real accountability</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900">AI Integration Strategy</h4>
+                                <p class="text-navy-600 text-sm">Practical AI tools that multiply your results, not your hours</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900">Financial Clarity</h4>
+                                <p class="text-navy-600 text-sm">See where your money actually goes and what's driving profit</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy-900">Systems & SOPs</h4>
+                                <p class="text-navy-600 text-sm">Build the machine that runs without you</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote/Credibility Section -->
+    <!-- Quote Section -->
     <section class="py-20 bg-warm-100">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <svg class="w-12 h-12 text-amber-400 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
             </svg>
             <blockquote class="font-display text-2xl md:text-3xl font-semibold text-navy-900 leading-relaxed mb-8">
-                "You're either focused on your destiny or feeding your distractions."
+                "God designed us to create, build, and have dominion—not to be slaves to what we've built. Your company should serve your life, not consume it."
             </blockquote>
-            <p class="text-navy-600">â€” Mark Wasmuth</p>
+            <p class="text-navy-600">— Mark Wasmuth</p>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="py-24 bg-navy-900 text-white relative overflow-hidden">
+    <!-- Application Section -->
+    <section id="apply" class="py-24 bg-navy-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
@@ -539,27 +385,27 @@
         
         <div class="max-w-3xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12">
-                <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Stay Connected</p>
+                <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Get Started</p>
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
-                    Join the Newsletter
+                    Book a Discovery Call
                 </h2>
                 <p class="text-lg text-navy-200 max-w-xl mx-auto">
-                    Get insights on business mastery, truth-seeking, and building a life of freedom. No spam. Unsubscribe anytime.
+                    This isn't a sales call—it's a conversation to see if we're a fit. Tell me about your business and where you want to go.
                 </p>
             </div>
             
             <div class="bg-navy-800/50 backdrop-blur rounded-2xl p-8 md:p-10">
-                <form id="newsletter-form" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-4">
+                <form id="apply-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="firstName" class="block text-sm font-medium text-navy-200 mb-2">First Name</label>
+                            <label for="name" class="block text-sm font-medium text-navy-200 mb-2">Your Name</label>
                             <input 
                                 type="text" 
-                                id="firstName" 
-                                name="firstName"
+                                id="name" 
+                                name="name"
                                 required
-                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400 focus:border-amber-500"
-                                placeholder="Your first name"
+                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
+                                placeholder="Full name"
                             >
                         </div>
                         <div>
@@ -569,199 +415,90 @@
                                 id="email" 
                                 name="email"
                                 required
-                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400 focus:border-amber-500"
-                                placeholder="you@example.com"
+                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
+                                placeholder="you@company.com"
                             >
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-navy-200 mb-3">I'm most interested in:</label>
-                        <div class="grid sm:grid-cols-3 gap-3">
-                            <label class="flex items-center gap-3 p-4 bg-navy-700/50 rounded-lg border border-navy-600 cursor-pointer hover:border-amber-500/50 transition">
-                                <input type="checkbox" name="interests" value="business" class="w-4 h-4 rounded border-navy-500 text-amber-500 focus:ring-amber-500 bg-navy-600">
-                                <span class="text-sm text-navy-100">Business Mastery</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 bg-navy-700/50 rounded-lg border border-navy-600 cursor-pointer hover:border-amber-500/50 transition">
-                                <input type="checkbox" name="interests" value="truth" class="w-4 h-4 rounded border-navy-500 text-amber-500 focus:ring-amber-500 bg-navy-600">
-                                <span class="text-sm text-navy-100">Truth & Research</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 bg-navy-700/50 rounded-lg border border-navy-600 cursor-pointer hover:border-amber-500/50 transition">
-                                <input type="checkbox" name="interests" value="bible" class="w-4 h-4 rounded border-navy-500 text-amber-500 focus:ring-amber-500 bg-navy-600">
-                                <span class="text-sm text-navy-100">Bible Studies</span>
-                            </label>
-                        </div>
+                        <label for="business" class="block text-sm font-medium text-navy-200 mb-2">Tell me about your business</label>
+                        <input 
+                            type="text" 
+                            id="business" 
+                            name="business"
+                            required
+                            class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
+                            placeholder="Industry, revenue range, team size"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label for="challenge" class="block text-sm font-medium text-navy-200 mb-2">What's your biggest challenge right now?</label>
+                        <textarea 
+                            id="challenge" 
+                            name="challenge"
+                            rows="4"
+                            required
+                            class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400 resize-none"
+                            placeholder="Be specific—what's keeping you stuck?"
+                        ></textarea>
                     </div>
                     
                     <button 
                         type="submit"
                         class="w-full bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition transform hover:scale-[1.02]"
                     >
-                        Subscribe Now
+                        Request Discovery Call
                     </button>
                     
                     <p class="text-center text-sm text-navy-400">
-                        Your privacy matters. No spam, ever. Unsubscribe with one click.
+                        I review every application personally. If we're a fit, I'll reach out within 48 hours.
                     </p>
                 </form>
                 
-                <!-- Success message (hidden by default) -->
+                <!-- Success message -->
                 <div id="success-message" class="hidden text-center py-8">
                     <svg class="w-16 h-16 text-amber-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <h3 class="font-display text-2xl font-bold mb-2">You're In!</h3>
-                    <p class="text-navy-200">Check your inbox to confirm your subscription.</p>
+                    <h3 class="font-display text-2xl font-bold mb-2">Application Received</h3>
+                    <p class="text-navy-200">I'll review your information and be in touch within 48 hours.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16">
-                
-                <div>
-                    <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Get in Touch</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                        Let's Talk
-                    </h2>
-                    <p class="text-lg text-navy-600 mb-8 leading-relaxed">
-                        Whether you're interested in coaching, have questions about the book, or want to explore SnapToSell for your businessâ€”I'd love to hear from you.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">Email</h4>
-                                <p class="text-navy-600"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="721f1300190513011f07061a32151f131b1e5c111d1f">[email&#160;protected]</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">Location</h4>
-                                <p class="text-navy-600">Pittsboro, North Carolina</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-warm-50 rounded-2xl p-8 md:p-10">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="contact-name" class="block text-sm font-medium text-navy-700 mb-2">Name</label>
-                            <input 
-                                type="text" 
-                                id="contact-name" 
-                                name="name"
-                                required
-                                class="w-full px-4 py-3 bg-white border border-warm-300 rounded-lg text-navy-900 placeholder-navy-400"
-                                placeholder="Your name"
-                            >
-                        </div>
-                        
-                        <div>
-                            <label for="contact-email" class="block text-sm font-medium text-navy-700 mb-2">Email</label>
-                            <input 
-                                type="email" 
-                                id="contact-email" 
-                                name="email"
-                                required
-                                class="w-full px-4 py-3 bg-white border border-warm-300 rounded-lg text-navy-900 placeholder-navy-400"
-                                placeholder="you@example.com"
-                            >
-                        </div>
-                        
-                        <div>
-                            <label for="contact-subject" class="block text-sm font-medium text-navy-700 mb-2">Subject</label>
-                            <select 
-                                id="contact-subject" 
-                                name="subject"
-                                class="w-full px-4 py-3 bg-white border border-warm-300 rounded-lg text-navy-900"
-                            >
-                                <option value="coaching">Business Coaching Inquiry</option>
-                                <option value="book">Question About The Book</option>
-                                <option value="snaptosell">SnapToSell Interest</option>
-                                <option value="media">Media / Speaking Request</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium text-navy-700 mb-2">Message</label>
-                            <textarea 
-                                id="contact-message" 
-                                name="message"
-                                rows="4"
-                                required
-                                class="w-full px-4 py-3 bg-white border border-warm-300 rounded-lg text-navy-900 placeholder-navy-400 resize-none"
-                                placeholder="How can I help you?"
-                            ></textarea>
-                        </div>
-                        
-                        <button 
-                            type="submit"
-                            class="w-full btn-primary text-white font-bold py-4 px-8 rounded-lg"
-                        >
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-                
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-navy-900 text-white py-16">
+    <footer class="bg-navy-900 text-white py-16 border-t border-navy-800">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
-                
                 <div class="md:col-span-2">
                     <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
                     <p class="text-navy-300 mb-6 max-w-md leading-relaxed">
-                        Entrepreneur, author, and advisor helping business owners build companies that create freedom, understand the system they're in, and leverage AI to multiply their time.
+                        Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.
                     </p>
-                    <p class="text-navy-400 text-sm">Smart Brands Inc. â€¢ Pittsboro, NC</p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
                 </div>
-                
                 <div>
-                    <h4 class="font-semibold mb-4">Projects</h4>
+                    <h4 class="font-semibold mb-4">Explore</h4>
                     <ul class="space-y-3 text-navy-300">
-                        <li><a href="#coaching" class="hover:text-white transition">Business Advisory</a></li>
-                        <li><a href="#book" class="hover:text-white transition">The Enemy Within</a></li>
-                        <li><a href="#snaptosell" class="hover:text-white transition">SnapToSell</a></li>
-                        <li><a href="#" class="hover:text-white transition">Bible Studies</a></li>
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
+                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-semibold mb-4">Connect</h4>
                     <ul class="space-y-3 text-navy-300">
-                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
-                        <li><a href="#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="mailto:mark@markwasmuth.com" class="hover:text-white transition">Email</a></li>
                         <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
                         <li><a href="#" class="hover:text-white transition">YouTube</a></li>
                     </ul>
                 </div>
-                
             </div>
-            
             <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-navy-400 text-sm">Â© 2026 Mark Wasmuth. All rights reserved.</p>
+                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
                 <div class="flex gap-6 text-sm text-navy-400">
                     <a href="#" class="hover:text-white transition">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition">Terms of Service</a>
@@ -770,52 +507,64 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu JavaScript -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
         
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Framework PDF form - submits to Beehiiv
+        const frameworkForm = document.getElementById('framework-form');
+        frameworkForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('framework-email').value;
+            const submitBtn = frameworkForm.querySelector('button[type="submit"]');
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        reactivate_existing: true,
+                        send_welcome_email: true,
+                        utm_source: 'website',
+                        utm_medium: 'be-do-have-pdf'
+                    })
+                });
+            } catch (error) {
+                console.log('Beehiiv API call attempted');
+            }
+            
+            // Redirect to thank you page
+            window.location.href = '/thank-you.html?source=framework';
         });
         
-        // Close mobile menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+        // Application form handling
+        const applyForm = document.getElementById('apply-form');
         
-        // Newsletter form handling (placeholder - will connect to Beehiiv)
-        const newsletterForm = document.getElementById('newsletter-form');
-        const successMessage = document.getElementById('success-message');
-        
-        newsletterForm.addEventListener('submit', (e) => {
+        applyForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(newsletterForm);
-            const data = {
-                firstName: formData.get('firstName'),
-                email: formData.get('email'),
-                interests: formData.getAll('interests')
-            };
-            
-            console.log('Newsletter signup:', data);
-            
-            // Show success message (in production, this would be after API call)
-            newsletterForm.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-        });
-        
-        // Contact form handling (placeholder)
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
+            const formData = new FormData(applyForm);
             const data = Object.fromEntries(formData);
+            const submitBtn = applyForm.querySelector('button[type="submit"]');
             
-            console.log('Cont
+            // Disable button and show loading state
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            console.log('Advisory application:', data);
+            
+            // In production, this would submit to your backend/CRM
+            // For now, redirect to thank you page
+            window.location.href = '/thank-you.html?source=advisory';
+        });
+    </script>
+
+</body>
+</html>
