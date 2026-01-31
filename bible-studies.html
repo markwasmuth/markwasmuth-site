@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Studies — Scriptures Unlocked | Mark Wasmuth</title>
+    <meta name="description" content="Verse-by-verse Bible studies that reveal what Scripture actually says — and how it applies to life and business. Free downloads.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Bible Studies — Scriptures Unlocked | Mark Wasmuth">
+    <meta property="og:description" content="Verse-by-verse Bible studies that reveal what Scripture actually says — and how it applies to life and business.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://markwasmuth.com/bible-studies">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43',
+                        },
+                        amber: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                            800: '#92400e', 900: '#78350f',
+                        },
+                        warm: {
+                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
+                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
+                            800: '#4a453d', 900: '#332f2a',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
+                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
+        .link-underline { position: relative; }
+        .link-underline::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+            background: #d97706; transition: width 0.3s ease;
+        }
+        .link-underline:hover::after { width: 100%; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12); }
+    </style>
+</head>
+
+<body class="bg-warm-50 text-navy-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-warm-50/90 border-b border-warm-200">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Home</a>
+                    <a href="/coaching.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Business Advisory</a>
+                    <a href="/book.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">SnapToSell</a>
+                    <a href="#subscribe" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Subscribe</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <div class="flex flex-col gap-4">
+                    <a href="/" class="text-sm font-medium text-navy-700 py-2">Home</a>
+                    <a href="/coaching.html" class="text-sm font-medium text-navy-700 py-2">Business Advisory</a>
+                    <a href="/book.html" class="text-sm font-medium text-navy-700 py-2">The Book</a>
+                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 py-2">SnapToSell</a>
+                    <a href="#subscribe" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-amber-50/30 to-transparent hidden lg:block"></div>
+        <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Scriptures Unlocked</p>
+            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-in delay-100">
+                Verse-by-Verse Bible Studies
+            </h1>
+            <p class="text-xl md:text-2xl text-navy-700 mb-8 leading-relaxed animate-fade-in delay-200 max-w-2xl mx-auto">
+                What Scripture actually says — and how it applies to life and business. No fluff. Just truth.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
+                <a href="#studies" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
+                    Browse Studies
+                </a>
+                <a href="#subscribe" class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">
+                    Get New Studies by Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-navy-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="font-display text-xl md:text-2xl leading-relaxed text-navy-100">
+                "These studies dig into what the text actually says — word by word, verse by verse. I use the King James Version and Strong's Concordance to get to the original meaning. My goal is simple: understand what God said, not what someone told me He said."
+            </p>
+            <p class="mt-6 text-amber-400 font-semibold">— Mark Wasmuth</p>
+        </div>
+    </section>
+
+    <!-- Studies Library Section -->
+    <section id="studies" class="py-24 bg-warm-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">The Library</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                    Available Studies
+                </h2>
+                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
+                    Download any study for free. New studies added regularly.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Study Card 1 - Body Temple -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Body Temple</h3>
+                    <p class="text-navy-600 mb-4 text-sm">What Scripture teaches about honoring God with your body — and why it matters for health, discipline, and stewardship.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-navy-400">PDF Download</span>
+                        <a href="https://drive.google.com/file/d/1puRbLx9bR7t1ds7sac2UZofCx6ws5oC6/view?usp=drive_link" target="_blank" class="text-amber-600 font-semibold text-sm hover:text-amber-700 flex items-center gap-1">
+                            Download
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Study Card 2 - Christmas -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Christmas</h3>
+                    <p class="text-navy-600 mb-4 text-sm">The real story behind the birth of Christ — what the text actually says versus what tradition has added.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-navy-400">PDF Download</span>
+                        <a href="https://drive.google.com/file/d/1U8CSMCFHjS7xR3Chp9B2Le_Mb1iVX_mT/view?usp=drive_link" target="_blank" class="text-amber-600 font-semibold text-sm hover:text-amber-700 flex items-center gap-1">
+                            Download
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Study Card 3 - The Word, The Mind, The Battle -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-2">The Word, The Mind, The Battle</h3>
+                    <p class="text-navy-600 mb-4 text-sm">How God's Word transforms your thinking and equips you for spiritual warfare.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-navy-400">PDF Download</span>
+                        <a href="https://drive.google.com/file/d/1FsjknY7gEbhmNS4RNRfEH562rHme3vQb/view?usp=drive_link" target="_blank" class="text-amber-600 font-semibold text-sm hover:text-amber-700 flex items-center gap-1">
+                            Download
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-navy-500">More studies added regularly. Subscribe below to get notified.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Watch on YouTube</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                Scriptures Unlocked with Mark
+            </h2>
+            <p class="text-lg text-navy-600 mb-10 max-w-2xl mx-auto">
+                Video versions of these studies plus additional content on my YouTube channel.
+            </p>
+            <a href="https://www.youtube.com/@ScripturesUnlockedwithMark" target="_blank" class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                Subscribe on YouTube
+            </a>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section id="subscribe" class="py-24 bg-warm-100">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Stay Connected</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                Get New Studies by Email
+            </h2>
+            <p class="text-lg text-navy-600 mb-10 max-w-xl mx-auto">
+                Subscribe and I'll send you new studies as they're released — plus insights that don't make it to YouTube.
+            </p>
+            
+            <!-- Beehiiv Embed -->
+            <div class="flex justify-center">
+                <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+                <iframe src="https://subscribe-forms.beehiiv.com/c31281fc-038e-4611-8c11-54a7a3e2701e" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 627px; height: 339px; margin: 0; border-radius: 0px 0px 0px 0px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
+                <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
+                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">
+                        Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.
+                    </p>
+                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/coaching.html" class="hover:text-white transition">Business Advisory</a></li>
+                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
+                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-3 text-navy-300">
+                        <li><a href="/cdn-cgi/l/email-protection#bfd2decdd4c8deccd2cacbd7ffd8d2ded6d391dcd0d2" class="hover:text-white transition">Email</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                        <li><a href="https://www.youtube.com/@ScripturesUnlockedwithMark" class="hover:text-white transition">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-navy-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.qu
