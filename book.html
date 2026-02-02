@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Enemy Within "” Mark Wasmuth | 20 Years of Primary Source Research</title>
-    <meta name="description" content="20 years of primary source research reveals the hidden legal architecture you were never taught. Facts. Not theories. Congressional records. Treasury documents.">
+    <title>The Enemy Within — Mark Wasmuth | 20 Years of Primary Source Research</title>
+    <meta name="description" content="Your Programming. Their Systems. his Deception. 20 years of primary source research reveals the hidden legal architecture you were never taught. Get Chapter 1 free.">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="The Enemy Within "” Mark Wasmuth">
-    <meta property="og:description" content="20 years of primary source research reveals the hidden legal architecture you were never taught.">
+    <meta property="og:title" content="The Enemy Within — Mark Wasmuth">
+    <meta property="og:description" content="Your Programming. Their Systems. his Deception. 20 years of primary source research reveals the hidden legal architecture you were never taught.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://markwasmuth.com/book">
     
@@ -56,6 +56,8 @@
         .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
+        .btn-amber { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); transition: all 0.3s ease; }
+        .btn-amber:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(217, 119, 6, 0.5); }
         .link-underline { position: relative; }
         .link-underline::after {
             content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
@@ -69,6 +71,10 @@
         .delay-300 { animation-delay: 0.3s; opacity: 0; }
         .delay-400 { animation-delay: 0.4s; opacity: 0; }
         input:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12); }
+        .quote-border { border-left: 4px solid #d97706; }
+        .red-stamp { color: #dc2626; font-weight: 800; letter-spacing: 0.05em; }
     </style>
 </head>
 
@@ -84,7 +90,7 @@
                     <a href="/coaching.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Business Advisory</a>
                     <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">SnapToSell</a>
                     <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Bible Studies</a>
-                    <a href="#notify" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Get Notified</a>
+                    <a href="#get-chapter-1" class="btn-amber text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Get Chapter 1 Free</a>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -96,13 +102,15 @@
                     <a href="/coaching.html" class="text-sm font-medium text-navy-700 py-2">Business Advisory</a>
                     <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 py-2">SnapToSell</a>
                     <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 py-2">Bible Studies</a>
-                    <a href="#notify" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Get Notified</a>
+                    <a href="#get-chapter-1" class="btn-amber text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Get Chapter 1 Free</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ========================================== -->
+    <!-- HERO SECTION — Email Capture + Video -->
+    <!-- ========================================== -->
     <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
         <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-amber-50/30 to-transparent hidden lg:block"></div>
         <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
@@ -110,27 +118,45 @@
         <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Tired of Being Lied To?</p>
-                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-in delay-100">
+                    <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Coming April 2026</p>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 animate-fade-in delay-100">
                         The Enemy Within
                     </h1>
-                    <p class="text-xl md:text-2xl text-navy-700 mb-6 leading-relaxed animate-fade-in delay-200">
+                    <p class="text-xl md:text-2xl text-navy-700 mb-2 leading-relaxed animate-fade-in delay-200">
                         The Architecture of Control
                     </p>
-                    <p class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300">
-                        20 years of primary source research reveals the hidden legal architecture you were never taught. Facts. Not theories. Congressional records. Treasury documents. The truth isn't hidden — the education to read it is.
+                    <p class="text-lg md:text-xl text-amber-700 mb-6 italic animate-fade-in delay-200">
+                        Your Programming. Their Systems. his Deception.
                     </p>
-                    <div class="flex flex-wrap gap-4 mb-10 animate-fade-in delay-300">
-                        <span class="px-4 py-2 bg-amber-100 rounded-full text-sm text-amber-800 font-medium">152,000 Words</span>
-                        <span class="px-4 py-2 bg-amber-100 rounded-full text-sm text-amber-800 font-medium">42 Chapters</span>
-                        <span class="px-4 py-2 bg-amber-100 rounded-full text-sm text-amber-800 font-medium">Primary Sources</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-400">
-                        <a href="#notify" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
-                            Get Notified When It Drops
-                        </a>
+                    <p class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300">
+                        20 years of primary source research reveals what they never taught you in school. Congressional records. Treasury documents. The Bible told you this would happen — and it teaches you how to not just survive, but thrive.
+                    </p>
+                    
+                    <!-- Hero Email Capture -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-warm-200 animate-fade-in delay-400">
+                        <p class="font-semibold text-navy-900 mb-1">Read Chapter 1 — Free</p>
+                        <p class="text-sm text-navy-500 mb-4">"You've Always Known Something Was Off"</p>
+                        <form id="hero-form" class="flex flex-col sm:flex-row gap-3">
+                            <input 
+                                type="email" 
+                                id="hero-email" 
+                                name="email"
+                                required
+                                class="flex-1 px-4 py-3 bg-warm-50 border border-warm-300 rounded-lg text-navy-900 placeholder-navy-400"
+                                placeholder="Enter your email"
+                            >
+                            <button 
+                                type="submit"
+                                class="btn-amber text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap"
+                            >
+                                Get Chapter 1
+                            </button>
+                        </form>
+                        <p class="text-xs text-navy-400 mt-3">Free PDF. No spam. Unsubscribe anytime.</p>
                     </div>
                 </div>
+                
+                <!-- YouTube Video -->
                 <div class="animate-fade-in delay-400">
                     <div class="rounded-2xl shadow-2xl overflow-hidden max-w-xs mx-auto lg:max-w-sm bg-black">
                         <div class="relative" style="padding-bottom: 177.78%;">
@@ -149,7 +175,71 @@
         </div>
     </section>
 
-    <!-- About the Research Section -->
+    <!-- ========================================== -->
+    <!-- THE REVELATION — Senate Report 93-549 -->
+    <!-- ========================================== -->
+    <section class="py-20 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-red-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">What They Never Taught You</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+                    One Senate Report Changed Everything
+                </h2>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Quote 1 -->
+                <div class="quote-border pl-6 py-2">
+                    <p class="font-display text-xl md:text-2xl text-navy-100 leading-relaxed italic">
+                        "Since March 9, 1933, the United States has been in a state of declared national emergency."
+                    </p>
+                    <p class="text-amber-400 text-sm mt-3 font-medium">— Senate Report 93-549 (1973)</p>
+                </div>
+                
+                <!-- Commentary -->
+                <p class="text-lg text-navy-200 leading-relaxed">
+                    That's not a conspiracy theory. It's a Senate report. The same report goes on to say:
+                </p>
+                
+                <!-- Quote 2 -->
+                <div class="quote-border pl-6 py-2">
+                    <p class="font-display text-xl md:text-2xl text-navy-100 leading-relaxed italic">
+                        "This vast range of powers, taken together, confer enough authority to rule the country without reference to normal constitutional processes."
+                    </p>
+                    <p class="text-amber-400 text-sm mt-3 font-medium">— Senate Report 93-549 (1973)</p>
+                </div>
+                
+                <!-- The Six Words -->
+                <div class="bg-navy-800/60 backdrop-blur rounded-2xl p-8 mt-10">
+                    <p class="text-lg text-navy-200 leading-relaxed mb-4">
+                        In 1933, six words were added to the Trading with the Enemy Act of 1917. Six words that changed who the "enemy" was:
+                    </p>
+                    <p class="text-center text-2xl md:text-3xl font-bold text-white my-6">
+                        <span class="red-stamp">"any person within the United States"</span>
+                    </p>
+                    <p class="text-lg text-navy-200 leading-relaxed">
+                        You were never taught this in school. But it's right there in the Congressional Record. The book shows you exactly what happened, why it happened, and what God's Word says about how to thrive anyway.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Mid-page CTA -->
+            <div class="text-center mt-12">
+                <a href="#get-chapter-1" class="btn-amber text-white px-8 py-4 rounded-lg font-semibold inline-block">
+                    Read Chapter 1 Free — See For Yourself
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- THE RESEARCH — Not Theories. Documents. -->
+    <!-- ========================================== -->
     <section class="py-24 bg-white">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -161,7 +251,7 @@
             
             <div class="prose prose-lg max-w-none text-navy-600 leading-relaxed space-y-6">
                 <p>
-                    Around 20 years ago, I stumbled across a legal document that didn't add up"”a definition buried in a statute that shouldn't have been there. I started pulling the thread.
+                    Around 20 years ago, I stumbled across a legal document that didn't add up — a definition buried in a statute that shouldn't have been there. I started pulling the thread.
                 </p>
                 <p>
                     What began as curiosity became a two-decade investigation through original source documents most Americans have never seen. Congressional records. Treasury documents. Legal frameworks hidden in plain sight.
@@ -170,14 +260,120 @@
                     I've conducted this research at the Library of Congress, National Archives, and Treasury Department. Not YouTube videos. Not someone else's interpretation. The actual documents.
                 </p>
                 <p>
-                    What I discovered changed everything I thought I knew about how our system actually works. The truth isn't hidden — the education to read it is.
+                    I thought I'd have to destroy the system or escape it to be free. Then I understood God's principles — and realized I had the ability to win all along. <strong>So do you.</strong>
                 </p>
+            </div>
+            
+            <!-- Research Credentials -->
+            <div class="grid sm:grid-cols-3 gap-6 mt-12">
+                <div class="text-center p-6 bg-warm-50 rounded-xl">
+                    <p class="text-3xl font-bold text-navy-900 mb-1">20+</p>
+                    <p class="text-sm text-navy-500">Years of Research</p>
+                </div>
+                <div class="text-center p-6 bg-warm-50 rounded-xl">
+                    <p class="text-3xl font-bold text-navy-900 mb-1">152K</p>
+                    <p class="text-sm text-navy-500">Words · 42 Chapters</p>
+                </div>
+                <div class="text-center p-6 bg-warm-50 rounded-xl">
+                    <p class="text-3xl font-bold text-navy-900 mb-1">100%</p>
+                    <p class="text-sm text-navy-500">Primary Sources</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- What's Inside Section -->
+    <!-- ========================================== -->
+    <!-- WHO THIS BOOK IS FOR -->
+    <!-- ========================================== -->
     <section class="py-24 bg-warm-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Is This For You?</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                    Who This Book Is For
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Researcher</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        You've gone down rabbit holes but never found a source that traces the entire architecture from beginning to end — with original documents you can verify yourself.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Business Owner</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        You've built something real but something about the system doesn't add up. The rules seem designed for someone else. This book shows you why — and how God's principles let you win anyway.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Bible Student</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        You believe Scripture speaks to every area of life. This book shows what the Bible says about the systems of this world — and gives you the Daniel Protocol for navigating them.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Parent</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        You want your kids to understand how the world actually works — not the sanitized version. This is the resource you wish existed when you were figuring it out.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Skeptic</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        Good. Every claim in this book is backed by original source documents — congressional records, treasury documents, legal statutes. You can verify every single one yourself.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-navy-900 mb-3">The Fighter</h3>
+                    <p class="text-navy-600 leading-relaxed text-sm">
+                        You're tired of being angry without a plan. This book doesn't just expose the problem — the Daniel Protocol gives you a biblical framework for how to thrive within the system.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- WHAT'S INSIDE — Book Contents -->
+    <!-- ========================================== -->
+    <section class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">What's Inside</p>
@@ -185,65 +381,88 @@
                     152,000 Words. 42 Chapters.
                 </h2>
                 <p class="text-lg text-navy-600 max-w-2xl mx-auto">
-                    This isn't a quick read. It's a comprehensive examination of the legal architecture that shapes American life.
+                    This isn't a quick read. It's a comprehensive examination of the legal architecture that shapes American life — and the biblical principles that set you free.
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <div class="bg-warm-50 rounded-2xl p-8 shadow-lg">
                     <h3 class="font-display text-xl font-bold text-navy-900 mb-4">Primary Source Research</h3>
                     <p class="text-navy-600 leading-relaxed">
-                        Every claim is backed by original documents"”congressional records, treasury documents, legal statutes. You can verify everything yourself.
+                        Every claim is backed by original documents — congressional records, treasury documents, legal statutes. You can verify everything yourself. No middlemen. No interpreters.
                     </p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <div class="bg-warm-50 rounded-2xl p-8 shadow-lg">
                     <h3 class="font-display text-xl font-bold text-navy-900 mb-4">The Daniel Protocol</h3>
                     <p class="text-navy-600 leading-relaxed">
-                        A practical framework for navigating the system once you understand how it actually works. Knowledge without application is incomplete.
+                        A practical biblical framework for navigating the system once you understand how it actually works. Knowledge without application is incomplete. This is the application.
                     </p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <div class="bg-warm-50 rounded-2xl p-8 shadow-lg">
                     <h3 class="font-display text-xl font-bold text-navy-900 mb-4">Historical Context</h3>
                     <p class="text-navy-600 leading-relaxed">
-                        Understanding the present requires understanding how we got here. The book traces the evolution of the current system through documented history.
+                        Understanding the present requires understanding how we got here. The book traces the evolution of the current system through documented history — not theories.
                     </p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-4">Legal Framework</h3>
+                <div class="bg-warm-50 rounded-2xl p-8 shadow-lg">
+                    <h3 class="font-display text-xl font-bold text-navy-900 mb-4">The Way Forward</h3>
                     <p class="text-navy-600 leading-relaxed">
-                        The definitions, structures, and mechanisms that govern how the system operates"”explained in plain language with citations to original sources.
+                        This book doesn't leave you hopeless. God's principles were designed to operate within any system man creates. You were built to create, build, and have dominion — and you still can.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote Section -->
+    <!-- ========================================== -->
+    <!-- QUOTE SECTION -->
+    <!-- ========================================== -->
     <section class="py-20 bg-navy-900 text-white">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <svg class="w-12 h-12 text-amber-400 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
             </svg>
             <blockquote class="font-display text-2xl md:text-3xl font-semibold leading-relaxed mb-8">
-                "The truth isn't hidden — the education to read it is."
+                "I thought I'd have to destroy the system or escape it to be free. Then I understood God's principles — and realized I had the ability to win all along."
             </blockquote>
             <p class="text-navy-300">— Mark Wasmuth</p>
         </div>
     </section>
 
-    <!-- Notify Section -->
-    <section id="notify" class="py-24 bg-warm-100">
-        <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
-            <!-- Beehiiv Embed -->
-            <div class="flex justify-center">
-                <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-                <iframe src="https://subscribe-forms.beehiiv.com/18f378e6-62f3-473b-9897-d1293279068f" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 505px; height: 389px; margin: 0; border-radius: 0px !important; background-color: transparent; max-width: 100%;"></iframe>
-                <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+    <!-- ========================================== -->
+    <!-- FINAL CTA — Get Chapter 1 Free -->
+    <!-- ========================================== -->
+    <section id="get-chapter-1" class="py-24 bg-warm-100">
+        <div class="max-w-3xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Start Here</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                    Read Chapter 1 — Free
+                </h2>
+                <p class="text-lg text-navy-600 max-w-xl mx-auto">
+                    "You've Always Known Something Was Off" — the chapter that starts the journey. Plus you'll get insights from the research as I prepare for launch.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-8 md:p-10 max-w-xl mx-auto shadow-lg">
+                <!-- Beehiiv Embed -->
+                <div class="flex justify-center">
+                    <iframe src="https://subscribe-forms.beehiiv.com/18f378e6-62f3-473b-9897-d1293279068f" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 505px; height: 389px; margin: 0; border-radius: 0px !important; background-color: transparent; max-width: 100%;"></iframe>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 justify-center mt-8">
+                <span class="px-4 py-2 bg-white rounded-full text-sm text-navy-700 font-medium shadow-sm">152,000 Words</span>
+                <span class="px-4 py-2 bg-white rounded-full text-sm text-navy-700 font-medium shadow-sm">42 Chapters</span>
+                <span class="px-4 py-2 bg-white rounded-full text-sm text-navy-700 font-medium shadow-sm">Primary Sources Only</span>
+                <span class="px-4 py-2 bg-white rounded-full text-sm text-navy-700 font-medium shadow-sm">Launching April 2026</span>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
     <footer class="bg-navy-900 text-white py-16">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
@@ -268,7 +487,6 @@
                     <ul class="space-y-3 text-navy-300">
                         <li><a href="mailto:markwasmuth@gmail.com" class="hover:text-white transition">Email</a></li>
                         <li><a href="https://www.linkedin.com/in/mark-wasmuth/" target="_blank" class="hover:text-white transition">LinkedIn</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -288,6 +506,35 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        
+        // Hero form — submits to Beehiiv then redirects
+        const heroForm = document.getElementById('hero-form');
+        heroForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('hero-email').value;
+            const submitBtn = heroForm.querySelector('button[type="submit"]');
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        reactivate_existing: true,
+                        send_welcome_email: true,
+                        utm_source: 'website',
+                        utm_medium: 'book-chapter1-hero'
+                    })
+                });
+            } catch (error) {
+                console.log('Beehiiv API call attempted');
+            }
+            
+            window.location.href = '/thank-you.html?source=book';
+        });
     </script>
 
 </body>
