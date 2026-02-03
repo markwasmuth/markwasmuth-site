@@ -197,6 +197,23 @@
             defaultMsg.classList.add('hidden');
             document.getElementById('message-book').classList.remove('hidden');
             document.getElementById('download-chapter-15').classList.remove('hidden');
+
+            // Send email to Beehiiv in background
+            const email = urlParams.get('email');
+            if (email) {
+                fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        reactivate_existing: true,
+                        send_welcome_email: true,
+                        utm_source: 'website',
+                        utm_medium: 'book-chapter15'
+                    })
+                }).catch(() => {});
+            }
         } else if (source === 'snaptosell') {
             defaultMsg.classList.add('hidden');
             document.getElementById('message-snaptosell').classList.remove('hidden');

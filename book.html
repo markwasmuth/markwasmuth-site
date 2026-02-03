@@ -554,34 +554,24 @@
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
         
-        // Hero form  -  submits to Beehiiv then redirects
+        // Hero form - redirects to thank-you page (Beehiiv embed handles email capture)
         const heroForm = document.getElementById('hero-form');
-        heroForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('hero-email').value;
-            const submitBtn = heroForm.querySelector('button[type="submit"]');
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        reactivate_existing: true,
-                        send_welcome_email: true,
-                        utm_source: 'website',
-                        utm_medium: 'book-chapter1-hero'
-                    })
-                });
-            } catch (error) {
-                console.log('Beehiiv API call attempted');
-            }
-            
-            window.location.href = '/thank-you.html?source=book';
-        });
+        if (heroForm) {
+            heroForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('hero-email').value;
+                if (email) {
+                    const submitBtn = heroForm.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.textContent = 'Sending...';
+                        submitBtn.disabled = true;
+                    }
+                    // Store email for potential use, then redirect
+                    sessionStorage.setItem('signup_email', email);
+                    window.location.href = '/thank-you.html?source=book&email=' + encodeURIComponent(email);
+                }
+            });
+        }
     </script>
 
 </body>
