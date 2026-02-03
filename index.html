@@ -366,64 +366,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-        // Newsletter form - submit to Beehiiv then redirect
-        const newsletterForm = document.getElementById('newsletter-form');
-        newsletterForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-            
-            submitBtn.textContent = 'Subscribing...';
-            submitBtn.disabled = true;
-            
-            try {
-                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        reactivate_existing: true,
-                        send_welcome_email: true,
-                        utm_source: 'website',
-                        utm_medium: 'homepage-newsletter'
-                    })
-                });
-            } catch (error) {
-                console.log('Beehiiv API call attempted');
-            }
-            
-            window.location.href = '/thank-you.html?source=newsletter';
-        });
-        
-        // B'Do'Hav Framework form - submit to Beehiiv then redirect
-        const frameworkForm = document.getElementById('framework-form');
-        frameworkForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('framework-email').value;
-            const submitBtn = frameworkForm.querySelector('button[type="submit"]');
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        reactivate_existing: true,
-                        send_welcome_email: true,
-                        utm_source: 'website',
-                        utm_medium: 'bdohav-framework'
-                    })
-                });
-            } catch (error) {
-                console.log('Beehiiv API call attempted');
-            }
-            
-            window.location.href = '/thank-you.html?source=framework';
-        });
-        
+
         // Active nav highlighting on scroll
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
