@@ -203,8 +203,10 @@
             if (email) {
                 fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 5DmDnJlDJ2QYz51sRVRrNTqwKyTAhOxvH1cHKvKRwsSKDf9HQxMDNRoO160bSyT7v'
+                    },
                     body: JSON.stringify({
                         email: email,
                         reactivate_existing: true,
