@@ -103,9 +103,20 @@
                 Check your inbox—the Be Do Have Principles PDF is on its way. This framework changed everything for me. I think it will for you too.
             </p>
             
-            <p id="message-book" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
-                You're on the list. I'll let you know the moment The Enemy Within is available—plus share insights from the research along the way.
+            <p id="message-book" class="text-lg text-navy-600 mb-4 leading-relaxed animate-fade-in delay-300 hidden">
+                Chapter 15 is ready for you. This is "The 1933 Entrenchment" — the chapter that reveals how six words turned wartime powers against American citizens.
             </p>
+
+            <!-- Chapter 15 Download Button -->
+            <div id="download-chapter-15" class="mb-8 animate-fade-in delay-400 hidden">
+                <a href="/The_Enemy_Within_Chapter_15.pdf" download class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Download Chapter 15 (PDF)
+                </a>
+                <p class="text-sm text-navy-500 mt-3">I'll also send insights from the research as I prepare for launch.</p>
+            </div>
             
             <p id="message-snaptosell" class="text-lg text-navy-600 mb-8 leading-relaxed animate-fade-in delay-300 hidden">
                 You're on the early access list for SnapToSell. I'll reach out as soon as it's ready to launch.
@@ -185,6 +196,7 @@
         } else if (source === 'book') {
             defaultMsg.classList.add('hidden');
             document.getElementById('message-book').classList.remove('hidden');
+            document.getElementById('download-chapter-15').classList.remove('hidden');
         } else if (source === 'snaptosell') {
             defaultMsg.classList.add('hidden');
             document.getElementById('message-snaptosell').classList.remove('hidden');
