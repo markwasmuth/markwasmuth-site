@@ -136,16 +136,16 @@
                     <div class="bg-white rounded-2xl p-6 shadow-lg border border-warm-200 animate-fade-in delay-400">
                         <p class="font-semibold text-navy-900 mb-1">Read Chapter 15 - Free</p>
                         <p class="text-sm text-navy-500 mb-4">"Any Person." That Means You.</p>
-                        <form id="hero-form" class="flex flex-col sm:flex-row gap-3">
-                            <input 
-                                type="email" 
-                                id="hero-email" 
+                        <form action="/thank-you.html" method="GET" class="flex flex-col sm:flex-row gap-3">
+                            <input type="hidden" name="source" value="book">
+                            <input
+                                type="email"
                                 name="email"
                                 required
                                 class="flex-1 px-4 py-3 bg-warm-50 border border-warm-300 rounded-lg text-navy-900 placeholder-navy-400"
                                 placeholder="Enter your email"
                             >
-                            <button 
+                            <button
                                 type="submit"
                                 class="btn-amber text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap"
                             >
@@ -554,24 +554,6 @@
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
         
-        // Hero form - redirects to thank-you page (Beehiiv embed handles email capture)
-        const heroForm = document.getElementById('hero-form');
-        if (heroForm) {
-            heroForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('hero-email').value;
-                if (email) {
-                    const submitBtn = heroForm.querySelector('button[type="submit"]');
-                    if (submitBtn) {
-                        submitBtn.textContent = 'Sending...';
-                        submitBtn.disabled = true;
-                    }
-                    // Store email for potential use, then redirect
-                    sessionStorage.setItem('signup_email', email);
-                    window.location.href = '/thank-you.html?source=book&email=' + encodeURIComponent(email);
-                }
-            });
-        }
     </script>
 
 </body>
