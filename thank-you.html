@@ -198,21 +198,15 @@
             document.getElementById('message-book').classList.remove('hidden');
             document.getElementById('download-chapter-15').classList.remove('hidden');
 
-            // Send email to Beehiiv in background
+            // Send email to our serverless function (API key hidden server-side)
             const email = urlParams.get('email');
             if (email) {
-                fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
+                fetch('/api/subscribe', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer 5DmDnJlDJ2QYz51sRVRrNTqwKyTAhOxvH1cHKvKRwsSKDf9HQxMDNRoO160bSyT7v'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         email: email,
-                        reactivate_existing: true,
-                        send_welcome_email: true,
-                        utm_source: 'website',
-                        utm_medium: 'book-chapter15'
+                        source: 'book-chapter15'
                     })
                 }).catch(() => {});
             }
