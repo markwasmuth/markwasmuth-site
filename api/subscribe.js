@@ -25,8 +25,11 @@ module.exports = async (req, res) => {
     const apiKey = process.env.BEEHIIV_API_KEY;
     if (!apiKey) {
         console.error('BEEHIIV_API_KEY not set');
-        return res.status(500).json({ error: 'Server configuration error' });
+        return res.status(500).json({ error: 'API key not configured' });
     }
+
+    // Debug: log that we have the key (not the key itself)
+    console.log('API key exists, length:', apiKey.length);
 
     const data = JSON.stringify({
         email: email,
@@ -53,11 +56,15 @@ module.exports = async (req, res) => {
             let body = '';
             response.on('data', (chunk) => { body += chunk; });
             response.on('end', () => {
+                console.log('Beehiiv response:', response.statusCode, body);
                 if (response.statusCode >= 200 && response.statusCode < 300) {
-                    res.status(200).json({ success: true });
+                    res.status(200).json({ success: true, beehiivStatus: response.statusCode });
                 } else {
-                    console.error('Beehiiv error:', response.statusCode, body);
-                    res.status(500).json({ error: 'Subscription failed', details: body });
+                    res.status(response.statusCode).json({
+                        error: 'Subscription failed',
+                        beehiivStatus: response.statusCode,
+                        details: body
+                    });
                 }
                 resolve();
             });

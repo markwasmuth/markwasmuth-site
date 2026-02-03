@@ -208,7 +208,10 @@
                         email: email,
                         source: 'book-chapter15'
                     })
-                }).catch(() => {});
+                })
+                .then(r => r.json())
+                .then(data => console.log('Subscribe result:', data))
+                .catch(err => console.error('Subscribe error:', err));
             }
         } else if (source === 'snaptosell') {
             defaultMsg.classList.add('hidden');
