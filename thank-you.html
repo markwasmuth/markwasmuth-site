@@ -198,21 +198,6 @@
             document.getElementById('message-book').classList.remove('hidden');
             document.getElementById('download-chapter-15').classList.remove('hidden');
 
-            // Send email to our serverless function (API key hidden server-side)
-            const email = urlParams.get('email');
-            if (email) {
-                fetch('/api/subscribe', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        source: 'book-chapter15'
-                    })
-                })
-                .then(r => r.json())
-                .then(data => console.log('Subscribe result:', data))
-                .catch(err => console.error('Subscribe error:', err));
-            }
         } else if (source === 'snaptosell') {
             defaultMsg.classList.add('hidden');
             document.getElementById('message-snaptosell').classList.remove('hidden');
