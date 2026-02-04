@@ -336,16 +336,41 @@
         </div>
     </section>
 
-    <!-- Quote Section -->
-    <section class="py-20 bg-warm-100">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <svg class="w-12 h-12 text-amber-400 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <blockquote class="font-display text-2xl md:text-3xl font-semibold text-navy-900 leading-relaxed mb-8">
-                "God designed us to create, build, and have dominion"”not to be slaves to what we've built. Your company should serve your life, not consume it."
-            </blockquote>
-            <p class="text-navy-600">"” Mark Wasmuth</p>
+    <!-- BE·DO·HAVE Framework + Quote Section -->
+    <section class="py-20 md:py-28 relative overflow-hidden" style="background-color: #161b25;">
+        <!-- Subtle ambient glow behind video -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <!-- Section Label -->
+            <p class="text-amber-400/80 font-semibold mb-8 tracking-wide uppercase text-sm text-center">The Foundation</p>
+
+            <!-- Video Container -->
+            <div class="flex justify-center mb-12">
+                <div class="relative w-full max-w-md mx-auto" style="aspect-ratio: 1/1;">
+                    <video
+                        id="bdh-video"
+                        muted
+                        playsinline
+                        preload="metadata"
+                        poster="/bdh-poster.jpg"
+                        class="w-full h-full object-contain rounded-lg"
+                        style="background-color: #161b25;"
+                    >
+                        <source src="/BE_DO_HAVE_Glowing_web.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <!-- Quote (below video) -->
+            <div class="text-center max-w-2xl mx-auto">
+                <blockquote class="font-display text-xl md:text-2xl font-semibold leading-relaxed mb-6" style="color: #e8dcc8;">
+                    &ldquo;God designed us to create, build, and have dominion&mdash;not to be slaves to what we&rsquo;ve built. Your company should serve your life, not consume it.&rdquo;
+                </blockquote>
+                <p class="text-amber-400/60 text-sm tracking-wide">&mdash; Mark Wasmuth</p>
+            </div>
         </div>
     </section>
 
@@ -503,6 +528,31 @@
             submitBtn.disabled = true;
             
             console.log('Advisory application:', data);
-            
+
             // In production, this would submit to your backend/CRM
-            /
+            // Simulate success for now
+            setTimeout(() => {
+                applyForm.classList.add('hidden');
+                document.getElementById('success-message').classList.remove('hidden');
+            }, 1000);
+        });
+
+        // BE·DO·HAVE video — single play on scroll
+        const bdhVideo = document.getElementById('bdh-video');
+        if (bdhVideo) {
+            let hasPlayed = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasPlayed) {
+                        hasPlayed = true;
+                        bdhVideo.play().catch(() => {});
+                        observer.unobserve(bdhVideo);
+                    }
+                });
+            }, { threshold: 0.4 });
+            observer.observe(bdhVideo);
+        }
+    </script>
+
+</body>
+</html>
