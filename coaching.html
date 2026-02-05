@@ -357,6 +357,7 @@
                 <div class="relative w-full max-w-md mx-auto" style="aspect-ratio: 1/1;">
                     <video
                         id="bdh-video"
+                        loop
                         muted
                         playsinline
                         preload="metadata"
@@ -449,16 +450,13 @@
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        // BE·DO·HAVE video — single play on scroll
+        // BE·DO·HAVE video — loops continuously when in view
         const bdhVideo = document.getElementById('bdh-video');
         if (bdhVideo) {
-            let hasPlayed = false;
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasPlayed) {
-                        hasPlayed = true;
+                    if (entry.isIntersecting) {
                         bdhVideo.play().catch(() => {});
-                        observer.unobserve(bdhVideo);
                     }
                 });
             }, { threshold: 0.4 });
