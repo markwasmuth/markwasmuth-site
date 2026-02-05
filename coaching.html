@@ -1,558 +1,1014 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQTE286FTT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MQTE286FTT');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Discovery | BE · DO · HAVE</title>
+  <meta name="description" content="Business coaching client discovery form. Know where you really are so we can build where you need to go.">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQTE286FTT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MQTE286FTT');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B365D;
+      --navy-deep: #0F2440;
+      --gold: #B8860B;
+      --gold-light: #D4A843;
+      --gold-glow: rgba(184, 134, 11, 0.12);
+      --charcoal: #2D2D2D;
+      --text: #3A3A3A;
+      --text-light: #6B7280;
+      --field-bg: #F8F9FB;
+      --field-border: #D4D8DD;
+      --field-focus: #B8860B;
+      --warm-bg: #FBF9F4;
+      --page-bg: #FEFEFE;
+      --divider: #E5E7EB;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Advisory "“ Mark Wasmuth | Build a Business That Runs Without You</title>
-    <meta name="description" content="Stop being an operator. Start being an owner. Mark Wasmuth helps business owners build companies that run without them using proven frameworks, creation principles, and AI integration.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Business Advisory "“ Mark Wasmuth">
-    <meta property="og:description" content="Stop being an operator. Start being an owner. Build a business that runs without you.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://markwasmuth.com/coaching">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
-                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
-                            800: '#243b53', 900: '#102a43',
-                        },
-                        amber: {
-                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
-                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
-                            800: '#92400e', 900: '#78350f',
-                        },
-                        warm: {
-                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
-                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
-                            800: '#4a453d', 900: '#332f2a',
-                        }
-                    },
-                    fontFamily: {
-                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
-                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        body { font-family: 'DM Sans', system-ui, sans-serif; }
-        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
-        html { scroll-behavior: smooth; }
-        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
-        .link-underline { position: relative; }
-        .link-underline::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
-            background: #d97706; transition: width 0.3s ease;
-        }
-        .link-underline:hover::after { width: 100%; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
-        .delay-100 { animation-delay: 0.1s; opacity: 0; }
-        .delay-200 { animation-delay: 0.2s; opacity: 0; }
-        .delay-300 { animation-delay: 0.3s; opacity: 0; }
-        .delay-400 { animation-delay: 0.4s; opacity: 0; }
-        input:focus, textarea:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
-        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12); }
-    </style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--page-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .site-header {
+      background: var(--navy);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+    .header-brand .diamond {
+      color: var(--gold);
+      margin: 0 6px;
+      font-size: 10px;
+      vertical-align: middle;
+    }
+    .header-right {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-align: right;
+      line-height: 1.4;
+    }
+    .header-right a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+    }
+    .header-right a:hover { color: var(--gold-light); }
+
+    /* === MAIN CONTAINER === */
+    .form-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* === HERO === */
+    .hero {
+      padding: 56px 0 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 44px);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    /* === WISDOM BLOCK === */
+    .wisdom-block {
+      margin: 36px 0;
+      padding: 24px 28px;
+      background: var(--warm-bg);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+    }
+    .wisdom-block p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    /* === INSTRUCTIONS === */
+    .instructions {
+      font-size: 14px;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* === SECTION HEADER === */
+    .section-header {
+      margin: 48px 0 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--divider);
+      position: relative;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .section-number {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    /* === QUESTION === */
+    .question {
+      margin-bottom: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .question:last-child { border-bottom: none; }
+    .q-label {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+    .q-num {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-light);
+      min-width: 26px;
+      padding-top: 1px;
+    }
+    .q-text {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+    .q-text.bold {
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .q-hint {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin: 4px 0 10px 34px;
+      line-height: 1.5;
+    }
+
+    /* === FIELDS === */
+    .field-wrap {
+      margin-left: 34px;
+      margin-top: 8px;
+    }
+    textarea.auto-expand {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--charcoal);
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 8px;
+      resize: none;
+      overflow: hidden;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      min-height: 80px;
+    }
+    textarea.auto-expand:focus {
+      border-color: var(--field-focus);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: #fff;
+    }
+    textarea.auto-expand::placeholder {
+      color: #B0B6BF;
+      font-style: italic;
+    }
+
+    input.short-field {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--charcoal);
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    input.short-field:focus {
+      border-color: var(--field-focus);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: #fff;
+    }
+
+    /* === CLIENT INFO GRID === */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .info-grid .field-group { display: flex; flex-direction: column; }
+    .info-grid label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .info-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* === CHECKBOXES === */
+    .checkbox-group {
+      margin-left: 34px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--field-border);
+      border-radius: 4px;
+      background: var(--field-bg);
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .checkbox-item input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    .checkbox-item span {
+      font-size: 15px;
+      color: var(--charcoal);
+    }
+
+    /* === Q19 PROMISE BLOCK === */
+    .promise-block {
+      margin: 40px 0 36px;
+      padding: 32px 28px;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      background: var(--warm-bg);
+      border-radius: 2px;
+    }
+    .promise-block .q-label { margin-bottom: 8px; }
+    .promise-block .q-text { color: var(--navy); font-weight: 700; }
+    .promise-block .support-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text);
+      margin: 8px 0 20px 34px;
+      line-height: 1.55;
+    }
+    .promise-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: 34px;
+      cursor: pointer;
+    }
+    .promise-checkbox input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--navy);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .promise-checkbox input[type="checkbox"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .promise-checkbox input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold-light);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .promise-checkbox span {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--navy);
+    }
+
+    /* === SUBMIT === */
+    .submit-section {
+      text-align: center;
+      padding: 20px 0 0;
+    }
+    .submit-btn {
+      display: inline-block;
+      padding: 16px 56px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(27, 54, 93, 0.25);
+    }
+    .submit-btn:hover {
+      background: var(--navy-deep);
+      box-shadow: 0 6px 24px rgba(27, 54, 93, 0.35);
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* === CLOSING === */
+    .closing {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--divider);
+    }
+    .closing-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: var(--navy);
+    }
+    .closing-brand .diamond {
+      color: var(--gold);
+      margin: 0 8px;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    .closing-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .closing-sig {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+    }
+    .sig-line {
+      width: 180px;
+      border-top: 1px solid var(--divider);
+      padding-top: 6px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* === FOOTER === */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--text-light);
+      border-top: 1px solid var(--divider);
+      margin-top: 60px;
+    }
+    .site-footer a { color: var(--gold); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* === SUCCESS STATE === */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .success-screen.visible { display: block; }
+    .success-screen h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .success-screen p {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .success-screen .gold-line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 640px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .info-row-3 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .section-title { font-size: 24px; }
+      .field-wrap { margin-left: 0; }
+      .q-hint { margin-left: 0; }
+      .checkbox-group { margin-left: 0; }
+      .promise-block .support-text { margin-left: 0; }
+      .promise-checkbox { margin-left: 0; }
+      .wisdom-block { padding: 20px; }
+      .closing-sig { gap: 24px; }
+      .sig-line { width: 140px; }
+      .header-right { display: none; }
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .fade-up.d1 { animation-delay: 0.1s; }
+    .fade-up.d2 { animation-delay: 0.2s; }
+    .fade-up.d3 { animation-delay: 0.3s; }
+  </style>
 </head>
+<body>
 
-<body class="bg-warm-50 text-navy-900">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+      </div>
+      <div class="header-right">
+        Business Coaching &amp; Advisory<br>
+        <a href="https://www.markwasmuth.com">markwasmuth.com</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-warm-50/90 border-b border-warm-200">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="/" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Home</a>
-                    <a href="/book.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">The Book</a>
-                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">SnapToSell</a>
-                    <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Bible Studies</a>
-                    <a href="#apply" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Apply Now</a>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
-                <div class="flex flex-col gap-4">
-                    <a href="/" class="text-sm font-medium text-navy-700 py-2">Home</a>
-                    <a href="/book.html" class="text-sm font-medium text-navy-700 py-2">The Book</a>
-                    <a href="/snaptosell.html" class="text-sm font-medium text-navy-700 py-2">SnapToSell</a>
-                    <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 py-2">Bible Studies</a>
-                    <a href="#apply" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Apply Now</a>
-                </div>
-            </div>
+  <!-- FORM -->
+  <div class="form-container" id="formContainer">
+    <form id="discoveryForm" action="https://formspree.io/f/mreazgnb" method="POST">
+      <!-- Formspree config -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- HERO -->
+      <div class="hero fade-up">
+        <h1>Client Discovery Form</h1>
+        <p class="subtitle">Know Where You Really Are So We Can Build Where You Need to Go</p>
+      </div>
+
+      <!-- WISDOM BLOCK -->
+      <div class="wisdom-block fade-up d1">
+        <p>One definition of wisdom is learning from others — not only from their success, but from their mistakes. That's what this is.</p>
+      </div>
+
+      <!-- INSTRUCTIONS -->
+      <div class="instructions fade-up d2">
+        Answer from reality, not from where you wish you were. Honesty here saves us both months of wasted effort.<br>
+        There are no wrong answers — only honest ones. This should take 15–20 minutes.
+      </div>
+
+      <!-- CLIENT INFORMATION -->
+      <div class="info-grid fade-up d3">
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="short-field" required>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-navy-50/50 to-transparent hidden lg:block"></div>
-        <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
-            <div class="max-w-3xl">
-                <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">Business Advisory</p>
-                
-                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-8 animate-fade-in delay-100">
-                    Do You Run Your Business"”Or Does It Run You?
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-navy-700 mb-4 animate-fade-in delay-200">
-                    Stop being an operator. Start being an owner.
-                </p>
-                
-                <p class="text-lg text-navy-600 mb-10 leading-relaxed max-w-2xl animate-fade-in delay-300">
-                    I help business owners build companies that run without them"”using proven frameworks, creation principles, and AI integration. Zero to 8 figures in 7 years. I've signed both sides of the check.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-400">
-                    <a href="#apply" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
-                        Book a Discovery Call
-                    </a>
-                    <a href="#approach" class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">
-                        See My Approach
-                    </a>
-                </div>
-            </div>
+        <div class="field-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" class="short-field" required>
         </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="py-20 bg-navy-900 text-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-amber-400 font-semibold mb-6 tracking-wide uppercase text-sm">The Real Problem</p>
-            <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-semibold leading-relaxed mb-8">
-                Most business owners don't dream bigger because bigger looks like harder.
-            </h2>
-            <p class="text-lg text-navy-200 leading-relaxed">
-                You built something real. But somewhere along the way, it became a job you can't leave. You're trapped in the day-to-day, putting out fires, and the freedom you wanted when you started feels further away than ever. It doesn't have to be this way.
-            </p>
+      </div>
+      <div class="info-grid">
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="short-field" required>
         </div>
-    </section>
-
-    <!-- Approach Section -->
-    <section id="approach" class="py-24 bg-warm-100">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">The Approach</p>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                    Three Pillars of Business Mastery
-                </h2>
-                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
-                    Built on Tony Robbins' 7 Forces, Jay Abraham's Preeminence, Keith Cunningham's Financial Optics, and 20+ years of building and exiting businesses.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Pillar 1 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
-                    <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Foundation</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        Clarify your personal vision and business goals. Challenge limiting beliefs. Build the systems, people, and structures that let your business run as an asset"”not a job.
-                    </p>
-                </div>
-                
-                <!-- Pillar 2 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
-                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Strategy</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        Clear numbers. Financial optics that show you where the money actually goes. Marketing and sales systems that acquire customers predictably. Strategy that scales.
-                    </p>
-                </div>
-                
-                <!-- Pillar 3 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-lift">
-                    <div class="w-14 h-14 bg-navy-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Execution</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        90-day action plans with clear accountability. AI integration that multiplies your team's output. SOPs and automation that buy back your time.
-                    </p>
-                </div>
-            </div>
+        <div class="field-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" class="short-field">
         </div>
-    </section>
-
-    <!-- Be Do Have Framework Section -->
-    <section class="py-20 bg-navy-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+      </div>
+      <div class="info-grid">
+        <div class="field-group">
+          <label for="industry">Industry</label>
+          <input type="text" id="industry" name="industry" class="short-field">
         </div>
-        
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
-            <!-- Beehiiv Embed -->
-            <div class="flex justify-center">
-                <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-                <iframe src="https://subscribe-forms.beehiiv.com/37ada70b-c26d-46f1-94b0-5b5b7d92c174" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 627px; height: 347px; margin: 0; border-radius: 0px !important; background-color: transparent; max-width: 100%;"></iframe>
-                <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
-            </div>
+        <div class="field-group">
+          <label for="revenue">Annual Revenue</label>
+          <input type="text" id="revenue" name="revenue" class="short-field">
         </div>
-    </section>
-
-    <!-- About Mark Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Photo -->
-                <div class="relative">
-                    <img 
-                        src="/familyphoto.jpg" 
-                        alt="Mark Wasmuth with his wife Meridith, kids, and dogs on their farm in Pittsboro, NC" 
-                        class="rounded-2xl shadow-2xl w-full object-cover"
-                    >
-                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-amber-100 rounded-2xl -z-10"></div>
-                </div>
-                
-                <!-- Bio -->
-                <div>
-                    <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">About Mark</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-8">
-                        I Didn't Build Businesses to Stay Chained to Them
-                    </h2>
-                    <div class="space-y-6 text-navy-600 leading-relaxed">
-                        <p>
-                            I live on a farm in Pittsboro, North Carolina with my wife Meridith, two young adult kids, and a small zoo"”dogs, cats, chickens, ducks, and horses.
-                        </p>
-                        <p>
-                            I built businesses to create freedom"”time with family, land to enjoy, and work that matters. That's what I help other business owners do.
-                        </p>
-                        <p>
-                            I've had the business exits. I've also had the 100+ hour work weeks and the businesses that owned me instead of the other way around. I know both sides. And I know the principles that make the difference.
-                        </p>
-                    </div>
-                    <div class="mt-8 pt-6 border-t border-warm-200">
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">8-Figure Exit</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">20+ Years Research</span>
-                            <span class="px-4 py-2 bg-warm-100 rounded-full text-sm text-navy-700 font-medium">Pittsboro, NC</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-warm-50 rounded-2xl p-8 md:p-10">
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-6">What You Get</h3>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">1-on-1 Advisory Sessions</h4>
-                                <p class="text-navy-600 text-sm">Deep-dive coaching focused on your specific business challenges</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">90-Day Action Plans</h4>
-                                <p class="text-navy-600 text-sm">Clear priorities, measurable outcomes, real accountability</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">AI Integration Strategy</h4>
-                                <p class="text-navy-600 text-sm">Practical AI tools that multiply your results, not your hours</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">Financial Clarity</h4>
-                                <p class="text-navy-600 text-sm">See where your money actually goes and what's driving profit</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-navy-900">Systems & SOPs</h4>
-                                <p class="text-navy-600 text-sm">Build the machine that runs without you</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="info-row-3">
+        <div class="field-group">
+          <label for="years">Years in Business</label>
+          <input type="text" id="years" name="years" class="short-field">
         </div>
-    </section>
-
-    <!-- BE·DO·HAVE Framework + Quote Section -->
-    <section class="py-20 md:py-28 relative overflow-hidden" style="background-color: #161b25;">
-        <!-- Subtle ambient glow behind video -->
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full filter blur-3xl"></div>
+        <div class="field-group">
+          <label for="employees">Employees</label>
+          <input type="text" id="employees" name="employees" class="short-field">
         </div>
-
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
-            <!-- Section Label -->
-            <p class="text-amber-400/80 font-semibold mb-8 tracking-wide uppercase text-sm text-center">The Foundation</p>
-
-            <!-- Video Container -->
-            <div class="flex justify-center mb-12">
-                <div class="relative w-full max-w-md mx-auto" style="aspect-ratio: 1/1;">
-                    <video
-                        id="bdh-video"
-                        muted
-                        playsinline
-                        preload="metadata"
-                        poster="/bdh-poster.jpg"
-                        class="w-full h-full object-contain rounded-lg"
-                        style="background-color: #161b25;"
-                    >
-                        <source src="/BE_DO_HAVE_Glowing_web.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-
-            <!-- Quote (below video) -->
-            <div class="text-center max-w-2xl mx-auto">
-                <blockquote class="font-display text-xl md:text-2xl font-semibold leading-relaxed mb-6" style="color: #e8dcc8;">
-                    &ldquo;God designed us to create, build, and have dominion&mdash;not to be slaves to what we&rsquo;ve built. Your company should serve your life, not consume it.&rdquo;
-                </blockquote>
-                <p class="text-amber-400/60 text-sm tracking-wide">&mdash; Mark Wasmuth</p>
-            </div>
+        <div class="field-group">
+          <label for="referred">Referred by</label>
+          <input type="text" id="referred" name="referred" class="short-field">
         </div>
-    </section>
+      </div>
 
-    <!-- Application Section -->
-    <section id="apply" class="py-24 bg-navy-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+      <!-- ============================================================ -->
+      <!-- SECTION 1: THE INNER GAME -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <div class="section-title">The Inner Game</div>
+        <div class="section-quote">"80% is psychology, 20% is strategy. Master the inner game first." — Tony Robbins</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">1.</span>
+          <span class="q-text bold">Do you believe you deserve more success than you currently have?</span>
         </div>
-        
-        <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12">
-                <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Get Started</p>
-                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
-                    Book a Discovery Call
-                </h2>
-                <p class="text-lg text-navy-200 max-w-xl mx-auto">
-                    This isn't a sales call"”it's a conversation to see if we're a fit. Tell me about your business and where you want to go.
-                </p>
-            </div>
-            
-            <div class="bg-navy-800/50 backdrop-blur rounded-2xl p-8 md:p-10">
-                <form id="apply-form" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-navy-200 mb-2">Your Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name"
-                                required
-                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
-                                placeholder="Full name"
-                            >
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-navy-200 mb-2">Email Address</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email"
-                                required
-                                class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
-                                placeholder="you@company.com"
-                            >
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label for="business" class="block text-sm font-medium text-navy-200 mb-2">Tell me about your business</label>
-                        <input 
-                            type="text" 
-                            id="business" 
-                            name="business"
-                            required
-                            class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400"
-                            placeholder="Industry, revenue range, team size"
-                        >
-                    </div>
-                    
-                    <div>
-                        <label for="challenge" class="block text-sm font-medium text-navy-200 mb-2">What's your biggest challenge right now?</label>
-                        <textarea 
-                            id="challenge" 
-                            name="challenge"
-                            rows="4"
-                            required
-                            class="w-full px-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-white placeholder-navy-400 resize-none"
-                            placeholder="Be specific"”what's keeping you stuck?"
-                        ></textarea>
-                    </div>
-                    
-                    <button 
-                        type="submit"
-                        class="w-full bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition transform hover:scale-[1.02]"
-                    >
-                        Request Discovery Call
-                    </button>
-                    
-                    <p class="text-center text-sm text-navy-400">
-                        I review every application personally. If we're a fit, I'll reach out within 48 hours.
-                    </p>
-                </form>
-                
-                <!-- Success message -->
-                <div id="success-message" class="hidden text-center py-8">
-                    <svg class="w-16 h-16 text-amber-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <h3 class="font-display text-2xl font-bold mb-2">Application Received</h3>
-                    <p class="text-navy-200">I'll review your information and be in touch within 48 hours.</p>
-                </div>
-            </div>
+        <div class="q-hint">Be honest. The answer to this question determines your ceiling more than any strategy ever will.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q1" rows="3"></textarea>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="bg-navy-900 text-white py-16 border-t border-navy-800">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div class="md:col-span-2">
-                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
-                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">
-                        Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.
-                    </p>
-                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Explore</h4>
-                    <ul class="space-y-3 text-navy-300">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
-                        <li><a href="/snaptosell.html" class="hover:text-white transition">SnapToSell</a></li>
-                        <li><a href="/bible-studies.html" class="hover:text-white transition">Bible Studies</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Connect</h4>
-                    <ul class="space-y-3 text-navy-300">
-                        <li><a href="mailto:markwasmuth@gmail.com" class="hover:text-white transition">Email</a></li>
-                        <li><a href="https://www.linkedin.com/in/mark-wasmuth/" target="_blank" class="hover:text-white transition">LinkedIn</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
-                <div class="flex gap-6 text-sm text-navy-400">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
-                </div>
-            </div>
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">2.</span>
+          <span class="q-text">Why did you start this business, and why are you still in it?</span>
         </div>
-    </footer>
+        <div class="q-hint">What we're looking for: Are you building from identity, or searching for one?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q2" rows="3"></textarea>
+        </div>
+      </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-        
-        // Application form handling
-        const applyForm = document.getElementById('apply-form');
-        
-        applyForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(applyForm);
-            const data = Object.fromEntries(formData);
-            const submitBtn = applyForm.querySelector('button[type="submit"]');
-            
-            // Disable button and show loading state
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
-            
-            console.log('Advisory application:', data);
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">3.</span>
+          <span class="q-text">If failure were impossible and money were irrelevant, what would you build?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q3" rows="3"></textarea>
+        </div>
+      </div>
 
-            // In production, this would submit to your backend/CRM
-            // Simulate success for now
-            setTimeout(() => {
-                applyForm.classList.add('hidden');
-                document.getElementById('success-message').classList.remove('hidden');
-            }, 1000);
-        });
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">4.</span>
+          <span class="q-text">What is a belief about yourself, money, or success that might be holding you back?</span>
+        </div>
+        <div class="q-hint">Your life doesn't follow your intentions. It follows your programming. What program is running?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q4" rows="3"></textarea>
+        </div>
+      </div>
 
-        // BE·DO·HAVE video — single play on scroll
-        const bdhVideo = document.getElementById('bdh-video');
-        if (bdhVideo) {
-            let hasPlayed = false;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasPlayed) {
-                        hasPlayed = true;
-                        bdhVideo.play().catch(() => {});
-                        observer.unobserve(bdhVideo);
-                    }
-                });
-            }, { threshold: 0.4 });
-            observer.observe(bdhVideo);
+      <!-- ============================================================ -->
+      <!-- SECTION 2: THE REALITY -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">02</div>
+        <div class="section-title">The Reality</div>
+        <div class="section-quote">"What am I missing? Where am I wrong? What do I need to learn?" — Keith Cunningham</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">5.</span>
+          <span class="q-text">What business are you in? What business are you REALLY in? What business do you NEED to be in?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q5" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">6.</span>
+          <span class="q-text">What is the single biggest thing choking your growth right now?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q6" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">7.</span>
+          <span class="q-text bold">If something happened to you today, what would happen to your business and the people who depend on you?</span>
+        </div>
+        <div class="q-hint">Your family. Your team. Your customers. What do they inherit — an asset or a pile of problems?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q7" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">8.</span>
+          <span class="q-text bold">If I asked your team what your company is about, what would they say? Just a few words.</span>
+        </div>
+        <div class="q-hint">Not what you'd say. What THEY would say. If you don't know — that's your answer.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q8" rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 3: THE NUMBERS -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">03</div>
+        <div class="section-title">The Numbers</div>
+        <div class="section-quote">"The key to getting rich is avoiding stupid things, not doing more smart things." — Keith Cunningham</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">9.</span>
+          <span class="q-text">What is your true profit margin? Not revenue. Profit. What you actually keep.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q9" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">10.</span>
+          <span class="q-text">What does it cost you to acquire a customer? What is that customer worth over their lifetime?</span>
+        </div>
+        <div class="q-hint">If you don't know, write "I don't know." That's diagnostic too.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q10" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">11.</span>
+          <span class="q-text">If all revenue stopped tomorrow, how many months of cash reserves do you have?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q11" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">12.</span>
+          <span class="q-text">What financial number in your business are you avoiding looking at? Why?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q12" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 4: THE FUTURE -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">04</div>
+        <div class="section-title">The Future</div>
+        <div class="section-quote">"Let the future shape your present, not your past." — Buckminster Fuller</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">13.</span>
+          <span class="q-text">What's your impossible goal? The one that seems crazy but won't leave your mind.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q13" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">14.</span>
+          <span class="q-text">If you had to compress a 10-year goal into 2 years, what would HAVE to be true?</span>
+        </div>
+        <div class="q-hint">What must change about your team, your model, your strategy — or you?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q14" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">15.</span>
+          <span class="q-text">What is your exit strategy?</span>
+        </div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_sell" value="yes">
+            <span>Sell the business</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_family" value="yes">
+            <span>Transition to family or partner</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_mgmt" value="yes">
+            <span>Build management team to run it without me</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_forever" value="yes">
+            <span>Operate forever (no exit planned)</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_none" value="yes">
+            <span>I don't have one yet</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">16.</span>
+          <span class="q-text">Would someone who looked at your business today want to buy it? Why or why not?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q16" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 5: THE COMMITMENT -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">05</div>
+        <div class="section-title">The Commitment</div>
+        <div class="section-quote">"Decision comes from the Latin <em>incision</em> — to cut off all other possibilities." — Tony Robbins</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">17.</span>
+          <span class="q-text">What is the single most important result you want from coaching?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q17" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+        <div class="q-label">
+          <span class="q-num">18.</span>
+          <span class="q-text">What is it costing you to NOT change? Financially, personally, relationally.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q18" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- Q19: THE SELF-PROMISE -->
+      <div class="promise-block">
+        <div class="q-label">
+          <span class="q-num">19.</span>
+          <span class="q-text bold">If I don't have the ability to fit you into my schedule, will you promise yourself to find someone to guide you to success?</span>
+        </div>
+        <div class="support-text">
+          Every top athlete, every successful entrepreneur, every great leader has at least one coach. Many have several. Don't you deserve that?
+        </div>
+        <label class="promise-checkbox">
+          <input type="checkbox" name="self_promise" value="yes">
+          <span>Yes, I promise myself.</span>
+        </label>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-section">
+        <button type="submit" class="submit-btn">SUBMIT DISCOVERY FORM</button>
+      </div>
+
+      <!-- CLOSING -->
+      <div class="closing">
+        <div class="closing-brand">
+          BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+        </div>
+        <div class="closing-tagline">Identity First. Activity Second. Fruit Last.</div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS SCREEN (shown after submit) -->
+  <div class="success-screen" id="successScreen">
+    <div class="closing-brand" style="margin-bottom: 24px;">
+      BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+    </div>
+    <h2>Thank You</h2>
+    <div class="gold-line"></div>
+    <p>Your discovery form has been received.</p>
+    <p>This is the first step toward building something that serves your life instead of consuming it. I'll review your responses and be in touch shortly.</p>
+    <p style="margin-top: 24px; font-family: var(--serif); font-style: italic; color: var(--text-light);">
+      "The quality of your decisions determines the quality of your life and business."
+    </p>
+    <p style="margin-top: 32px; font-size: 14px; color: var(--text-light);">
+      — Mark Wasmuth<br>
+      <a href="https://www.markwasmuth.com" style="color: var(--gold); text-decoration: none;">markwasmuth.com</a>
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2026 Mark Wasmuth · <a href="https://www.markwasmuth.com">markwasmuth.com</a></div>
+    <div style="margin-top: 4px;">Identity First. Activity Second. Fruit Last.</div>
+  </footer>
+
+  <script>
+    // === AUTO-EXPANDING TEXTAREAS ===
+    document.querySelectorAll('textarea.auto-expand').forEach(el => {
+      function resize() {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+      }
+      el.addEventListener('input', resize);
+      // Initial resize in case of cached form data
+      resize();
+    });
+
+    // === FORM SUBMISSION ===
+    const form = document.getElementById('discoveryForm');
+    const formContainer = document.getElementById('formContainer');
+    const successScreen = document.getElementById('successScreen');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const actionUrl = form.getAttribute('action');
+
+      fetch(actionUrl, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          showSuccess();
+        } else {
+          showSuccess();
         }
-    </script>
+      })
+      .catch(error => {
+        console.error('Submission error:', error);
+        fallbackEmail(formData);
+      });
+    });
+
+    function showSuccess() {
+      formContainer.style.display = 'none';
+      successScreen.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function fallbackEmail(formData) {
+      let body = 'CLIENT DISCOVERY FORM SUBMISSION\n';
+      body += '================================\n\n';
+      for (const [key, value] of formData.entries()) {
+        if (value) {
+          const label = key.replace(/_/g, ' ').replace(/^q(\d+)$/, 'Question $1');
+          body += `${label}: ${value}\n\n`;
+        }
+      }
+      const mailto = `mailto:markwasmuth@gmail.com?subject=${encodeURIComponent('Client Discovery Form Submission')}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      // Show success after brief delay
+      setTimeout(showSuccess, 1000);
+    }
+
+    // === SCROLL ANIMATIONS ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.section-header, .question, .promise-block').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(12px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
