@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Discovery | BE · DO · HAVE</title>
+  <meta name="description" content="Business coaching client discovery form. Know where you really are so we can build where you need to go.">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQTE286FTT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MQTE286FTT');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B365D;
+      --navy-deep: #0F2440;
+      --gold: #B8860B;
+      --gold-light: #D4A843;
+      --gold-glow: rgba(184, 134, 11, 0.12);
+      --charcoal: #2D2D2D;
+      --text: #3A3A3A;
+      --text-light: #6B7280;
+      --field-bg: #F8F9FB;
+      --field-border: #D4D8DD;
+      --field-focus: #B8860B;
+      --warm-bg: #FBF9F4;
+      --page-bg: #FEFEFE;
+      --divider: #E5E7EB;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--page-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .site-header {
+      background: var(--navy);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+    .header-brand .diamond {
+      color: var(--gold);
+      margin: 0 6px;
+      font-size: 10px;
+      vertical-align: middle;
+    }
+    .header-right {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-align: right;
+      line-height: 1.4;
+    }
+    .header-right a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+    }
+    .header-right a:hover { color: var(--gold-light); }
+
+    /* === MAIN CONTAINER === */
+    .form-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* === HERO === */
+    .hero {
+      padding: 56px 0 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 44px);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    /* === WISDOM BLOCK === */
+    .wisdom-block {
+      margin: 36px 0;
+      padding: 24px 28px;
+      background: var(--warm-bg);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+    }
+    .wisdom-block p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    /* === INSTRUCTIONS === */
+    .instructions {
+      font-size: 14px;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* === SECTION HEADER === */
+    .section-header {
+      margin: 48px 0 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--divider);
+      position: relative;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .section-number {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    /* === QUESTION === */
+    .question {
+      margin-bottom: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .question:last-child { border-bottom: none; }
+    .q-label {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+    .q-num {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-light);
+      min-width: 26px;
+      padding-top: 1px;
+    }
+    .q-text {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+    .q-text.bold {
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .q-hint {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin: 4px 0 10px 34px;
+      line-height: 1.5;
+    }
+
+    /* === FIELDS === */
+    .field-wrap {
+      margin-left: 34px;
+      margin-top: 8px;
+    }
+    textarea.auto-expand {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--charcoal);
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 8px;
+      resize: none;
+      overflow: hidden;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      min-height: 80px;
+    }
+    textarea.auto-expand:focus {
+      border-color: var(--field-focus);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: #fff;
+    }
+    textarea.auto-expand::placeholder {
+      color: #B0B6BF;
+      font-style: italic;
+    }
+
+    input.short-field {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--charcoal);
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    input.short-field:focus {
+      border-color: var(--field-focus);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: #fff;
+    }
+
+    /* === CLIENT INFO GRID === */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .info-grid .field-group { display: flex; flex-direction: column; }
+    .info-grid label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .info-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* === CHECKBOXES === */
+    .checkbox-group {
+      margin-left: 34px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--field-border);
+      border-radius: 4px;
+      background: var(--field-bg);
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .checkbox-item input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    .checkbox-item span {
+      font-size: 15px;
+      color: var(--charcoal);
+    }
+
+    /* === Q19 PROMISE BLOCK === */
+    .promise-block {
+      margin: 40px 0 36px;
+      padding: 32px 28px;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      background: var(--warm-bg);
+      border-radius: 2px;
+    }
+    .promise-block .q-label { margin-bottom: 8px; }
+    .promise-block .q-text { color: var(--navy); font-weight: 700; }
+    .promise-block .support-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text);
+      margin: 8px 0 20px 34px;
+      line-height: 1.55;
+    }
+    .promise-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: 34px;
+      cursor: pointer;
+    }
+    .promise-checkbox input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--navy);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .promise-checkbox input[type="checkbox"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .promise-checkbox input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold-light);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .promise-checkbox span {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--navy);
+    }
+
+    /* === SUBMIT === */
+    .submit-section {
+      text-align: center;
+      padding: 20px 0 0;
+    }
+    .submit-btn {
+      display: inline-block;
+      padding: 16px 56px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(27, 54, 93, 0.25);
+    }
+    .submit-btn:hover {
+      background: var(--navy-deep);
+      box-shadow: 0 6px 24px rgba(27, 54, 93, 0.35);
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* === CLOSING === */
+    .closing {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--divider);
+    }
+    .closing-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: var(--navy);
+    }
+    .closing-brand .diamond {
+      color: var(--gold);
+      margin: 0 8px;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    .closing-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .closing-sig {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+    }
+    .sig-line {
+      width: 180px;
+      border-top: 1px solid var(--divider);
+      padding-top: 6px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* === FOOTER === */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--text-light);
+      border-top: 1px solid var(--divider);
+      margin-top: 60px;
+    }
+    .site-footer a { color: var(--gold); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* === SUCCESS STATE === */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .success-screen.visible { display: block; }
+    .success-screen h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .success-screen p {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .success-screen .gold-line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 640px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .info-row-3 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .section-title { font-size: 24px; }
+      .field-wrap { margin-left: 0; }
+      .q-hint { margin-left: 0; }
+      .checkbox-group { margin-left: 0; }
+      .promise-block .support-text { margin-left: 0; }
+      .promise-checkbox { margin-left: 0; }
+      .wisdom-block { padding: 20px; }
+      .closing-sig { gap: 24px; }
+      .sig-line { width: 140px; }
+      .header-right { display: none; }
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .fade-up.d1 { animation-delay: 0.1s; }
+    .fade-up.d2 { animation-delay: 0.2s; }
+    .fade-up.d3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+      </div>
+      <div class="header-right">
+        Business Coaching &amp; Advisory<br>
+        <a href="https://www.markwasmuth.com">markwasmuth.com</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORM -->
+  <div class="form-container" id="formContainer">
+    <form id="discoveryForm" action="https://formspree.io/f/mreazgnb" method="POST">
+      <!-- Formspree config -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- HERO -->
+      <div class="hero fade-up">
+        <h1>Client Discovery Form</h1>
+        <p class="subtitle">Know Where You Really Are So We Can Build Where You Need to Go</p>
+      </div>
+
+      <!-- WISDOM BLOCK -->
+      <div class="wisdom-block fade-up d1">
+        <p>One definition of wisdom is learning from others — not only from their success, but from their mistakes. That's what this is.</p>
+      </div>
+
+      <!-- INSTRUCTIONS -->
+      <div class="instructions fade-up d2">
+        Answer from reality, not from where you wish you were. Honesty here saves us both months of wasted effort.<br>
+        There are no wrong answers — only honest ones. This should take 15–20 minutes.
+      </div>
+
+      <!-- CLIENT INFORMATION -->
+      <div class="info-grid fade-up d3">
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="short-field" required>
+        </div>
+        <div class="field-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" class="short-field" required>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="short-field" required>
+        </div>
+        <div class="field-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" class="short-field">
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="field-group">
+          <label for="industry">Industry</label>
+          <input type="text" id="industry" name="industry" class="short-field">
+        </div>
+        <div class="field-group">
+          <label for="revenue">Annual Revenue</label>
+          <input type="text" id="revenue" name="revenue" class="short-field">
+        </div>
+      </div>
+      <div class="info-row-3">
+        <div class="field-group">
+          <label for="years">Years in Business</label>
+          <input type="text" id="years" name="years" class="short-field">
+        </div>
+        <div class="field-group">
+          <label for="employees">Employees</label>
+          <input type="text" id="employees" name="employees" class="short-field">
+        </div>
+        <div class="field-group">
+          <label for="referred">Referred by</label>
+          <input type="text" id="referred" name="referred" class="short-field">
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 1: THE INNER GAME -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <div class="section-title">The Inner Game</div>
+        <div class="section-quote">"80% is psychology, 20% is strategy. Master the inner game first." — Tony Robbins</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">1.</span>
+          <span class="q-text bold">Do you believe you deserve more success than you currently have?</span>
+        </div>
+        <div class="q-hint">Be honest. The answer to this question determines your ceiling more than any strategy ever will.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q1" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">2.</span>
+          <span class="q-text">Why did you start this business, and why are you still in it?</span>
+        </div>
+        <div class="q-hint">What we're looking for: Are you building from identity, or searching for one?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q2" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">3.</span>
+          <span class="q-text">If failure were impossible and money were irrelevant, what would you build?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q3" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">4.</span>
+          <span class="q-text">What is a belief about yourself, money, or success that might be holding you back?</span>
+        </div>
+        <div class="q-hint">Your life doesn't follow your intentions. It follows your programming. What program is running?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q4" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 2: THE REALITY -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">02</div>
+        <div class="section-title">The Reality</div>
+        <div class="section-quote">"What am I missing? Where am I wrong? What do I need to learn?" — Keith Cunningham</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">5.</span>
+          <span class="q-text">What business are you in? What business are you REALLY in? What business do you NEED to be in?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q5" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">6.</span>
+          <span class="q-text">What is the single biggest thing choking your growth right now?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q6" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">7.</span>
+          <span class="q-text bold">If something happened to you today, what would happen to your business and the people who depend on you?</span>
+        </div>
+        <div class="q-hint">Your family. Your team. Your customers. What do they inherit — an asset or a pile of problems?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q7" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">8.</span>
+          <span class="q-text bold">If I asked your team what your company is about, what would they say? Just a few words.</span>
+        </div>
+        <div class="q-hint">Not what you'd say. What THEY would say. If you don't know — that's your answer.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q8" rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 3: THE NUMBERS -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">03</div>
+        <div class="section-title">The Numbers</div>
+        <div class="section-quote">"The key to getting rich is avoiding stupid things, not doing more smart things." — Keith Cunningham</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">9.</span>
+          <span class="q-text">What is your true profit margin? Not revenue. Profit. What you actually keep.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q9" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">10.</span>
+          <span class="q-text">What does it cost you to acquire a customer? What is that customer worth over their lifetime?</span>
+        </div>
+        <div class="q-hint">If you don't know, write "I don't know." That's diagnostic too.</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q10" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">11.</span>
+          <span class="q-text">If all revenue stopped tomorrow, how many months of cash reserves do you have?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q11" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">12.</span>
+          <span class="q-text">What financial number in your business are you avoiding looking at? Why?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q12" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 4: THE FUTURE -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">04</div>
+        <div class="section-title">The Future</div>
+        <div class="section-quote">"Let the future shape your present, not your past." — Buckminster Fuller</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">13.</span>
+          <span class="q-text">What's your impossible goal? The one that seems crazy but won't leave your mind.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q13" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">14.</span>
+          <span class="q-text">If you had to compress a 10-year goal into 2 years, what would HAVE to be true?</span>
+        </div>
+        <div class="q-hint">What must change about your team, your model, your strategy — or you?</div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q14" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">15.</span>
+          <span class="q-text">What is your exit strategy?</span>
+        </div>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_sell" value="yes">
+            <span>Sell the business</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_family" value="yes">
+            <span>Transition to family or partner</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_mgmt" value="yes">
+            <span>Build management team to run it without me</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_forever" value="yes">
+            <span>Operate forever (no exit planned)</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="exit_none" value="yes">
+            <span>I don't have one yet</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">16.</span>
+          <span class="q-text">Would someone who looked at your business today want to buy it? Why or why not?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q16" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 5: THE COMMITMENT -->
+      <!-- ============================================================ -->
+      <div class="section-header">
+        <div class="section-number">05</div>
+        <div class="section-title">The Commitment</div>
+        <div class="section-quote">"Decision comes from the Latin <em>incision</em> — to cut off all other possibilities." — Tony Robbins</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label">
+          <span class="q-num">17.</span>
+          <span class="q-text">What is the single most important result you want from coaching?</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q17" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="question" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+        <div class="q-label">
+          <span class="q-num">18.</span>
+          <span class="q-text">What is it costing you to NOT change? Financially, personally, relationally.</span>
+        </div>
+        <div class="field-wrap">
+          <textarea class="auto-expand" name="q18" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- Q19: THE SELF-PROMISE -->
+      <div class="promise-block">
+        <div class="q-label">
+          <span class="q-num">19.</span>
+          <span class="q-text bold">If I don't have the ability to fit you into my schedule, will you promise yourself to find someone to guide you to success?</span>
+        </div>
+        <div class="support-text">
+          Every top athlete, every successful entrepreneur, every great leader has at least one coach. Many have several. Don't you deserve that?
+        </div>
+        <label class="promise-checkbox">
+          <input type="checkbox" name="self_promise" value="yes">
+          <span>Yes, I promise myself.</span>
+        </label>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-section">
+        <button type="submit" class="submit-btn">SUBMIT DISCOVERY FORM</button>
+      </div>
+
+      <!-- CLOSING -->
+      <div class="closing">
+        <div class="closing-brand">
+          BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+        </div>
+        <div class="closing-tagline">Identity First. Activity Second. Fruit Last.</div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS SCREEN (shown after submit) -->
+  <div class="success-screen" id="successScreen">
+    <div class="closing-brand" style="margin-bottom: 24px;">
+      BE<span class="diamond">◆</span>DO<span class="diamond">◆</span>HAVE
+    </div>
+    <h2>Thank You</h2>
+    <div class="gold-line"></div>
+    <p>Your discovery form has been received.</p>
+    <p>This is the first step toward building something that serves your life instead of consuming it. I'll review your responses and be in touch shortly.</p>
+    <p style="margin-top: 24px; font-family: var(--serif); font-style: italic; color: var(--text-light);">
+      "The quality of your decisions determines the quality of your life and business."
+    </p>
+    <p style="margin-top: 32px; font-size: 14px; color: var(--text-light);">
+      — Mark Wasmuth<br>
+      <a href="https://www.markwasmuth.com" style="color: var(--gold); text-decoration: none;">markwasmuth.com</a>
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2026 Mark Wasmuth · <a href="https://www.markwasmuth.com">markwasmuth.com</a></div>
+    <div style="margin-top: 4px;">Identity First. Activity Second. Fruit Last.</div>
+  </footer>
+
+  <script>
+    // === AUTO-EXPANDING TEXTAREAS ===
+    document.querySelectorAll('textarea.auto-expand').forEach(el => {
+      function resize() {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+      }
+      el.addEventListener('input', resize);
+      // Initial resize in case of cached form data
+      resize();
+    });
+
+    // === FORM SUBMISSION ===
+    const form = document.getElementById('discoveryForm');
+    const formContainer = document.getElementById('formContainer');
+    const successScreen = document.getElementById('successScreen');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const actionUrl = form.getAttribute('action');
+
+      fetch(actionUrl, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          showSuccess();
+        } else {
+          showSuccess();
+        }
+      })
+      .catch(error => {
+        console.error('Submission error:', error);
+        fallbackEmail(formData);
+      });
+    });
+
+    function showSuccess() {
+      formContainer.style.display = 'none';
+      successScreen.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function fallbackEmail(formData) {
+      let body = 'CLIENT DISCOVERY FORM SUBMISSION\n';
+      body += '================================\n\n';
+      for (const [key, value] of formData.entries()) {
+        if (value) {
+          const label = key.replace(/_/g, ' ').replace(/^q(\d+)$/, 'Question $1');
+          body += `${label}: ${value}\n\n`;
+        }
+      }
+      const mailto = `mailto:markwasmuth@gmail.com?subject=${encodeURIComponent('Client Discovery Form Submission')}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      // Show success after brief delay
+      setTimeout(showSuccess, 1000);
+    }
+
+    // === SCROLL ANIMATIONS ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.section-header, .question, .promise-block').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(12px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
