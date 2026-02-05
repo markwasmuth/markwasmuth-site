@@ -286,12 +286,45 @@
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
         </div>
         
-        <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
-            <!-- Beehiiv Embed -->
-            <div class="flex justify-center">
-                <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-                <iframe src="https://subscribe-forms.beehiiv.com/46138cde-ade1-4aaf-bfe6-f3417d089dd5" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 627px; height: 371px; margin: 0; border-radius: 0px !important; background-color: transparent; max-width: 100%;"></iframe>
-                <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+        <div class="max-w-xl mx-auto px-6 relative z-10 text-center">
+            <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Coming Soon</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+                Get Early Access
+            </h2>
+            <p class="text-lg text-navy-200 mb-8">
+                Be first in line when SnapToSell launches. We'll notify you the moment it's ready.
+            </p>
+
+            <!-- Custom form with success message -->
+            <form id="snaptosell-form" class="space-y-4">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="Enter your email"
+                        class="flex-1 px-5 py-4 bg-navy-800 border border-navy-600 rounded-lg text-white placeholder-navy-400 text-center sm:text-left"
+                    >
+                    <button
+                        type="submit"
+                        class="bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition whitespace-nowrap"
+                    >
+                        Notify Me
+                    </button>
+                </div>
+                <p class="text-sm text-navy-400">No spam. Just launch updates.</p>
+            </form>
+
+            <!-- Success message (hidden by default) -->
+            <div id="success-message" class="hidden">
+                <div class="bg-navy-800/50 backdrop-blur rounded-2xl p-8">
+                    <svg class="w-16 h-16 text-amber-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="font-display text-2xl font-bold mb-2">You're on the list!</h3>
+                    <p class="text-navy-200">We'll let you know the moment SnapToSell is ready.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -341,31 +374,37 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-        
-        // Notify form - submits to Beehiiv
-        const notifyForm = document.getElementById('notify-form');
-        notifyForm.addEventListener('submit', async (e) => {
+
+        // SnapToSell early access form
+        const snaptosellForm = document.getElementById('snaptosell-form');
+        const successMessage = document.getElementById('success-message');
+
+        snaptosellForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('notify-email').value;
-            const submitBtn = notifyForm.querySelector('button[type="submit"]');
-            
+            const email = document.getElementById('email').value;
+            const submitBtn = snaptosellForm.querySelector('button[type="submit"]');
+
             submitBtn.textContent = 'Signing up...';
             submitBtn.disabled = true;
-            
+
             try {
-                await fetch('https://api.beehiiv.com/v2/publications/pub_a36882ed-0cb5-46bb-ac00-63adc1d7dc15/subscriptions', {
+                const formData = new FormData();
+                formData.append('email', email);
+
+                await fetch('https://subscribe-forms.beehiiv.com/subscribe/46138cde-ade1-4aaf-bfe6-f3417d089dd5', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        reactivate_existing: true,
-                        send_welcome_email: true,
-                        utm_source: 'website',
-                        utm_medium: 'snaptosell-early-access'
-                    })
+                    body: formData,
+                    mode: 'no-cors'
                 });
-            } catch (error) {
-                console.log('Beehiiv API call attempted');
+            } catch (err) {
+                // Request sent even if CORS blocks response
             }
-            
-      
+
+            // Show success message
+            snaptosellForm.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
