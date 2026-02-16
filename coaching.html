@@ -127,6 +127,25 @@
         </div>
     </nav>
 
+    <!-- BE·DO·HAVE Banner Video -->
+    <section class="pt-20" style="background-color: #161b25;">
+        <div class="w-full">
+            <video
+                id="bdh-video"
+                loop
+                muted
+                playsinline
+                autoplay
+                preload="metadata"
+                poster="/bdh-poster.jpg"
+                class="w-full object-cover"
+                style="background-color: #161b25; max-height: 480px;"
+            >
+                <source src="/BE_DO_HAVE_Banner.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
         <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-navy-50/50 to-transparent hidden lg:block"></div>
@@ -344,7 +363,7 @@
         </div>
     </section>
 
-    <!-- BE·DO·HAVE Framework + Quote Section -->
+    <!-- The Foundation Quote Section -->
     <section class="py-20 md:py-28 relative overflow-hidden" style="background-color: #161b25;">
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full filter blur-3xl"></div>
@@ -352,23 +371,6 @@
 
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <p class="text-amber-400/80 font-semibold mb-8 tracking-wide uppercase text-sm text-center">The Foundation</p>
-
-            <div class="flex justify-center mb-12">
-                <div class="relative w-full max-w-md mx-auto" style="aspect-ratio: 1/1;">
-                    <video
-                        id="bdh-video"
-                        loop
-                        muted
-                        playsinline
-                        preload="metadata"
-                        poster="/bdh-poster.jpg"
-                        class="w-full h-full object-contain rounded-lg"
-                        style="background-color: #161b25;"
-                    >
-                        <source src="/BE_DO_HAVE_Glowing_web.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
 
             <div class="text-center max-w-2xl mx-auto">
                 <blockquote class="font-display text-xl md:text-2xl font-semibold leading-relaxed mb-6" style="color: #e8dcc8;">
@@ -450,17 +452,10 @@
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        // BE·DO·HAVE video — loops continuously when in view
+        // BE·DO·HAVE banner video — autoplay with fallback
         const bdhVideo = document.getElementById('bdh-video');
         if (bdhVideo) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        bdhVideo.play().catch(() => {});
-                    }
-                });
-            }, { threshold: 0.4 });
-            observer.observe(bdhVideo);
+            bdhVideo.play().catch(() => {});
         }
     </script>
 
