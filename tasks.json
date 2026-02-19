@@ -1,0 +1,162 @@
+{
+  "council_tasks": [
+    {
+      "id": "ct-001",
+      "task": "Build Make.com Scenario 2 - Scripture Unlocked Video Distribution",
+      "assigned_to": "Allen",
+      "requested_by": "Mark",
+      "status": "in_progress",
+      "priority": "high",
+      "created": "2026-02-18T18:30:00Z",
+      "notes": "Mark building manually with instructions provided"
+    },
+    {
+      "id": "ct-002",
+      "task": "Marketing Master Plan - COS synthesis (research from Madison, Alexis, Media, Comms, Marcus)",
+      "assigned_to": "COS (Chief of Staff)",
+      "requested_by": "Mark",
+      "status": "pending",
+      "priority": "urgent",
+      "due_date": "2026-02-18",
+      "created": "2026-02-17",
+      "notes": "48-hour deadline, due today"
+    },
+    {
+      "id": "ct-003",
+      "task": "SnapToSell Tech Review - Architecture, security audit, speed optimization",
+      "assigned_to": "Marcus Steele (CTO)",
+      "requested_by": "Mark",
+      "status": "pending",
+      "priority": "urgent",
+      "due_date": "2026-02-18",
+      "created": "2026-02-17",
+      "notes": "Deliverable: SNAPTOSELL-TECH-REVIEW.md"
+    },
+    {
+      "id": "ct-004",
+      "task": "Content scripts - Scripture Unlocked (10 video ideas + 10 social posts)",
+      "assigned_to": "Allen",
+      "requested_by": "Mark",
+      "status": "completed",
+      "priority": "high",
+      "completed": "2026-02-18T07:30:00Z",
+      "created": "2026-02-18T07:00:00Z",
+      "notes": "Saved to content-ideas-2026-02-18.md"
+    },
+    {
+      "id": "ct-005",
+      "task": "Content scripts - Enemy Within book marketing (10 animated promos + 10 social posts)",
+      "assigned_to": "Allen",
+      "requested_by": "Mark",
+      "status": "completed",
+      "priority": "high",
+      "completed": "2026-02-18T07:30:00Z",
+      "created": "2026-02-18T07:00:00Z",
+      "notes": "Saved to content-ideas-2026-02-18.md. Needs Sam character definition."
+    },
+    {
+      "id": "ct-006",
+      "task": "Google Drive API integration - Download reference libraries",
+      "assigned_to": "Allen",
+      "requested_by": "CRO via Supabase",
+      "status": "completed",
+      "priority": "medium",
+      "completed": "2026-02-18T08:17:00Z",
+      "created": "2026-02-18T04:06:00Z",
+      "notes": "348MB downloaded: KJV, Companion Bible, Strong's, Webster 1828, Smith's Dictionary, The Season, Apocrypha, Bible Study App"
+    },
+    {
+      "id": "ct-007",
+      "task": "Build Make.com Scenario 3 - Enemy Within Content Distribution",
+      "assigned_to": "Allen",
+      "requested_by": "Mark",
+      "status": "pending",
+      "priority": "high",
+      "created": "2026-02-18",
+      "notes": "After Scenario 2 is complete"
+    }
+  ],
+  "mark_tasks": [
+    {
+      "id": "mt-001",
+      "task": "Review Marketing Master Plan (when delivered by COS)",
+      "assigned_to": "Mark",
+      "requested_by": "Council",
+      "status": "pending",
+      "priority": "urgent",
+      "due_date": "2026-02-18",
+      "notes": "Approve or request revisions"
+    },
+    {
+      "id": "mt-002",
+      "task": "Review Marcus Steele's SnapToSell Tech Review",
+      "assigned_to": "Mark",
+      "requested_by": "Marcus Steele (CTO)",
+      "status": "pending",
+      "priority": "urgent",
+      "due_date": "2026-02-18",
+      "notes": "Deliverable: SNAPTOSELL-TECH-REVIEW.md"
+    },
+    {
+      "id": "mt-003",
+      "task": "Decide eVTOL entry strategy (Layer 3 infrastructure, Layer 4 digital OS, real estate, or tracking)",
+      "assigned_to": "Mark",
+      "requested_by": "Allen",
+      "status": "pending",
+      "priority": "medium",
+      "created": "2026-02-17",
+      "notes": "Analysis delivered in evtol-infrastructure-lockdown.md"
+    },
+    {
+      "id": "mt-004",
+      "task": "Approve Slack channel structure recommendation",
+      "assigned_to": "Mark",
+      "requested_by": "COS",
+      "status": "pending",
+      "priority": "low",
+      "notes": "Slack temporarily disabled due to token issues"
+    },
+    {
+      "id": "mt-005",
+      "task": "Define Sam character for Enemy Within animated videos",
+      "assigned_to": "Mark",
+      "requested_by": "Allen",
+      "status": "pending",
+      "priority": "medium",
+      "created": "2026-02-18",
+      "notes": "Need personality/vibe/role for book marketing avatar"
+    },
+    {
+      "id": "mt-006",
+      "task": "Set up Buffer Essentials plan ($36/mo for 6 channels)",
+      "assigned_to": "Mark",
+      "requested_by": "Allen",
+      "status": "pending",
+      "priority": "medium",
+      "notes": "Required for Make.com scenarios to post to X/IG/TikTok"
+    }
+  ],
+  "completed_tasks": [
+    {
+      "id": "ct-004",
+      "task": "Content scripts - Scripture Unlocked",
+      "assigned_to": "Allen",
+      "completed": "2026-02-18T07:30:00Z",
+      "notes": "10 video scripts + 10 social media ideas"
+    },
+    {
+      "id": "ct-005",
+      "task": "Content scripts - Enemy Within book marketing",
+      "assigned_to": "Allen",
+      "completed": "2026-02-18T07:30:00Z",
+      "notes": "10 animated promo scripts + 10 social media ideas"
+    },
+    {
+      "id": "ct-006",
+      "task": "Google Drive API integration",
+      "assigned_to": "Allen",
+      "completed": "2026-02-18T08:17:00Z",
+      "notes": "348MB reference libraries downloaded"
+    }
+  ]
+}

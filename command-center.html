@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Center - Task Lists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        .task-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1024px) {
+            .task-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .task-section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .task-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .task-section h2 span {
+            font-size: 1.2rem;
+        }
+        
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .task-item {
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+        
+        .task-item:hover {
+            border-color: #00ff88;
+            background: #2a2a2a;
+        }
+        
+        .task-item.urgent {
+            border-left: 4px solid #ff4444;
+        }
+        
+        .task-item.high {
+            border-left: 4px solid #ff9944;
+        }
+        
+        .task-item.medium {
+            border-left: 4px solid #ffdd44;
+        }
+        
+        .task-item.completed {
+            opacity: 0.6;
+            background: #1a2a1a;
+            border-left: 4px solid #00ff88;
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .task-checkbox:hover {
+            border-color: #00ff88;
+        }
+        
+        .task-checkbox.checked {
+            background: #00ff88;
+            border-color: #00ff88;
+        }
+        
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: #0a0a0a;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        
+        .task-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: #888;
+            flex-wrap: wrap;
+        }
+        
+        .task-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .task-notes {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending {
+            background: #444;
+            color: #fff;
+        }
+        
+        .status-badge.in-progress {
+            background: #4444ff;
+            color: #fff;
+        }
+        
+        .status-badge.completed {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Command Center</h1>
+            <p class="subtitle">Smart Brands Inc. | Task Management</p>
+        </header>
+        
+        <div class="stats" id="stats"></div>
+        
+        <div class="task-grid">
+            <div class="task-section">
+                <h2><span>🤖</span> Council's Tasks</h2>
+                <div class="task-list" id="council-tasks"></div>
+            </div>
+            
+            <div class="task-section">
+                <h2><span>👤</span> Mark's Tasks</h2>
+                <div class="task-list" id="mark-tasks"></div>
+            </div>
+        </div>
+        
+        <div class="task-section">
+            <h2><span>✅</span> Completed Tasks</h2>
+            <div class="task-list" id="completed-tasks"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load tasks from JSON
+        let tasks = {
+  "council_tasks": [
+    {"id": "ct-001", "task": "Build Make.com Scenario 2 - Scripture Unlocked Video Distribution", "assigned_to": "Allen", "requested_by": "Mark", "status": "in_progress", "priority": "high", "created": "2026-02-18T18:30:00Z", "notes": "Mark building manually with instructions provided"},
+    {"id": "ct-002", "task": "Marketing Master Plan - COS synthesis", "assigned_to": "COS", "requested_by": "Mark", "status": "pending", "priority": "urgent", "due_date": "2026-02-18", "created": "2026-02-17", "notes": "48-hour deadline, due today"},
+    {"id": "ct-003", "task": "SnapToSell Tech Review", "assigned_to": "Marcus Steele (CTO)", "requested_by": "Mark", "status": "pending", "priority": "urgent", "due_date": "2026-02-18", "created": "2026-02-17"},
+    {"id": "ct-004", "task": "Content scripts - Scripture Unlocked", "assigned_to": "Allen", "requested_by": "Mark", "status": "completed", "priority": "high", "completed": "2026-02-18T07:30:00Z", "created": "2026-02-18T07:00:00Z"},
+    {"id": "ct-005", "task": "Content scripts - Enemy Within", "assigned_to": "Allen", "requested_by": "Mark", "status": "completed", "priority": "high", "completed": "2026-02-18T07:30:00Z", "created": "2026-02-18T07:00:00Z"},
+    {"id": "ct-006", "task": "Google Drive API integration", "assigned_to": "Allen", "requested_by": "CRO", "status": "completed", "priority": "medium", "completed": "2026-02-18T08:17:00Z", "created": "2026-02-18T04:06:00Z"},
+    {"id": "ct-007", "task": "Build Make.com Scenario 3 - Enemy Within", "assigned_to": "Allen", "requested_by": "Mark", "status": "pending", "priority": "high", "created": "2026-02-18"}
+  ],
+  "mark_tasks": [
+    {"id": "mt-001", "task": "Review Marketing Master Plan", "assigned_to": "Mark", "requested_by": "Council", "status": "pending", "priority": "urgent", "due_date": "2026-02-18"},
+    {"id": "mt-002", "task": "Review SnapToSell Tech Review", "assigned_to": "Mark", "requested_by": "Marcus Steele", "status": "pending", "priority": "urgent", "due_date": "2026-02-18"},
+    {"id": "mt-003", "task": "Decide eVTOL entry strategy", "assigned_to": "Mark", "requested_by": "Allen", "status": "pending", "priority": "medium", "created": "2026-02-17"},
+    {"id": "mt-004", "task": "Approve Slack channel structure", "assigned_to": "Mark", "requested_by": "COS", "status": "pending", "priority": "low"},
+    {"id": "mt-005", "task": "Define Sam character for book videos", "assigned_to": "Mark", "requested_by": "Allen", "status": "pending", "priority": "medium", "created": "2026-02-18"},
+    {"id": "mt-006", "task": "Set up Buffer Essentials plan", "assigned_to": "Mark", "requested_by": "Allen", "status": "pending", "priority": "medium"}
+  ]
+};
+        
+        function renderTask(task, isCompleted = false) {
+            const status = task.status || 'pending';
+            const priority = task.priority || 'medium';
+            
+            return `
+                <div class="task-item ${priority} ${isCompleted ? 'completed' : ''}" data-id="${task.id}">
+                    <div class="task-header">
+                        <div class="task-checkbox ${isCompleted ? 'checked' : ''}" onclick="toggleTask('${task.id}')"></div>
+                        <div class="task-content">
+                            <div class="task-title">${task.task}</div>
+                            <div class="task-meta">
+                                <span>👤 ${task.assigned_to}</span>
+                                <span>📥 ${task.requested_by}</span>
+                                ${task.due_date ? `<span>📅 ${new Date(task.due_date).toLocaleDateString()}</span>` : ''}
+                                <span class="status-badge ${status.replace('_', '-')}">${status.replace('_', ' ')}</span>
+                            </div>
+                            ${task.notes ? `<div class="task-notes">${task.notes}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderTasks() {
+            const councilList = document.getElementById('council-tasks');
+            const markList = document.getElementById('mark-tasks');
+            const completedList = document.getElementById('completed-tasks');
+            
+            const councilActive = tasks.council_tasks.filter(t => t.status !== 'completed');
+            const markActive = tasks.mark_tasks.filter(t => t.status !== 'completed');
+            const completed = [...tasks.council_tasks, ...tasks.mark_tasks].filter(t => t.status === 'completed');
+            
+            councilList.innerHTML = councilActive.length ? councilActive.map(t => renderTask(t)).join('') : '<div class="empty-state">No active tasks</div>';
+            markList.innerHTML = markActive.length ? markActive.map(t => renderTask(t)).join('') : '<div class="empty-state">No active tasks</div>';
+            completedList.innerHTML = completed.length ? completed.map(t => renderTask(t, true)).join('') : '<div class="empty-state">No completed tasks yet</div>';
+            
+            // Render stats
+            const stats = document.getElementById('stats');
+            const totalActive = councilActive.length + markActive.length;
+            const totalCompleted = completed.length;
+            const urgentCount = [...councilActive, ...markActive].filter(t => t.priority === 'urgent').length;
+            
+            stats.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalActive}</div>
+                    <div class="stat-label">Active Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${totalCompleted}</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${urgentCount}</div>
+                    <div class="stat-label">Urgent</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${councilActive.filter(t => t.status === 'in_progress').length}</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+            `;
+        }
+        
+        function toggleTask(taskId) {
+            // Find and toggle task
+            let task = tasks.council_tasks.find(t => t.id === taskId);
+            if (!task) task = tasks.mark_tasks.find(t => t.id === taskId);
+            
+            if (task) {
+                task.status = task.status === 'completed' ? 'pending' : 'completed';
+                if (task.status === 'completed') {
+                    task.completed = new Date().toISOString();
+                }
+                renderTasks();
+                // In production, save to backend here
+            }
+        }
+        
+        // Load fresh data from JSON file
+        async function loadTasks() {
+            try {
+                const response = await fetch('./tasks.json');
+                if (response.ok) {
+                    tasks = await response.json();
+                    renderTasks();
+                }
+            } catch (err) {
+                console.error('Failed to load tasks:', err);
+                renderTasks(); // Use embedded data as fallback
+            }
+        }
+        
+        // Initial render
+        loadTasks();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadTasks, 30000);
+    </script>
+</body>
+</html>
