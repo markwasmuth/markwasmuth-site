@@ -21,13 +21,31 @@ async function loadTaskData() {
 
 // Update task counts in Command Center
 function updateTaskCounts() {
-    const councilActive = taskData.council_tasks.filter(t => t.status !== 'completed').length;
-    const markActive = taskData.mark_tasks.filter(t => t.status !== 'completed').length;
-    const totalActive = councilActive + markActive;
+    // Council tasks
+    const councilTotal = taskData.council_tasks.length;
+    const councilInProgress = taskData.council_tasks.filter(t => t.status === 'in_progress').length;
+    const councilPending = taskData.council_tasks.filter(t => t.status === 'pending').length;
     
-    document.getElementById('total-tasks').textContent = totalActive;
-    document.getElementById('council-task-count').textContent = councilActive;
-    document.getElementById('mark-task-count').textContent = markActive;
+    // Mark tasks
+    const markTotal = taskData.mark_tasks.length;
+    const markInProgress = taskData.mark_tasks.filter(t => t.status === 'in_progress').length;
+    const markPending = taskData.mark_tasks.filter(t => t.status === 'pending').length;
+    
+    document.getElementById('council-task-count').innerHTML = `
+        <div style="font-size: 2rem; font-weight: bold;">${councilTotal}</div>
+        <div style="font-size: 0.85rem; margin-top: 4px;">
+            <span style="color: #3182ce;">⏳ ${councilInProgress}</span> · 
+            <span style="color: #dd6b20;">📋 ${councilPending}</span>
+        </div>
+    `;
+    
+    document.getElementById('mark-task-count').innerHTML = `
+        <div style="font-size: 2rem; font-weight: bold;">${markTotal}</div>
+        <div style="font-size: 0.85rem; margin-top: 4px;">
+            <span style="color: #3182ce;">⏳ ${markInProgress}</span> · 
+            <span style="color: #dd6b20;">📋 ${markPending}</span>
+        </div>
+    `;
 }
 
 // Show Council's Tasks modal
