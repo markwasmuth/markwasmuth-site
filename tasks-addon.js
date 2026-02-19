@@ -1,8 +1,9 @@
 // Task Management Add-on for Smart Brands Mission Control
 // Loads tasks from Supabase and displays Council + Mark task lists
 
-const SUPABASE_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
+// Use existing SUPABASE constants if available, otherwise define
+const TASK_SUPABASE_URL = window.SUPABASE_URL || 'https://cmdcitqfrzfmeghrvily.supabase.co';
+const TASK_SUPABASE_KEY = window.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
 
 let taskData = {
     council_tasks: [],
@@ -12,23 +13,29 @@ let taskData = {
 // Load tasks from Supabase
 async function loadTaskData() {
     try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?select=*&order=created_at.desc`, {
+        console.log('[Tasks] Loading from Supabase...');
+        const response = await fetch(`${TASK_SUPABASE_URL}/rest/v1/agent_tasks?select=*&order=created_at.desc`, {
             headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`
+                'apikey': TASK_SUPABASE_KEY,
+                'Authorization': `Bearer ${TASK_SUPABASE_KEY}`
             }
         });
         if (response.ok) {
             const allTasks = await response.json();
+            console.log('[Tasks] Loaded', allTasks.length, 'total tasks');
             
             // Separate Council tasks (allen) and Mark's tasks
             taskData.council_tasks = allTasks.filter(t => t.to_agent === 'allen');
             taskData.mark_tasks = allTasks.filter(t => t.to_agent === 'mark');
             
+            console.log('[Tasks] Allen:', taskData.council_tasks.length, 'Mark:', taskData.mark_tasks.length);
+            
             updateTaskCounts();
+        } else {
+            console.error('[Tasks] Failed to load:', response.status, response.statusText);
         }
     } catch (err) {
-        console.error('Failed to load tasks:', err);
+        console.error('[Tasks] Error:', err);
     }
 }
 
@@ -37,15 +44,24 @@ function updateTaskCounts() {
     // Council tasks
     const councilInProgress = taskData.council_tasks.filter(t => t.status === 'in_progress').length;
     const councilPending = taskData.council_tasks.filter(t => t.status === 'pending').length;
-    const councilCompleted = taskData.council_tasks.filter(t => t.status === 'completed').length;
+    const councilCompleted = taskData.council_tasks.filter(t => t.status === 'done').length;
     
     // Mark tasks
     const markInProgress = taskData.mark_tasks.filter(t => t.status === 'in_progress').length;
     const markPending = taskData.mark_tasks.filter(t => t.status === 'pending').length;
-    const markCompleted = taskData.mark_tasks.filter(t => t.status === 'completed').length;
+    const markCompleted = taskData.mark_tasks.filter(t => t.status === 'done').length;
+    
+    console.log('[Tasks] Counts - Council:', {pending: councilPending, inProgress: councilInProgress, done: councilCompleted});
+    console.log('[Tasks] Counts - Mark:', {pending: markPending, inProgress: markInProgress, done: markCompleted});
     
     // Council task count - horizontal layout (LEFT TO RIGHT: Pending → In Progress)
-    document.getElementById('council-task-count').innerHTML = `
+    const councilElement = document.getElementById('council-task-count');
+    if (!councilElement) {
+        console.error('[Tasks] council-task-count element not found');
+        return;
+    }
+    
+    councilElement.innerHTML = `
         <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
             <div style="display: flex; flex-direction: column; align-items: center; min-width: 70px;">
                 <div style="font-size: 3.5rem; font-weight: 700; color: #dd6b20; line-height: 1;">${councilPending}</div>
@@ -59,7 +75,13 @@ function updateTaskCounts() {
     `;
     
     // Mark task count - horizontal layout (LEFT TO RIGHT: Pending → In Progress)
-    document.getElementById('mark-task-count').innerHTML = `
+    const markElement = document.getElementById('mark-task-count');
+    if (!markElement) {
+        console.error('[Tasks] mark-task-count element not found');
+        return;
+    }
+    
+    markElement.innerHTML = `
         <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
             <div style="display: flex; flex-direction: column; align-items: center; min-width: 70px;">
                 <div style="font-size: 3.5rem; font-weight: 700; color: #dd6b20; line-height: 1;">${markPending}</div>
@@ -75,8 +97,14 @@ function updateTaskCounts() {
 
 // Show Council's Tasks modal (ALL STATUSES when clicked)
 function showCouncilTasks() {
+    console.log('[Tasks] showCouncilTasks called');
     const modal = document.getElementById('councilTasksModal');
     const content = document.getElementById('councilTasksContent');
+    
+    if (!modal || !content) {
+        console.error('[Tasks] Modal elements not found');
+        return;
+    }
     
     const pendingTasks = taskData.council_tasks.filter(t => t.status === 'pending');
     const inProgressTasks = taskData.council_tasks.filter(t => t.status === 'in_progress');
@@ -106,8 +134,14 @@ function showCouncilTasks() {
 
 // Show Mark's Tasks modal (ALL STATUSES when clicked)
 function showMarkTasks() {
+    console.log('[Tasks] showMarkTasks called');
     const modal = document.getElementById('markTasksModal');
     const content = document.getElementById('markTasksContent');
+    
+    if (!modal || !content) {
+        console.error('[Tasks] Modal elements not found');
+        return;
+    }
     
     const pendingTasks = taskData.mark_tasks.filter(t => t.status === 'pending');
     const inProgressTasks = taskData.mark_tasks.filter(t => t.status === 'in_progress');
