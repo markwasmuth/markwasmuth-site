@@ -1184,22 +1184,6 @@
                 </div>
             </div>
 
-            <!-- The Enemy Within -->
-            <div class="venture-box" style="--brand-color: #8B0000" onclick="openVenture('book')">
-                <div class="venture-name">The Enemy Within</div>
-                <div class="venture-tagline">20 Years of Research. July 4, 2026</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="book-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Launch</div>
-                        <div class="stat-value" style="font-size: 22px;">139 Days</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Scripture Unlocked -->
             <div class="venture-box" style="--brand-color: #D4AE39" onclick="openVenture('scripture')">
                 <div class="venture-name">Scripture Unlocked</div>
@@ -1212,6 +1196,38 @@
                     <div class="stat">
                         <div class="stat-label">Views</div>
                         <div class="stat-value">58K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BE DO HAVE -->
+            <div class="venture-box" style="--brand-color: #C9A54C" onclick="openVenture('coaching')">
+                <div class="venture-name">BE ✝ DO ✝ HAVE</div>
+                <div class="venture-tagline">Creator Mindset Coaching</div>
+                <div class="venture-stats">
+                    <div class="stat">
+                        <div class="stat-label">Tasks</div>
+                        <div class="stat-value" id="coaching-tasks">—</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Status</div>
+                        <div class="stat-value" style="font-size: 22px;">Active</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Enemy Within -->
+            <div class="venture-box" style="--brand-color: #8B0000" onclick="openVenture('book')">
+                <div class="venture-name">The Enemy Within</div>
+                <div class="venture-tagline">20 Years of Research. July 4, 2026</div>
+                <div class="venture-stats">
+                    <div class="stat">
+                        <div class="stat-label">Tasks</div>
+                        <div class="stat-value" id="book-tasks">—</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Launch</div>
+                        <div class="stat-value" style="font-size: 22px;">139 Days</div>
                     </div>
                 </div>
             </div>
@@ -1247,31 +1263,15 @@
                     </div>
                 </div>
             </div>
-
-            <!-- BE DO HAVE -->
-            <div class="venture-box" style="--brand-color: #C9A54C" onclick="openVenture('coaching')">
-                <div class="venture-name">BE ✝ DO ✝ HAVE</div>
-                <div class="venture-tagline">Creator Mindset Coaching</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="coaching-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Status</div>
-                        <div class="stat-value" style="font-size: 22px;">Active</div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Command Center -->
         <div class="command-center">
             <h2>⚡ COMMAND CENTER</h2>
             <div class="command-stats">
-                <div class="command-stat clickable" onclick="showCouncilTasks()">
-                    <div id="council-task-count" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">—</div>
-                    <div class="command-stat-label">Council's Tasks</div>
+                <div class="command-stat clickable" onclick="showTasks()">
+                    <div class="command-stat-value" id="total-tasks">—</div>
+                    <div class="command-stat-label">Active Tasks</div>
                 </div>
                 <div class="command-stat clickable" onclick="showAgents()">
                     <div class="command-stat-value" id="total-agents">13</div>
@@ -1281,16 +1281,9 @@
                     <div class="command-stat-value">💬</div>
                     <div class="command-stat-label">Chat</div>
                 </div>
-                <div class="command-stat clickable" onclick="showDeliverables()">
-                    <div class="command-stat-value" style="position: relative;">
-                        📋
-                        <span id="deliverables-count" style="display: none; position: absolute; top: -8px; right: -8px; background: #ff4444; color: white; font-size: 0.7em; padding: 2px 6px; border-radius: 10px; font-weight: 700;">0</span>
-                    </div>
-                    <div class="command-stat-label">Review Queue</div>
-                </div>
-                <div class="command-stat clickable" onclick="showMarkTasks()">
-                    <div id="mark-task-count" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">—</div>
-                    <div class="command-stat-label">Mark's Tasks</div>
+                <div class="command-stat clickable" onclick="showCouncil()">
+                    <div class="command-stat-value">📡</div>
+                    <div class="command-stat-label">Council Feed</div>
                 </div>
             </div>
         </div>
@@ -3100,45 +3093,5 @@
         draw();
     })();
     </script>
-
-    <!-- Council's Tasks Modal -->
-    <div id="councilTasksModal" class="modal" onclick="if(event.target === this) closeCouncilTasks()">
-        <div class="modal-content" style="max-width: 900px;">
-            <span class="modal-close" onclick="closeCouncilTasks()">&times;</span>
-            <h2>🤖 Council's Tasks</h2>
-            <div class="subtitle">AI Agents + Allen - Executive Team Work</div>
-            <div id="councilTasksContent" style="margin-top: 20px;">
-                <div style="text-align: center; color: #888; padding: 40px;">Loading tasks...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mark's Tasks Modal -->
-    <div id="markTasksModal" class="modal" onclick="if(event.target === this) closeMarkTasks()">
-        <div class="modal-content" style="max-width: 900px;">
-            <span class="modal-close" onclick="closeMarkTasks()">&times;</span>
-            <h2>👤 Mark's Tasks</h2>
-            <div class="subtitle">Your Review & Decision Items</div>
-            <div id="markTasksContent" style="margin-top: 20px;">
-                <div style="text-align: center; color: #888; padding: 40px;">Loading tasks...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Deliverables Review Modal -->
-    <div id="deliverablesModal" class="modal" onclick="if(event.target === this) closeDeliverables()">
-        <div class="modal-content" style="max-width: 1000px; width: 95%;">
-            <span class="modal-close" onclick="closeDeliverables()">&times;</span>
-            <h2>📋 Review Queue</h2>
-            <div class="subtitle">Allen's Deliverables Pending Your Review</div>
-            <div id="deliverablesContent" style="margin-top: 20px;">
-                <div style="text-align: center; color: #888; padding: 40px;">Loading...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="./tasks-addon.js"></script>
-    <script src="./deliverables-review.js"></script>
 </body>
 </html>
