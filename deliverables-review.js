@@ -47,11 +47,10 @@ function updateDeliverableCount() {
             badge.style.background = '#ff4444'; // Red for high priority items
         }
     }
-    // Sync sidebar review badge
-    const sidebarBadge = document.getElementById('sidebar-review-badge');
-    if (sidebarBadge) {
-        sidebarBadge.textContent = deliverables.length;
-        sidebarBadge.style.display = deliverables.length > 0 ? 'inline-block' : 'none';
+    // Sync icon-strip notification dot
+    const notifDot = document.getElementById('review-notif-dot');
+    if (notifDot) {
+        notifDot.style.display = deliverables.length > 0 ? 'block' : 'none';
     }
 }
 

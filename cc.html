@@ -1146,7 +1146,7 @@
             background: #33e5ff;
         }
 
-        /* ===== LEFT SIDEBAR ===== */
+        /* ===== LAYOUT SYSTEM ===== */
         #dashboard {
             display: none;
             padding: 0;
@@ -1154,90 +1154,225 @@
             margin: 0;
         }
 
-        .dashboard-layout {
+        /* Full-width header bar */
+        .top-header {
+            width: 100%;
+            padding: 14px 28px;
+            background: rgba(10, 14, 26, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
             display: flex;
-            min-height: 100vh;
-            gap: 0;
-        }
-
-        .left-sidebar {
-            width: 300px;
-            min-width: 300px;
-            background: rgba(10, 14, 26, 0.95);
-            border-right: 1px solid #1a2d4a;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            align-items: center;
+            gap: 18px;
             position: sticky;
             top: 0;
+            z-index: 100;
+        }
+
+        .top-header h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #00d9ff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5), 0 0 40px rgba(0, 217, 255, 0.15);
+            animation: headerPulse 4s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        .top-header .header-tagline {
+            font-size: 13px;
+            color: rgba(0, 217, 255, 0.4);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .top-header .header-right {
+            margin-left: auto;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+            color: #4a5a6a;
+        }
+
+        .header-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-stat-val {
+            color: #00d9ff;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* Dashboard content layout */
+        .dashboard-layout {
+            display: flex;
+            min-height: calc(100vh - 52px);
+            gap: 0;
+            position: relative;
+        }
+
+        /* ===== ICON STRIP ===== */
+        .icon-strip {
+            width: 60px;
+            min-width: 60px;
+            background: rgba(10, 14, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(0, 217, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 14px;
+            gap: 6px;
+            position: sticky;
+            top: 52px;
+            height: calc(100vh - 52px);
+            z-index: 50;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .icon-btn:hover {
+            background: rgba(0, 217, 255, 0.12);
+            border-color: rgba(0, 217, 255, 0.25);
+            transform: scale(1.12);
+            box-shadow: 0 0 16px rgba(0, 217, 255, 0.15);
+        }
+
+        .icon-btn.active {
+            background: rgba(0, 217, 255, 0.18);
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.25), inset 0 0 12px rgba(0, 217, 255, 0.08);
+        }
+
+        .icon-btn-label {
+            display: none;
+            position: absolute;
+            left: 56px;
+            background: rgba(10, 14, 26, 0.95);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #00d9ff;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 60;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .icon-btn:hover .icon-btn-label {
+            display: block;
+        }
+
+        .icon-btn .notif-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(255, 68, 68, 0.6);
+        }
+
+        /* ===== SIDEBAR PANEL ===== */
+        .sidebar-panel {
+            width: 0;
             overflow: hidden;
+            background: rgba(10, 14, 26, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-right: 1px solid rgba(0, 217, 255, 0.08);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: sticky;
+            top: 52px;
+            height: calc(100vh - 52px);
+            z-index: 40;
         }
 
-        .sidebar-header {
-            padding: 16px;
-            border-bottom: 1px solid #1a2d4a;
-            text-align: center;
+        .sidebar-panel.open {
+            width: 300px;
         }
 
-        .sidebar-header h1 {
+        .sidebar-panel-content {
+            display: none;
+            width: 300px;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px 16px;
+        }
+
+        .sidebar-panel-content.active {
+            display: block;
+        }
+
+        .panel-title {
             font-size: 16px;
             font-weight: 700;
             color: #00d9ff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: headerPulse 4s ease-in-out infinite;
-        }
-
-        .sidebar-header .subtitle {
-            font-size: 13px;
-            color: #4a5a6a;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
             letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 2px;
         }
 
-        .sidebar-section {
-            padding: 10px 0;
-            border-bottom: 1px solid #1a2d4a;
-        }
-
-        .sidebar-section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #4a5a6a;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 0 16px 8px;
-        }
-
-        /* Agent list in sidebar */
+        /* Sidebar agent list */
         .sidebar-agents {
             overflow-y: auto;
-            max-height: 340px;
+            max-height: calc(100vh - 160px);
         }
 
         .sidebar-agent {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 16px;
+            padding: 10px 12px;
             cursor: pointer;
-            transition: background 0.15s;
+            transition: all 0.2s;
             border-left: 2px solid transparent;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2px;
         }
 
         .sidebar-agent:hover {
-            background: rgba(0, 217, 255, 0.05);
+            background: rgba(0, 217, 255, 0.08);
             border-left-color: #00d9ff;
         }
 
         .agent-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #2ea05a;
             flex-shrink: 0;
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 6px rgba(46, 160, 90, 0.6);
+            animation: dotPulse 2s infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(46, 160, 90, 0.6); }
+            50% { opacity: 0.6; box-shadow: 0 0 14px rgba(46, 160, 90, 0.9); }
         }
 
         .sidebar-agent-info {
@@ -1246,7 +1381,7 @@
         }
 
         .sidebar-agent-name {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: #c9d1d9;
             white-space: nowrap;
@@ -1255,42 +1390,40 @@
         }
 
         .sidebar-agent-role {
-            font-size: 13px;
+            font-size: 12px;
             color: #4a5a6a;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* Task feed in sidebar */
+        /* Sidebar task feed */
         .sidebar-tasks {
-            flex: 1;
             overflow-y: auto;
-            padding: 0;
+            max-height: calc(100vh - 160px);
         }
 
         .sidebar-task-item {
-            padding: 10px 16px;
-            border-bottom: 1px solid #111827;
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.05);
             cursor: pointer;
-            transition: background 0.15s;
+            transition: all 0.2s;
+            border-radius: 8px;
+            margin-bottom: 4px;
         }
 
         .sidebar-task-item:hover {
-            background: rgba(0, 217, 255, 0.04);
+            background: rgba(0, 217, 255, 0.06);
         }
 
         .sidebar-task-agents {
             font-size: 13px;
             color: #00d9ff;
-            margin-bottom: 3px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            margin-bottom: 4px;
         }
 
         .sidebar-task-text {
-            font-size: 14px;
+            font-size: 13px;
             color: #8899aa;
             line-height: 1.4;
             display: -webkit-box;
@@ -1301,126 +1434,175 @@
 
         .sidebar-task-priority {
             display: inline-block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             padding: 2px 6px;
-            border-radius: 3px;
+            border-radius: 4px;
             text-transform: uppercase;
             margin-top: 4px;
         }
 
-        .priority-urgent { background: #3d0000; color: #ff4444; }
-        .priority-high { background: #2d1f08; color: #d29922; }
-        .priority-medium { background: #0d2337; color: #388bfd; }
-        .priority-low { background: #1a1a2e; color: #555; }
+        .priority-urgent { background: rgba(255, 68, 68, 0.15); color: #ff4444; }
+        .priority-high { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+        .priority-medium { background: rgba(56, 139, 253, 0.15); color: #388bfd; }
+        .priority-low { background: rgba(85, 85, 85, 0.15); color: #666; }
 
         .sidebar-empty {
-            padding: 16px;
-            font-size: 13px;
+            padding: 20px;
+            font-size: 14px;
             color: #4a5a6a;
             text-align: center;
         }
 
-        /* Main content area */
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            max-height: 100vh;
-        }
-
-        .main-content .header {
-            text-align: center;
-            margin-bottom: 24px;
-            padding: 10px 0;
-        }
-
-        .main-content .header h1 {
-            font-size: 40px;
-        }
-
-        /* Override old dashboard styles that conflict */
-        .ventures-grid {
-            max-width: 100% !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        @media (max-width: 1100px) {
-            .left-sidebar { width: 240px; min-width: 240px; }
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-layout { flex-direction: column; }
-            .left-sidebar { width: 100%; min-width: 100%; height: auto; position: relative; }
-            .sidebar-agents { max-height: 200px; }
-        }
-
-        /* Sidebar clickable action items */
-        .sidebar-action {
+        /* Sidebar action items (inside panels) */
+        .sb-action {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 16px;
+            padding: 12px;
             cursor: pointer;
-            transition: background 0.15s;
-            border-left: 3px solid transparent;
-            border-bottom: 1px solid #1a2d4a;
+            border-radius: 10px;
+            transition: all 0.2s;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
         }
 
-        .sidebar-action:hover {
+        .sb-action:hover {
             background: rgba(0, 217, 255, 0.08);
-            border-left-color: #00d9ff;
+            border-color: rgba(0, 217, 255, 0.15);
+            box-shadow: 0 0 12px rgba(0, 217, 255, 0.06);
         }
 
-        .sidebar-action-icon {
-            font-size: 20px;
+        .sb-action .sb-icon {
+            font-size: 18px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 217, 255, 0.08);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            border-radius: 8px;
             flex-shrink: 0;
-            width: 28px;
-            text-align: center;
         }
 
-        .sidebar-action-label {
-            font-size: 15px;
+        .sb-action .sb-label {
+            font-size: 14px;
             font-weight: 600;
             color: #c9d1d9;
         }
 
-        .sidebar-action-desc {
-            font-size: 13px;
+        .sb-action .sb-desc {
+            font-size: 12px;
             color: #4a5a6a;
             margin-top: 1px;
         }
 
-        .sidebar-action .badge {
-            margin-left: auto;
-            background: #ff4444;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 10px;
-            display: none;
+        .sb-divider {
+            border-top: 1px solid rgba(0, 217, 255, 0.08);
+            margin: 12px 0;
         }
 
-        /* Bigger command stat boxes */
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(100vh - 52px);
+        }
+
+        .main-content .header {
+            display: none; /* moved to top-header */
+        }
+
+        /* Glassmorphism venture boxes */
+        .venture-box {
+            background: rgba(17, 24, 39, 0.55) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(0, 217, 255, 0.1) !important;
+        }
+
+        .venture-box:hover {
+            background: rgba(17, 24, 39, 0.7) !important;
+            border-color: var(--brand-color) !important;
+        }
+
+        /* Glassmorphism command center */
+        .command-center {
+            background: rgba(13, 26, 42, 0.5) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(0, 217, 255, 0.15) !important;
+        }
+
         .command-stat {
             padding: 22px;
-            background: rgba(0, 217, 255, 0.05);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            border-radius: 10px;
+            background: rgba(0, 217, 255, 0.04);
+            border: 1px solid rgba(0, 217, 255, 0.12);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .command-stat.clickable:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
         }
 
         .command-stat-value {
-            font-size: 54px;
+            font-size: 52px;
             font-weight: 700;
             color: #00d9ff;
             margin-bottom: 8px;
         }
 
         .command-stat-label {
-            font-size: 26px;
+            font-size: 24px;
             color: #8899aa;
+        }
+
+        /* Glassmorphism modals */
+        .modal-content {
+            background: rgba(17, 24, 39, 0.85) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(0, 217, 255, 0.15) !important;
+        }
+
+        /* Override old grid styles */
+        .ventures-grid {
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .sidebar-panel.open { width: 260px; }
+            .sidebar-panel-content { width: 260px; }
+        }
+
+        @media (max-width: 768px) {
+            .top-header { padding: 10px 16px; gap: 10px; }
+            .top-header h1 { font-size: 16px; letter-spacing: 2px; }
+            .top-header .header-tagline { display: none; }
+            .top-header .header-right { display: none; }
+            .dashboard-layout { flex-direction: column; }
+            .icon-strip {
+                width: 100%; min-width: 100%; height: auto;
+                flex-direction: row; position: relative; top: 0;
+                justify-content: center; padding: 8px 0;
+            }
+            .icon-btn-label { display: none !important; }
+            .sidebar-panel {
+                width: 100% !important; height: auto;
+                position: relative; top: 0;
+            }
+            .sidebar-panel.open { width: 100% !important; }
+            .sidebar-panel-content { width: 100% !important; height: auto; max-height: 50vh; }
+            .main-content { max-height: none; }
         }
 
     </style>
@@ -1440,44 +1622,140 @@
 
     <!-- Dashboard -->
     <div id="dashboard">
+        <!-- Full-width header -->
+        <div class="top-header">
+            <h1>SMART BRANDS INC</h1>
+            <div class="header-tagline">Mission Control</div>
+            <div class="header-right">
+                <div class="header-stat">Ventures <span class="header-stat-val">6</span></div>
+                <div class="header-stat">Agents <span class="header-stat-val">13</span></div>
+            </div>
+        </div>
+
         <div class="dashboard-layout">
 
-        <!-- LEFT SIDEBAR -->
-        <div class="left-sidebar">
-            <div class="sidebar-header">
-                <h1>SMART BRANDS</h1>
-                <div class="subtitle">Mission Control</div>
+        <!-- Icon strip -->
+        <div class="icon-strip">
+            <div class="icon-btn" data-panel="chat" onclick="toggleSidebarPanel('chat')">
+                💬<span class="icon-btn-label">Chat</span>
             </div>
+            <div class="icon-btn" data-panel="council" onclick="toggleSidebarPanel('council')">
+                👥<span class="icon-btn-label">Council</span>
+            </div>
+            <div class="icon-btn" data-panel="tasks" onclick="toggleSidebarPanel('tasks')">
+                📋<span class="icon-btn-label">Tasks</span>
+            </div>
+            <div class="icon-btn" data-panel="review" onclick="toggleSidebarPanel('review')">
+                📝<span class="icon-btn-label">Review</span>
+                <span class="notif-dot" id="review-notif-dot" style="display:none;"></span>
+            </div>
+            <div class="icon-btn" data-panel="links" onclick="toggleSidebarPanel('links')">
+                ⚡<span class="icon-btn-label">Quick Links</span>
+            </div>
+        </div>
 
-            <!-- Quick Actions -->
-            <div class="sidebar-action" onclick="showChat()">
-                <div class="sidebar-action-icon">💬</div>
-                <div>
-                    <div class="sidebar-action-label">Chat</div>
-                    <div class="sidebar-action-desc">Talk to Council agents</div>
+        <!-- Expandable sidebar panel -->
+        <div class="sidebar-panel" id="sidebarPanel">
+
+            <!-- Chat panel -->
+            <div class="sidebar-panel-content" id="panel-chat">
+                <div class="panel-title">💬 Chat</div>
+                <div class="sb-action" onclick="showChat()">
+                    <div class="sb-icon">🌐</div>
+                    <div><div class="sb-label">All Hands</div><div class="sb-desc">Full Council room</div></div>
+                </div>
+                <div class="sb-divider"></div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('madison','individual'),100)">
+                    <div class="sb-icon">📚</div>
+                    <div><div class="sb-label">Madison Harper</div><div class="sb-desc">Book Marketing</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('cmo','individual'),100)">
+                    <div class="sb-icon">📈</div>
+                    <div><div class="sb-label">Alexis Monroe</div><div class="sb-desc">CMO</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('cto','individual'),100)">
+                    <div class="sb-icon">🔧</div>
+                    <div><div class="sb-label">Marcus Steele</div><div class="sb-desc">CTO</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('ceo','individual'),100)">
+                    <div class="sb-icon">👑</div>
+                    <div><div class="sb-label">CEO Advisor</div><div class="sb-desc">Strategy</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('cos','individual'),100)">
+                    <div class="sb-icon">🎯</div>
+                    <div><div class="sb-label">Chief of Staff</div><div class="sb-desc">Coordinator</div></div>
+                </div>
+                <div class="sb-divider"></div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('leadership','group'),100)">
+                    <div class="sb-icon">🏢</div>
+                    <div><div class="sb-label">Leadership</div><div class="sb-desc">CEO, COO, CFO, CRO</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('marketing-team','group'),100)">
+                    <div class="sb-icon">📣</div>
+                    <div><div class="sb-label">Marketing Team</div><div class="sb-desc">Madison, Alexis, Media, Comms</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat(); setTimeout(()=>openRoom('book-team','group'),100)">
+                    <div class="sb-icon">📖</div>
+                    <div><div class="sb-label">Book Team</div><div class="sb-desc">Madison, Media, Comms, Intel</div></div>
                 </div>
             </div>
-            <div class="sidebar-action" onclick="showDeliverables()">
-                <div class="sidebar-action-icon">📋</div>
-                <div>
-                    <div class="sidebar-action-label">Review Queue</div>
-                    <div class="sidebar-action-desc">Deliverables pending review</div>
-                </div>
-                <span class="badge" id="sidebar-review-badge">0</span>
-            </div>
 
-            <!-- Council Agents -->
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">⚡ Council of 13</div>
+            <!-- Council panel -->
+            <div class="sidebar-panel-content" id="panel-council">
+                <div class="panel-title">👥 Council of 13</div>
                 <div class="sidebar-agents" id="sidebar-agent-list">
                     <div class="sidebar-empty">Loading agents...</div>
                 </div>
             </div>
 
-            <!-- Live Task Feed -->
-            <div class="sidebar-section-title" style="padding: 10px 16px 8px;">📋 Task Feed</div>
-            <div class="sidebar-tasks" id="sidebar-task-feed">
-                <div class="sidebar-empty">Loading tasks...</div>
+            <!-- Tasks panel -->
+            <div class="sidebar-panel-content" id="panel-tasks">
+                <div class="panel-title">📋 Task Feed</div>
+                <div class="sb-action" onclick="showCouncilTasks()" style="margin-bottom:12px;">
+                    <div class="sb-icon">🤖</div>
+                    <div><div class="sb-label">Open Full Task Manager</div><div class="sb-desc">Create, assign & track</div></div>
+                </div>
+                <div class="sidebar-tasks" id="sidebar-task-feed">
+                    <div class="sidebar-empty">Loading tasks...</div>
+                </div>
+            </div>
+
+            <!-- Review panel -->
+            <div class="sidebar-panel-content" id="panel-review">
+                <div class="panel-title">📝 Review Queue</div>
+                <div class="sb-action" onclick="showDeliverables()">
+                    <div class="sb-icon">📋</div>
+                    <div><div class="sb-label">Deliverables</div><div class="sb-desc">Allen's work pending review</div></div>
+                </div>
+                <div class="sb-action" onclick="showCouncilTasks()">
+                    <div class="sb-icon">🤖</div>
+                    <div><div class="sb-label">Council Tasks</div><div class="sb-desc">AI agent work items</div></div>
+                </div>
+                <div class="sb-action" onclick="showMarkTasks()">
+                    <div class="sb-icon">👤</div>
+                    <div><div class="sb-label">Mark's Tasks</div><div class="sb-desc">Your decision items</div></div>
+                </div>
+            </div>
+
+            <!-- Quick Links panel -->
+            <div class="sidebar-panel-content" id="panel-links">
+                <div class="panel-title">⚡ Quick Links</div>
+                <div class="sb-action" onclick="showAgents()">
+                    <div class="sb-icon">🏛️</div>
+                    <div><div class="sb-label">Agent Directory</div><div class="sb-desc">View all 13 agents</div></div>
+                </div>
+                <div class="sb-action" onclick="showCouncilTasks()">
+                    <div class="sb-icon">📊</div>
+                    <div><div class="sb-label">Task Manager</div><div class="sb-desc">Full task dashboard</div></div>
+                </div>
+                <div class="sb-action" onclick="showMarkTasks()">
+                    <div class="sb-icon">✅</div>
+                    <div><div class="sb-label">Mark's Tasks</div><div class="sb-desc">Action items</div></div>
+                </div>
+                <div class="sb-action" onclick="showChat()">
+                    <div class="sb-icon">💬</div>
+                    <div><div class="sb-label">Council Chat</div><div class="sb-desc">Open chat rooms</div></div>
+                </div>
             </div>
         </div>
 
@@ -3193,10 +3471,10 @@
             const to = document.getElementById('newTaskTo').value;
             const priority = document.getElementById('newTaskPriority').value;
             const task = document.getElementById('newTaskText').value.trim();
-            
+
             if (!to) { alert('Select who to assign this to'); return; }
             if (!task) { alert('Enter a task description'); return; }
-            
+
             try {
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks`, {
                     method: 'POST',
@@ -3225,6 +3503,34 @@
             } catch (error) {
                 alert('Error creating task');
             }
+        }
+
+        // ===== SIDEBAR PANEL TOGGLE =====
+        let activeSidebarPanel = null;
+
+        function toggleSidebarPanel(panelId) {
+            const panel = document.getElementById('sidebarPanel');
+            const allContent = document.querySelectorAll('.sidebar-panel-content');
+            const allIcons = document.querySelectorAll('.icon-btn');
+            const targetContent = document.getElementById('panel-' + panelId);
+            const targetIcon = document.querySelector('.icon-btn[data-panel="' + panelId + '"]');
+
+            // Clicking the already-active panel closes it
+            if (activeSidebarPanel === panelId && panel.classList.contains('open')) {
+                panel.classList.remove('open');
+                allContent.forEach(c => c.classList.remove('active'));
+                allIcons.forEach(i => i.classList.remove('active'));
+                activeSidebarPanel = null;
+                return;
+            }
+
+            // Switch to the target panel
+            allContent.forEach(c => c.classList.remove('active'));
+            allIcons.forEach(i => i.classList.remove('active'));
+            if (targetContent) targetContent.classList.add('active');
+            if (targetIcon) targetIcon.classList.add('active');
+            panel.classList.add('open');
+            activeSidebarPanel = panelId;
         }
     </script>
     
