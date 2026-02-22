@@ -1145,6 +1145,217 @@
         .agent-chip.active:hover {
             background: #33e5ff;
         }
+
+        /* ===== LEFT SIDEBAR ===== */
+        #dashboard {
+            display: none;
+            padding: 0;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+            gap: 0;
+        }
+
+        .left-sidebar {
+            width: 300px;
+            min-width: 300px;
+            background: rgba(10, 14, 26, 0.95);
+            border-right: 1px solid #1a2d4a;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 16px;
+            border-bottom: 1px solid #1a2d4a;
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #00d9ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: headerPulse 4s ease-in-out infinite;
+        }
+
+        .sidebar-header .subtitle {
+            font-size: 10px;
+            color: #4a5a6a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .sidebar-section {
+            padding: 10px 0;
+            border-bottom: 1px solid #1a2d4a;
+        }
+
+        .sidebar-section-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: #4a5a6a;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0 16px 8px;
+        }
+
+        /* Agent list in sidebar */
+        .sidebar-agents {
+            overflow-y: auto;
+            max-height: 340px;
+        }
+
+        .sidebar-agent {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar-agent:hover {
+            background: rgba(0, 217, 255, 0.05);
+            border-left-color: #00d9ff;
+        }
+
+        .agent-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #2ea05a;
+            flex-shrink: 0;
+            animation: pulse 2s infinite;
+        }
+
+        .sidebar-agent-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar-agent-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #c9d1d9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-agent-role {
+            font-size: 10px;
+            color: #4a5a6a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Task feed in sidebar */
+        .sidebar-tasks {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .sidebar-task-item {
+            padding: 10px 16px;
+            border-bottom: 1px solid #111827;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .sidebar-task-item:hover {
+            background: rgba(0, 217, 255, 0.04);
+        }
+
+        .sidebar-task-agents {
+            font-size: 10px;
+            color: #00d9ff;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sidebar-task-text {
+            font-size: 11px;
+            color: #8899aa;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .sidebar-task-priority {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .priority-urgent { background: #3d0000; color: #ff4444; }
+        .priority-high { background: #2d1f08; color: #d29922; }
+        .priority-medium { background: #0d2337; color: #388bfd; }
+        .priority-low { background: #1a1a2e; color: #555; }
+
+        .sidebar-empty {
+            padding: 16px;
+            font-size: 11px;
+            color: #4a5a6a;
+            text-align: center;
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .main-content .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 10px 0;
+        }
+
+        .main-content .header h1 {
+            font-size: 40px;
+        }
+
+        /* Override old dashboard styles that conflict */
+        .ventures-grid {
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        @media (max-width: 1100px) {
+            .left-sidebar { width: 240px; min-width: 240px; }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-layout { flex-direction: column; }
+            .left-sidebar { width: 100%; min-width: 100%; height: auto; position: relative; }
+            .sidebar-agents { max-height: 200px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1162,6 +1373,32 @@
 
     <!-- Dashboard -->
     <div id="dashboard">
+        <div class="dashboard-layout">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">
+                <h1>SMART BRANDS</h1>
+                <div class="subtitle">Mission Control</div>
+            </div>
+
+            <!-- Council Agents -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">⚡ Council of 13</div>
+                <div class="sidebar-agents" id="sidebar-agent-list">
+                    <div class="sidebar-empty">Loading agents...</div>
+                </div>
+            </div>
+
+            <!-- Live Task Feed -->
+            <div class="sidebar-section-title" style="padding: 10px 16px 8px;">📋 Task Feed</div>
+            <div class="sidebar-tasks" id="sidebar-task-feed">
+                <div class="sidebar-empty">Loading tasks...</div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
         <div class="header">
             <h1>SMART BRANDS MISSION CONTROL</h1>
             <div class="subtitle">Six Ventures. One Vision. Billion Dollar Future.</div>
@@ -1294,6 +1531,8 @@
                 </div>
             </div>
         </div>
+        </div><!-- end main-content -->
+        </div><!-- end dashboard-layout -->
     </div>
 
     <!-- Council Agents Modal -->
@@ -3139,6 +3378,98 @@
 
     <!-- Scripts -->
     <script src="./tasks-addon.js"></script>
-    <script src="./deliverables-review.js"></script>
-</body>
-</html>
+    <script src="./deliverables-review.js">
+    // ===== SIDEBAR POPULATION =====
+    async function populateSidebar() {
+        await Promise.all([populateSidebarAgents(), populateSidebarTasks()]);
+    }
+
+    async function populateSidebarAgents() {
+        try {
+            const { data, error } = await supabase
+                .from('agents')
+                .select('slug, name, title, status')
+                .order('priority_order');
+            if (error) throw error;
+
+            const agentSlugs = {
+                madison: 'Madison Harper', cos: 'Chief of Staff', ceo: 'CEO',
+                coo: 'COO', cto: 'Marcus Steele', cmo: 'Alexis Monroe',
+                cfo: 'CFO', cro: 'CRO', legal: 'Legal', media: 'Media Director',
+                intel: 'Intelligence', hr: 'HR', comms: 'Communications'
+            };
+
+            const agents = data && data.length ? data : Object.entries(agentSlugs).map(([slug, name]) => ({
+                slug, name, title: '', status: 'active'
+            }));
+
+            const html = agents.map(a => `
+                <div class="sidebar-agent" onclick="openAgentDetail('${a.slug}')">
+                    <div class="agent-dot"></div>
+                    <div class="sidebar-agent-info">
+                        <div class="sidebar-agent-name">${a.name || a.slug}</div>
+                        <div class="sidebar-agent-role">${(a.title || '').substring(0, 35)}</div>
+                    </div>
+                </div>`).join('');
+
+            document.getElementById('sidebar-agent-list').innerHTML = html || '<div class="sidebar-empty">No agents found</div>';
+        } catch(e) {
+            document.getElementById('sidebar-agent-list').innerHTML = '<div class="sidebar-empty">Could not load agents</div>';
+        }
+    }
+
+    async function populateSidebarTasks() {
+        try {
+            const { data, error } = await supabase
+                .from('agent_tasks')
+                .select('id, from_agent, to_agent, task_description, priority, status, created_at')
+                .neq('status', 'done')
+                .order('created_at', { ascending: false })
+                .limit(25);
+            if (error) throw error;
+
+            if (!data || !data.length) {
+                document.getElementById('sidebar-task-feed').innerHTML = '<div class="sidebar-empty">No active tasks</div>';
+                return;
+            }
+
+            const agentNames = {
+                madison: 'Madison', cos: 'COS', ceo: 'CEO', coo: 'COO',
+                cto: 'Marcus', cmo: 'Alexis', cfo: 'CFO', cro: 'CRO',
+                legal: 'Legal', media: 'Media', intel: 'Intel', hr: 'HR',
+                comms: 'Comms', mark: 'Mark', allen: 'Allen'
+            };
+
+            const html = data.map(t => {
+                const from = agentNames[t.from_agent] || t.from_agent || '?';
+                const to = agentNames[t.to_agent] || t.to_agent || '?';
+                const preview = (t.task_description || '').substring(0, 80);
+                const p = t.priority || 'medium';
+                return `<div class="sidebar-task-item" onclick="showTaskModal && showTaskModal('${t.id}')">
+                    <div class="sidebar-task-agents">${from} → ${to}</div>
+                    <div class="sidebar-task-text">${preview}${t.task_description?.length > 80 ? '...' : ''}</div>
+                    <span class="sidebar-task-priority priority-${p}">${p}</span>
+                </div>`;
+            }).join('');
+
+            document.getElementById('sidebar-task-feed').innerHTML = html;
+        } catch(e) {
+            document.getElementById('sidebar-task-feed').innerHTML = '<div class="sidebar-empty">Could not load tasks</div>';
+        }
+    }
+
+    // Call sidebar population after login
+    const _origShowDashboard = window.showDashboard;
+    window.showDashboard = function() {
+        if (_origShowDashboard) _origShowDashboard();
+        setTimeout(populateSidebar, 500);
+    };
+
+    // Auto-refresh sidebar every 60 seconds
+    setInterval(() => {
+        if (document.getElementById('dashboard').style.display !== 'none') {
+            populateSidebar();
+        }
+    }, 60000);
+
+</script>
