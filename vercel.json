@@ -1,7 +1,52 @@
 {
   "rewrites": [
-    { "source": "/coaching", "destination": "/coaching.html" },
-    { "source": "/book", "destination": "/book.html" },
-    { "source": "/snaptosell", "destination": "/snaptosell.html" }
+    {
+      "source": "/coaching",
+      "destination": "/coaching.html"
+    },
+    {
+      "source": "/book",
+      "destination": "/book.html"
+    },
+    {
+      "source": "/snaptosell",
+      "destination": "/snaptosell.html"
+    },
+    {
+      "source": "/cc",
+      "destination": "/cc.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/command-center",
+      "destination": "/cc",
+      "permanent": true
+    },
+    {
+      "source": "/command-center-full",
+      "destination": "/cc",
+      "permanent": true
+    },
+    {
+      "source": "/command-center-new",
+      "destination": "/cc",
+      "permanent": true
+    },
+    {
+      "source": "/command-center.html",
+      "destination": "/cc",
+      "permanent": true
+    },
+    {
+      "source": "/command-center-full.html",
+      "destination": "/cc",
+      "permanent": true
+    },
+    {
+      "source": "/command-center-new.html",
+      "destination": "/cc",
+      "permanent": true
+    }
   ]
 }
