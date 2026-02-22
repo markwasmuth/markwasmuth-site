@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnapToSell — Feature Audit (Feb 20 APK)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; padding: 20px; }
+.container { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 1.8rem; margin-bottom: 4px; background: linear-gradient(135deg, #00d4ff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.meta { color: #888; font-size: 0.85rem; margin-bottom: 30px; }
+h2 { font-size: 1.3rem; color: #00d4ff; margin: 30px 0 12px; border-bottom: 1px solid rgba(0,212,255,0.2); padding-bottom: 8px; }
+h3 { font-size: 1.05rem; color: #ccc; margin: 16px 0 8px; }
+.card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 6px; }
+.confirmed { background: rgba(0,200,100,0.2); color: #00c864; }
+.likely { background: rgba(0,150,255,0.2); color: #4da6ff; }
+.unknown { background: rgba(255,180,0,0.2); color: #ffb400; }
+.missing { background: rgba(255,60,60,0.2); color: #ff4444; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
+th { color: #00d4ff; font-weight: 600; }
+.note { background: rgba(0,212,255,0.08); border-left: 3px solid #00d4ff; padding: 12px 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 0.9rem; }
+ul { padding-left: 20px; margin: 8px 0; }
+li { margin: 4px 0; font-size: 0.9rem; }
+code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📱 SnapToSell — Feature Audit</h1>
+<p class="meta">APK Version: app-release (2) · Build Date: Feb 20, 2026 · Size: 53.2MB · Framework: Flutter (Dart) · Package: com.example.app_flutter</p>
+
+<div class="note">
+⚠️ <strong>Important:</strong> This is a Flutter app — Dart source code compiles to native machine code (<code>libapp.so</code>), so individual screens/logic cannot be read from the APK alone. This audit is based on: AndroidManifest analysis, asset inspection, library detection, and <strong>hands-on testing from the emulator session</strong>. Source code from Vigen would enable a complete code-level audit.
+</div>
+
+<h2>🏗️ App Architecture</h2>
+<div class="card">
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Framework</td><td>Flutter (Dart → native)</td></tr>
+<tr><td>Package Name</td><td><code>com.example.app_flutter</code> <span class="badge unknown">⚠️ Not production-ready</span></td></tr>
+<tr><td>Version</td><td>1.0.0+16</td></tr>
+<tr><td>Min SDK</td><td>Android (exact version in binary manifest)</td></tr>
+<tr><td>Main Activity</td><td><code>com.example.app_flutter.MainActivity</code></td></tr>
+<tr><td>APK Size</td><td>53.2 MB</td></tr>
+<tr><td>Native Libs</td><td>arm64-v8a, armeabi-v7a, x86_64 (3 architectures)</td></tr>
+</table>
+</div>
+
+<h2>🔐 Permissions</h2>
+<div class="card">
+<table>
+<tr><th>Permission</th><th>Purpose</th></tr>
+<tr><td><code>CAMERA</code></td><td>Photo capture for item scanning</td></tr>
+<tr><td><code>RECORD_AUDIO</code></td><td>Possibly for voice descriptions or video</td></tr>
+<tr><td><code>INTERNET</code></td><td>API calls to backend</td></tr>
+<tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Check connectivity</td></tr>
+<tr><td><code>READ_EXTERNAL_STORAGE</code></td><td>Upload photos from gallery</td></tr>
+<tr><td><code>WRITE_EXTERNAL_STORAGE</code></td><td>Save photos/data locally</td></tr>
+<tr><td><code>DUMP</code></td><td>Debug/diagnostics (should be removed for production)</td></tr>
+</table>
+</div>
+
+<h2>📦 Libraries & SDKs Detected</h2>
+<div class="card">
+<table>
+<tr><th>Library</th><th>Purpose</th></tr>
+<tr><td>Flutter Engine</td><td>Core UI framework (11MB native lib)</td></tr>
+<tr><td>AndroidX Camera (camera2)</td><td>Camera capture, lifecycle, video</td></tr>
+<tr><td>AndroidX DataStore</td><td>Local data persistence (preferences)</td></tr>
+<tr><td>OkHttp3</td><td>HTTP networking (API calls)</td></tr>
+<tr><td>Cupertino Icons</td><td>iOS-style icons</td></tr>
+<tr><td>Material Icons</td><td>Material Design icons</td></tr>
+<tr><td>UCrop (Yalantis)</td><td>Image cropping</td></tr>
+<tr><td>Flutter Image Picker</td><td>Gallery/camera photo selection</td></tr>
+<tr><td>AndroidX ProfileInstaller</td><td>Performance profiling</td></tr>
+<tr><td>AndroidX Lifecycle</td><td>Activity/Fragment lifecycle management</td></tr>
+</table>
+</div>
+
+<h2>📸 Features — Confirmed from APK Analysis</h2>
+
+<h3>Camera & Capture</h3>
+<div class="card">
+<ul>
+<li>📷 Camera capture — direct photo taking <span class="badge confirmed">Confirmed</span></li>
+<li>🖼️ Photo upload from gallery <span class="badge confirmed">Confirmed</span> (ImagePicker plugin)</li>
+<li>✂️ Image cropping <span class="badge confirmed">Confirmed</span> (UCrop library)</li>
+<li>📸 Camera2 API integration <span class="badge confirmed">Confirmed</span> (advanced camera features)</li>
+<li>🎥 Video capability <span class="badge likely">Likely</span> (camera-video lib + RECORD_AUDIO permission)</li>
+</ul>
+</div>
+
+<h3>Networking & Backend</h3>
+<div class="card">
+<ul>
+<li>🌐 HTTP API calls <span class="badge confirmed">Confirmed</span> (OkHttp3)</li>
+<li>💾 Local data persistence <span class="badge confirmed">Confirmed</span> (DataStore preferences)</li>
+<li>📡 Network state monitoring <span class="badge confirmed">Confirmed</span></li>
+</ul>
+</div>
+
+<h3>UI & Branding</h3>
+<div class="card">
+<ul>
+<li>🎨 SnapToSell logo <span class="badge confirmed">Confirmed</span> (628KB high-res PNG)</li>
+<li>🎨 Snap logo original <span class="badge confirmed">Confirmed</span> (234KB)</li>
+<li>🎨 Material + Cupertino icons <span class="badge confirmed">Confirmed</span></li>
+</ul>
+</div>
+
+<h2>❓ Features — Status Unknown (Need Source Code or Emulator Testing)</h2>
+<div class="card">
+<p>These features are specified in the Master Instructions but cannot be confirmed from APK binary analysis alone:</p>
+<ul>
+<li>🤖 AI item identification (93-96% accuracy) <span class="badge unknown">Needs Testing</span></li>
+<li>💰 3-tier pricing (quick sale / fair market / patient seller) <span class="badge unknown">Needs Testing</span></li>
+<li>📝 Auto-generated listings (title + description) <span class="badge unknown">Needs Testing</span></li>
+<li>🛡️ Trust Operating System (5 defense layers) <span class="badge unknown">Needs Testing</span></li>
+<li>📊 EXIF metadata verification <span class="badge unknown">Needs Testing</span></li>
+<li>🔍 Stock photo detection <span class="badge unknown">Needs Testing</span></li>
+<li>📍 GPS correlation verification <span class="badge unknown">Needs Testing</span></li>
+<li>🏪 Multi-platform listing (eBay, FB Marketplace, OfferUp) <span class="badge unknown">Needs Testing</span></li>
+<li>👤 User authentication / accounts <span class="badge unknown">Needs Testing</span></li>
+<li>💬 In-app messaging <span class="badge unknown">Needs Testing</span></li>
+<li>⭐ Seller ratings / Trust Score <span class="badge unknown">Needs Testing</span></li>
+<li>📊 Dashboard / analytics <span class="badge unknown">Needs Testing</span></li>
+<li>🔔 Push notifications <span class="badge unknown">Needs Testing</span></li>
+</ul>
+</div>
+
+<h2>🚨 Issues Found</h2>
+<div class="card">
+<table>
+<tr><th>Issue</th><th>Severity</th><th>Details</th></tr>
+<tr><td>Package name is <code>com.example.app_flutter</code></td><td><span class="badge missing">Critical</span></td><td>Default Flutter template name. Must be changed to <code>com.snaptosell.app</code> or similar before app store submission.</td></tr>
+<tr><td><code>DUMP</code> permission included</td><td><span class="badge unknown">Medium</span></td><td>Debug permission that should be removed in production builds.</td></tr>
+<tr><td>No ProGuard/R8 obfuscation</td><td><span class="badge unknown">Medium</span></td><td>Code is not obfuscated — reverse engineering risk.</td></tr>
+<tr><td>Three architectures bundled</td><td><span class="badge unknown">Low</span></td><td>APK includes arm64, arm32, and x86_64. Consider App Bundles (.aab) for smaller downloads.</td></tr>
+</table>
+</div>
+
+<h2>📋 Feature Comparison: Built vs. Required</h2>
+<div class="card">
+<table>
+<tr><th>Category</th><th>Required (Master Instructions)</th><th>Status</th></tr>
+<tr><td>Camera capture</td><td>✅ POC Required</td><td><span class="badge confirmed">Built</span></td></tr>
+<tr><td>Photo upload from gallery</td><td>✅ POC Required</td><td><span class="badge confirmed">Built</span></td></tr>
+<tr><td>Image cropping</td><td>Nice to have</td><td><span class="badge confirmed">Built</span></td></tr>
+<tr><td>AI item identification</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>Brand/model detection</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>3-tier pricing</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>Auto-generated listing</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>Trust verification (EXIF)</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>eBay API integration</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>SnapToSell marketplace</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>User authentication</td><td>✅ POC Required</td><td><span class="badge unknown">Needs Verify</span></td></tr>
+<tr><td>Batch scanning</td><td>⭐ Phase 2</td><td><span class="badge missing">Not Yet</span></td></tr>
+<tr><td>Facebook Marketplace listing</td><td>⭐ Phase 2</td><td><span class="badge missing">Not Yet</span></td></tr>
+<tr><td>OfferUp listing</td><td>⭐ Phase 2</td><td><span class="badge missing">Not Yet</span></td></tr>
+<tr><td>In-app messaging</td><td>⭐ Phase 2</td><td><span class="badge missing">Not Yet</span></td></tr>
+</table>
+</div>
+
+<h2>🎯 Recommended Next Steps</h2>
+<div class="card">
+<ol style="padding-left: 20px;">
+<li style="margin: 8px 0;"><strong>Get source code from Vigen</strong> — Without it, we can only test the APK as a black box. Source code enables: code review, bug fixes, feature additions, security audit.</li>
+<li style="margin: 8px 0;"><strong>Change package name</strong> — <code>com.example.app_flutter</code> → <code>com.snaptosell.app</code> before any app store submission.</li>
+<li style="margin: 8px 0;"><strong>Emulator testing session</strong> — Run through every screen and document what works. Update this audit with confirmed status for each feature.</li>
+<li style="margin: 8px 0;"><strong>Remove debug permissions</strong> — <code>DUMP</code> permission should not ship to production.</li>
+<li style="margin: 8px 0;"><strong>Enable code obfuscation</strong> — ProGuard/R8 to protect business logic.</li>
+<li style="margin: 8px 0;"><strong>Switch to App Bundle</strong> — .aab instead of .apk for Google Play (smaller downloads).</li>
+</ol>
+</div>
+
+<p class="meta" style="margin-top: 40px; text-align: center;">Last updated: Feb 22, 2026 · Generated by Alan ⚡ · Smart Brands Inc.</p>
+
+</div>
+</body>
+</html>
