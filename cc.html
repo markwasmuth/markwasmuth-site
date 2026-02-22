@@ -1180,7 +1180,7 @@
         }
 
         .sidebar-header h1 {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             color: #00d9ff;
             letter-spacing: 2px;
@@ -1189,7 +1189,7 @@
         }
 
         .sidebar-header .subtitle {
-            font-size: 10px;
+            font-size: 13px;
             color: #4a5a6a;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -1202,7 +1202,7 @@
         }
 
         .sidebar-section-title {
-            font-size: 10px;
+            font-size: 14px;
             font-weight: 700;
             color: #4a5a6a;
             letter-spacing: 2px;
@@ -1246,7 +1246,7 @@
         }
 
         .sidebar-agent-name {
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 600;
             color: #c9d1d9;
             white-space: nowrap;
@@ -1255,7 +1255,7 @@
         }
 
         .sidebar-agent-role {
-            font-size: 10px;
+            font-size: 13px;
             color: #4a5a6a;
             white-space: nowrap;
             overflow: hidden;
@@ -1281,7 +1281,7 @@
         }
 
         .sidebar-task-agents {
-            font-size: 10px;
+            font-size: 13px;
             color: #00d9ff;
             margin-bottom: 3px;
             display: flex;
@@ -1290,7 +1290,7 @@
         }
 
         .sidebar-task-text {
-            font-size: 11px;
+            font-size: 14px;
             color: #8899aa;
             line-height: 1.4;
             display: -webkit-box;
@@ -1301,9 +1301,9 @@
 
         .sidebar-task-priority {
             display: inline-block;
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 700;
-            padding: 1px 5px;
+            padding: 2px 6px;
             border-radius: 3px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -1316,7 +1316,7 @@
 
         .sidebar-empty {
             padding: 16px;
-            font-size: 11px;
+            font-size: 13px;
             color: #4a5a6a;
             text-align: center;
         }
@@ -1356,6 +1356,73 @@
             .sidebar-agents { max-height: 200px; }
         }
 
+        /* Sidebar clickable action items */
+        .sidebar-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid #1a2d4a;
+        }
+
+        .sidebar-action:hover {
+            background: rgba(0, 217, 255, 0.08);
+            border-left-color: #00d9ff;
+        }
+
+        .sidebar-action-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            width: 28px;
+            text-align: center;
+        }
+
+        .sidebar-action-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #c9d1d9;
+        }
+
+        .sidebar-action-desc {
+            font-size: 13px;
+            color: #4a5a6a;
+            margin-top: 1px;
+        }
+
+        .sidebar-action .badge {
+            margin-left: auto;
+            background: #ff4444;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* Bigger command stat boxes */
+        .command-stat {
+            padding: 22px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .command-stat-value {
+            font-size: 54px;
+            font-weight: 700;
+            color: #00d9ff;
+            margin-bottom: 8px;
+        }
+
+        .command-stat-label {
+            font-size: 26px;
+            color: #8899aa;
+        }
+
     </style>
 </head>
 <body>
@@ -1380,6 +1447,23 @@
             <div class="sidebar-header">
                 <h1>SMART BRANDS</h1>
                 <div class="subtitle">Mission Control</div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="sidebar-action" onclick="showChat()">
+                <div class="sidebar-action-icon">💬</div>
+                <div>
+                    <div class="sidebar-action-label">Chat</div>
+                    <div class="sidebar-action-desc">Talk to Council agents</div>
+                </div>
+            </div>
+            <div class="sidebar-action" onclick="showDeliverables()">
+                <div class="sidebar-action-icon">📋</div>
+                <div>
+                    <div class="sidebar-action-label">Review Queue</div>
+                    <div class="sidebar-action-desc">Deliverables pending review</div>
+                </div>
+                <span class="badge" id="sidebar-review-badge">0</span>
             </div>
 
             <!-- Council Agents -->
@@ -1509,10 +1593,6 @@
                 <div class="command-stat clickable" onclick="showCouncilTasks()">
                     <div id="council-task-count" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">—</div>
                     <div class="command-stat-label">Council's Tasks</div>
-                </div>
-                <div class="command-stat clickable" onclick="showAgents()">
-                    <div class="command-stat-value" id="total-agents">13</div>
-                    <div class="command-stat-label">Council Agents</div>
                 </div>
                 <div class="command-stat clickable" onclick="showChat()">
                     <div class="command-stat-value">💬</div>

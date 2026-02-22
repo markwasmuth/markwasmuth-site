@@ -42,10 +42,16 @@ function updateDeliverableCount() {
         const highPriority = deliverables.filter(d => d.priority === 'high').length;
         badge.textContent = deliverables.length;
         badge.style.display = deliverables.length > 0 ? 'inline-block' : 'none';
-        
+
         if (highPriority > 0) {
             badge.style.background = '#ff4444'; // Red for high priority items
         }
+    }
+    // Sync sidebar review badge
+    const sidebarBadge = document.getElementById('sidebar-review-badge');
+    if (sidebarBadge) {
+        sidebarBadge.textContent = deliverables.length;
+        sidebarBadge.style.display = deliverables.length > 0 ? 'inline-block' : 'none';
     }
 }
 
