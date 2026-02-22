@@ -1860,6 +1860,41 @@
             </div>
         </div>
 
+        <!-- API Usage Widget -->
+        <div class="usage-widget" style="background: rgba(17, 24, 39, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid #2d5a8a; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="margin: 0; font-size: 16px; color: #00d9ff;">📊 API Usage</h3>
+                <div style="display: flex; gap: 4px;">
+                    <button id="toggle-tokens" onclick="toggleUsageView('tokens')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(0,217,255,0.3); background: rgba(0,217,255,0.2); color: #00d9ff; cursor: pointer; font-size: 12px; font-weight: 600;">Tokens</button>
+                    <button id="toggle-dollars" onclick="toggleUsageView('dollars')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #8899aa; cursor: pointer; font-size: 12px;">Dollars</button>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                <div style="text-align: center;">
+                    <div id="usage-total" style="font-size: 24px; font-weight: 700; color: #00d9ff;">—</div>
+                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Total</div>
+                </div>
+                <div style="text-align: center;">
+                    <div id="usage-input" style="font-size: 24px; font-weight: 700; color: #4ade80;">—</div>
+                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Input</div>
+                </div>
+                <div style="text-align: center;">
+                    <div id="usage-output" style="font-size: 24px; font-weight: 700; color: #f97316;">—</div>
+                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Output</div>
+                </div>
+                <div style="text-align: center;">
+                    <div id="usage-cache" style="font-size: 24px; font-weight: 700; color: #a78bfa;">—</div>
+                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Cache Saved</div>
+                </div>
+                <div style="text-align: center;">
+                    <div id="usage-calls" style="font-size: 24px; font-weight: 700; color: #fbbf24;">—</div>
+                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">API Calls</div>
+                </div>
+            </div>
+            <div id="usage-daily" style="margin-top: 12px; display: flex; gap: 6px; align-items: flex-end; height: 60px;"></div>
+            <div style="text-align: right; margin-top: 8px; font-size: 10px; color: #556677;" id="usage-updated">—</div>
+        </div>
+
         <!-- Command Center -->
         <div class="command-center">
             <h2>⚡ COMMAND CENTER</h2>
@@ -3853,5 +3888,79 @@
             populateSidebar();
         }
     }, 60000);
+
+    // ===== API USAGE WIDGET =====
+    let usageData = null;
+    let usageView = 'tokens';
+
+    async function loadUsage() {
+        try {
+            const resp = await fetch('./api/usage.json?' + Date.now());
+            usageData = await resp.json();
+            renderUsage();
+        } catch(e) { console.log('Usage load failed:', e); }
+    }
+
+    function toggleUsageView(view) {
+        usageView = view;
+        document.getElementById('toggle-tokens').style.background = view === 'tokens' ? 'rgba(0,217,255,0.2)' : 'transparent';
+        document.getElementById('toggle-tokens').style.color = view === 'tokens' ? '#00d9ff' : '#8899aa';
+        document.getElementById('toggle-tokens').style.borderColor = view === 'tokens' ? 'rgba(0,217,255,0.3)' : 'rgba(255,255,255,0.1)';
+        document.getElementById('toggle-dollars').style.background = view === 'dollars' ? 'rgba(0,217,255,0.2)' : 'transparent';
+        document.getElementById('toggle-dollars').style.color = view === 'dollars' ? '#00d9ff' : '#8899aa';
+        document.getElementById('toggle-dollars').style.borderColor = view === 'dollars' ? 'rgba(0,217,255,0.3)' : 'rgba(255,255,255,0.1)';
+        renderUsage();
+    }
+
+    function fmtTokens(n) {
+        if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+        return n.toString();
+    }
+
+    function renderUsage() {
+        if (!usageData) return;
+        const t = usageData.totals;
+        const p = usageData.pricing;
+        if (usageView === 'tokens') {
+            document.getElementById('usage-total').textContent = fmtTokens(t.totalTokens);
+            document.getElementById('usage-input').textContent = fmtTokens(t.input);
+            document.getElementById('usage-output').textContent = fmtTokens(t.output);
+            document.getElementById('usage-cache').textContent = fmtTokens(t.cacheRead);
+            document.getElementById('usage-calls').textContent = t.calls.toLocaleString();
+        } else {
+            const costIn = (t.input / 1e6) * p.inputPerMTok;
+            const costOut = (t.output / 1e6) * p.outputPerMTok;
+            const costCR = (t.cacheRead / 1e6) * p.cacheReadPerMTok;
+            document.getElementById('usage-total').textContent = '$' + t.totalCost.toFixed(2);
+            document.getElementById('usage-input').textContent = '$' + costIn.toFixed(2);
+            document.getElementById('usage-output').textContent = '$' + costOut.toFixed(2);
+            document.getElementById('usage-cache').textContent = '$' + costCR.toFixed(2);
+            document.getElementById('usage-calls').textContent = t.calls.toLocaleString();
+        }
+        // Daily bar chart
+        const daily = usageData.daily;
+        const maxVal = Math.max(...daily.map(d => usageView === 'tokens' ? d.tokens : d.cost));
+        const bars = daily.map(d => {
+            const val = usageView === 'tokens' ? d.tokens : d.cost;
+            const pct = maxVal > 0 ? (val / maxVal) * 100 : 0;
+            const label = d.date.slice(5);
+            const display = usageView === 'tokens' ? fmtTokens(val) : '$' + val.toFixed(2);
+            return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">' +
+                '<div style="font-size:9px;color:#8899aa;">' + display + '</div>' +
+                '<div style="width:100%;background:rgba(0,217,255,0.3);border-radius:3px;height:' + Math.max(pct * 0.5, 2) + 'px;"></div>' +
+                '<div style="font-size:9px;color:#556677;">' + label + '</div></div>';
+        }).join('');
+        document.getElementById('usage-daily').innerHTML = bars;
+        const updated = new Date(usageData.generated);
+        document.getElementById('usage-updated').textContent = 'Updated: ' + updated.toLocaleString();
+    }
+
+    // Load usage on dashboard open
+    const origLogin = window.login;
+    if (typeof origLogin === 'function') {
+        window.login = function() { origLogin.apply(this, arguments); setTimeout(loadUsage, 500); };
+    }
+    if (document.getElementById('dashboard').style.display !== 'none') loadUsage();
 
 </script>
