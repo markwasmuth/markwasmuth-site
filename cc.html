@@ -122,8 +122,7 @@
         #dashboard {
             display: none;
             padding: 20px;
-            max-width: 1600px;
-            margin: 0 auto;
+            width: 100%;
         }
         
         .header {
@@ -151,12 +150,10 @@
         /* Grid Layout - ARK Style */
         .ventures-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
         }
         
         @media (max-width: 1200px) {
