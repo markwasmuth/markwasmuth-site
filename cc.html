@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Brands Mission Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,9 +15,11 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #0a0e1a;
-            color: #e0e0e0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #0f172a;
+            background-image: linear-gradient(135deg, #1e1b4b 0%, #1e3a5f 50%, #312e81 100%);
+            background-attachment: fixed;
+            color: #f1f5f9;
             min-height: 100vh;
             position: relative;
         }
@@ -37,13 +42,13 @@
         
         /* Animated pulse glow on header */
         @keyframes headerPulse {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 217, 255, 0.3), 0 0 40px rgba(0, 217, 255, 0.1); }
-            50% { text-shadow: 0 0 30px rgba(0, 217, 255, 0.6), 0 0 60px rgba(0, 217, 255, 0.2), 0 0 80px rgba(168, 85, 247, 0.1); }
+            0%, 100% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.15); }
+            50% { text-shadow: 0 0 30px rgba(99, 102, 241, 0.7), 0 0 60px rgba(59, 130, 246, 0.3), 0 0 80px rgba(129, 140, 248, 0.15); }
         }
-        
+
         @keyframes borderGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(0, 217, 255, 0.1); }
-            50% { box-shadow: 0 0 25px rgba(0, 217, 255, 0.2), 0 0 50px rgba(168, 85, 247, 0.05); }
+            0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.08); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.15), 0 0 50px rgba(129, 140, 248, 0.06); }
         }
         
         @keyframes scanline {
@@ -61,59 +66,74 @@
         }
         
         .password-box {
-            background: rgba(17, 24, 39, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid #2d5a8a;
-            border-radius: 12px;
-            padding: 40px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 16px;
+            padding: 44px;
             text-align: center;
             max-width: 400px;
             width: 90%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
         }
-        
+
         .password-box h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-            color: #00d9ff;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #93c5fd;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: headerPulse 4s ease-in-out infinite;
         }
-        
+
         .password-box p {
-            color: #888;
-            margin-bottom: 30px;
+            color: #64748b;
+            margin-bottom: 28px;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
-        
+
         .password-box input {
             width: 100%;
-            padding: 12px;
-            font-size: 26px;
-            border: 1px solid #2d5a8a;
-            border-radius: 8px;
-            background: #0a0e1a;
-            color: #e0e0e0;
-            margin-bottom: 20px;
+            padding: 12px 16px;
+            font-size: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.8);
+            color: #f1f5f9;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.2s;
         }
-        
+
+        .password-box input:focus {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
         .password-box button {
             width: 100%;
             padding: 12px;
-            font-size: 26px;
+            font-size: 16px;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
-            background: #00d9ff;
-            color: #0a0e1a;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: opacity 0.2s, transform 0.1s;
+            letter-spacing: 0.5px;
         }
-        
+
         .password-box button:hover {
-            background: #33e5ff;
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
-        
+
         .password-error {
-            color: #ff4444;
-            font-size: 22px;
+            color: #f87171;
+            font-size: 14px;
             margin-top: 10px;
             display: none;
         }
@@ -391,13 +411,13 @@
         }
         
         .modal-close:hover {
-            color: #00d9ff;
+            color: #60a5fa;
         }
-        
+
         .modal h2 {
             font-size: 48px;
             margin-bottom: 10px;
-            color: #00d9ff;
+            color: #60a5fa;
         }
         
         .modal .subtitle {
@@ -431,7 +451,7 @@
             font-size: 34px;
             font-weight: 700;
             margin-bottom: 4px;
-            color: #00d9ff;
+            color: #60a5fa;
         }
         
         .agent-role {
@@ -447,9 +467,9 @@
         }
         
         .agent-card:hover {
-            border-color: #00d9ff;
+            border-color: #3b82f6;
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 217, 255, 0.15);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
         }
         
         /* Agent Detail Modal */
@@ -460,10 +480,10 @@
         .detail-section h3 {
             font-size: 32px;
             font-weight: 700;
-            color: #00d9ff;
+            color: #60a5fa;
             margin-bottom: 12px;
             padding-bottom: 8px;
-            border-bottom: 1px solid #2d5a8a;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
         }
         
         .detail-task {
@@ -648,8 +668,8 @@
         }
         
         .chat-room.active {
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: rgba(59, 130, 246, 0.25);
+            color: #93c5fd;
         }
         
         .chat-room-name {
@@ -712,8 +732,8 @@
         
         .chat-msg.user {
             align-self: flex-end;
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
             border-bottom-right-radius: 4px;
         }
         
@@ -728,7 +748,7 @@
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 4px;
-            color: #00d9ff;
+            color: #60a5fa;
         }
         
         .chat-msg.user .chat-msg-sender {
@@ -759,24 +779,23 @@
         }
         
         .chat-input:focus {
-            border-color: #00d9ff;
+            border-color: rgba(59, 130, 246, 0.5);
         }
-        
+
         .chat-send {
             padding: 12px 24px;
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
             color: #fff;
             border: none;
             border-radius: 10px;
             font-size: 24px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
         }
-        
+
         .chat-send:hover {
-            background: #33e5ff;
+            opacity: 0.88;
         }
         
         .chat-send:disabled {
@@ -819,14 +838,14 @@
         }
         
         .task-controls button {
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
             border: none;
             font-weight: 600;
         }
-        
+
         .task-controls button:hover {
-            background: #33e5ff;
+            opacity: 0.88;
         }
         
         .task-list {
@@ -1015,8 +1034,8 @@
         }
         
         .btn-submit {
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
         }
         
         .btn-cancel {
@@ -1044,8 +1063,8 @@
         }
         
         .feed-tab.active {
-            color: #00d9ff;
-            border-bottom-color: #00d9ff;
+            color: #60a5fa;
+            border-bottom-color: #3b82f6;
         }
         
         .feed-tab:hover {
@@ -1130,16 +1149,17 @@
         }
         
         .agent-chip.active {
-            background: #00d9ff;
-            color: #0a0e1a;
+            background: rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.4);
         }
-        
+
         .agent-chip:hover {
-            background: #2d5a8a;
+            background: rgba(59, 130, 246, 0.1);
         }
-        
+
         .agent-chip.active:hover {
-            background: #33e5ff;
+            background: rgba(59, 130, 246, 0.35);
         }
 
         /* ===== LAYOUT SYSTEM ===== */
@@ -1153,11 +1173,11 @@
         /* Full-width header bar */
         .top-header {
             width: 100%;
-            padding: 14px 28px;
-            background: rgba(10, 14, 26, 0.75);
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
             display: flex;
             align-items: center;
             gap: 18px;
@@ -1167,20 +1187,20 @@
         }
 
         .top-header h1 {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 800;
-            color: #00d9ff;
-            letter-spacing: 4px;
+            color: #93c5fd;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5), 0 0 40px rgba(0, 217, 255, 0.15);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.15);
             animation: headerPulse 4s ease-in-out infinite;
             white-space: nowrap;
         }
 
         .top-header .header-tagline {
-            font-size: 13px;
-            color: rgba(0, 217, 255, 0.4);
-            letter-spacing: 3px;
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.5);
+            letter-spacing: 2px;
             text-transform: uppercase;
             white-space: nowrap;
         }
@@ -1190,8 +1210,8 @@
             display: flex;
             gap: 20px;
             align-items: center;
-            font-size: 13px;
-            color: #4a5a6a;
+            font-size: 12px;
+            color: #475569;
         }
 
         .header-stat {
@@ -1201,9 +1221,9 @@
         }
 
         .header-stat-val {
-            color: #00d9ff;
+            color: #60a5fa;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 13px;
         }
 
         /* Dashboard content layout */
@@ -1214,95 +1234,162 @@
             position: relative;
         }
 
-        /* ===== ICON STRIP ===== */
-        .icon-strip {
-            width: 80px;
-            min-width: 80px;
-            background: rgba(10, 14, 26, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(0, 217, 255, 0.08);
+        /* ===== MAIN SIDEBAR (replaces icon-strip) ===== */
+        .sidebar {
+            width: 240px;
+            min-width: 240px;
+            background: rgba(10, 17, 32, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(59, 130, 246, 0.1);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding-top: 14px;
-            gap: 6px;
             position: sticky;
-            top: 52px;
-            height: calc(100vh - 52px);
+            top: 48px;
+            height: calc(100vh - 48px);
             z-index: 50;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
-        .icon-btn {
-            width: 56px;
-            height: 56px;
+        .sidebar::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 3px;
+        }
+
+        .sidebar-brand {
+            padding: 20px 16px 14px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand-name {
+            font-size: 12px;
+            font-weight: 800;
+            color: #60a5fa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+        }
+
+        .sidebar-brand-sub {
+            font-size: 11px;
+            color: rgba(148, 163, 184, 0.45);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .sidebar-section {
+            padding: 14px 12px 4px;
+        }
+
+        .sidebar-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #334155;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding: 0 6px;
+        }
+
+        .sidebar-nav-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            border-radius: 12px;
+            gap: 9px;
+            padding: 8px 8px;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            border: 1px solid transparent;
-        }
-
-        .icon-btn:hover {
-            background: rgba(0, 217, 255, 0.12);
-            border-color: rgba(0, 217, 255, 0.25);
-            transform: scale(1.12);
-            box-shadow: 0 0 16px rgba(0, 217, 255, 0.15);
-        }
-
-        .icon-btn.active {
-            background: rgba(0, 217, 255, 0.18);
-            border-color: rgba(0, 217, 255, 0.5);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.25), inset 0 0 12px rgba(0, 217, 255, 0.08);
-        }
-
-        .icon-btn-label {
-            display: none;
-            position: absolute;
-            left: 56px;
-            background: rgba(10, 14, 26, 0.95);
-            border: 1px solid rgba(0, 217, 255, 0.3);
-            padding: 6px 14px;
             border-radius: 8px;
+            transition: all 0.18s;
+            margin-bottom: 1px;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .sidebar-nav-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.12);
+        }
+
+        .sidebar-nav-item.active {
+            background: rgba(59, 130, 246, 0.14);
+            border-color: rgba(59, 130, 246, 0.22);
+        }
+
+        .sidebar-nav-icon {
+            font-size: 14px;
+            width: 26px;
+            text-align: center;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .sidebar-nav-text {
             font-size: 13px;
-            color: #00d9ff;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: color 0.18s;
             white-space: nowrap;
-            pointer-events: none;
-            z-index: 60;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
-        .icon-btn:hover .icon-btn-label {
-            display: block;
+        .sidebar-nav-item:hover .sidebar-nav-text {
+            color: #e2e8f0;
         }
 
-        .icon-btn .notif-dot {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 8px;
-            height: 8px;
-            background: #ff4444;
+        .sidebar-nav-item.active .sidebar-nav-text {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        .sidebar-notif {
+            width: 7px;
+            height: 7px;
+            background: #f87171;
             border-radius: 50%;
-            box-shadow: 0 0 6px rgba(255, 68, 68, 0.6);
+            box-shadow: 0 0 6px rgba(248, 113, 113, 0.7);
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
         }
 
-        /* ===== SIDEBAR PANEL ===== */
+        .sidebar-separator {
+            border: none;
+            border-top: 1px solid rgba(59, 130, 246, 0.07);
+            margin: 6px 14px;
+        }
+
+        /* Legacy icon-strip notif-dot (kept for JS compatibility) */
+        .notif-dot {
+            width: 7px;
+            height: 7px;
+            background: #f87171;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(248, 113, 113, 0.7);
+        }
+
+        /* ===== SIDEBAR PANEL (slide-in panels) ===== */
         .sidebar-panel {
             width: 0;
             overflow: hidden;
-            background: rgba(10, 14, 26, 0.7);
+            background: rgba(10, 17, 32, 0.92);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border-right: 1px solid rgba(0, 217, 255, 0.08);
+            border-right: 1px solid rgba(59, 130, 246, 0.08);
             transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: sticky;
-            top: 52px;
-            height: calc(100vh - 52px);
+            top: 48px;
+            height: calc(100vh - 48px);
             z-index: 40;
         }
 
@@ -1323,14 +1410,13 @@
         }
 
         .panel-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
-            color: #00d9ff;
-            margin-bottom: 18px;
+            color: #60a5fa;
+            margin-bottom: 16px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
-            text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            letter-spacing: 0.5px;
         }
 
         /* Sidebar agent list */
@@ -1352,8 +1438,8 @@
         }
 
         .sidebar-agent:hover {
-            background: rgba(0, 217, 255, 0.08);
-            border-left-color: #00d9ff;
+            background: rgba(59, 130, 246, 0.08);
+            border-left-color: #3b82f6;
         }
 
         .agent-dot {
@@ -1401,7 +1487,7 @@
 
         .sidebar-task-item {
             padding: 12px;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.05);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.06);
             cursor: pointer;
             transition: all 0.2s;
             border-radius: 8px;
@@ -1409,12 +1495,12 @@
         }
 
         .sidebar-task-item:hover {
-            background: rgba(0, 217, 255, 0.06);
+            background: rgba(59, 130, 246, 0.07);
         }
 
         .sidebar-task-agents {
             font-size: 13px;
-            color: #00d9ff;
+            color: #60a5fa;
             margin-bottom: 4px;
         }
 
@@ -1464,20 +1550,20 @@
         }
 
         .sb-action:hover {
-            background: rgba(0, 217, 255, 0.08);
-            border-color: rgba(0, 217, 255, 0.15);
-            box-shadow: 0 0 12px rgba(0, 217, 255, 0.06);
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.15);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.06);
         }
 
         .sb-action .sb-icon {
-            font-size: 18px;
-            width: 36px;
-            height: 36px;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 217, 255, 0.08);
-            border: 1px solid rgba(0, 217, 255, 0.1);
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.12);
             border-radius: 8px;
             flex-shrink: 0;
         }
@@ -1495,8 +1581,8 @@
         }
 
         .sb-divider {
-            border-top: 1px solid rgba(0, 217, 255, 0.08);
-            margin: 12px 0;
+            border-top: 1px solid rgba(59, 130, 246, 0.07);
+            margin: 10px 0;
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -1511,60 +1597,96 @@
             display: none; /* moved to top-header */
         }
 
-        /* Glassmorphism venture boxes */
+        /* Updated venture boxes — hidden in overview (in sidebar now) */
+        .ventures-grid {
+            display: none !important;
+        }
+
         .venture-box {
-            background: rgba(17, 24, 39, 0.55) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
-            border: 1px solid rgba(0, 217, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
         }
 
         .venture-box:hover {
-            background: rgba(17, 24, 39, 0.7) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
             border-color: var(--brand-color) !important;
         }
 
-        /* Glassmorphism command center */
-        .command-center {
-            background: rgba(13, 26, 42, 0.5) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border: 1px solid rgba(0, 217, 255, 0.15) !important;
+        /* ===== METRIC CARDS ROW (replaces command center) ===== */
+        .metric-cards-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .command-stat {
-            padding: 22px;
-            background: rgba(0, 217, 255, 0.04);
-            border: 1px solid rgba(0, 217, 255, 0.12);
+        @media (max-width: 1100px) {
+            .metric-cards-row { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 700px) {
+            .metric-cards-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            padding: 16px 18px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .command-stat.clickable:hover {
-            background: rgba(0, 217, 255, 0.1);
-            border-color: rgba(0, 217, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+        .metric-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
         }
 
-        .command-stat-value {
-            font-size: 52px;
-            font-weight: 700;
-            color: #00d9ff;
+        .metric-card-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             margin-bottom: 8px;
         }
 
-        .command-stat-label {
-            font-size: 24px;
-            color: #8899aa;
+        .metric-card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e2e8f0;
+            line-height: 1;
+            margin-bottom: 4px;
         }
 
-        /* Glassmorphism modals */
+        .metric-card-sub {
+            font-size: 11px;
+            color: #475569;
+        }
+
+        /* Keep .command-center for JS compatibility but hide it */
+        .command-center {
+            display: none !important;
+        }
+
+        /* Legacy command-stat (kept for JS ID compatibility, elements moved into metric cards) */
+        .command-stat {
+            display: none;
+        }
+
+        /* Glass modals */
         .modal-content {
-            background: rgba(17, 24, 39, 0.85) !important;
-            backdrop-filter: blur(25px) !important;
-            -webkit-backdrop-filter: blur(25px) !important;
-            border: 1px solid rgba(0, 217, 255, 0.15) !important;
+            background: rgba(15, 23, 42, 0.9) !important;
+            backdrop-filter: blur(28px) !important;
+            -webkit-backdrop-filter: blur(28px) !important;
+            border: 1px solid rgba(59, 130, 246, 0.15) !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
         }
 
         /* Override old grid styles */
@@ -1574,24 +1696,157 @@
             margin-right: 0 !important;
         }
 
+        /* ===== OVERVIEW PANEL (two-column content area) ===== */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .overview-grid { grid-template-columns: 1fr; }
+        }
+
+        .overview-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 18px 20px;
+        }
+
+        .overview-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .overview-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .overview-card-action {
+            font-size: 12px;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        .overview-card-action:hover {
+            color: #60a5fa;
+        }
+
+        /* Quick-task feed items in main content */
+        .qt-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .qt-item:last-child {
+            border-bottom: none;
+        }
+
+        .qt-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .qt-dot.pending { background: #f59e0b; }
+        .qt-dot.in_progress { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.5); }
+        .qt-dot.done { background: #10b981; }
+
+        .qt-body {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .qt-meta {
+            font-size: 11px;
+            color: #475569;
+            margin-top: 3px;
+        }
+
+        /* Agent quick-list in overview */
+        .agent-ql-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: background 0.15s;
+            border-radius: 6px;
+            padding-left: 4px;
+        }
+
+        .agent-ql-item:last-child {
+            border-bottom: none;
+        }
+
+        .agent-ql-item:hover {
+            background: rgba(59,130,246,0.06);
+        }
+
+        .agent-ql-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 6px rgba(16,185,129,0.5);
+            flex-shrink: 0;
+        }
+
+        .agent-ql-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .agent-ql-role {
+            font-size: 11px;
+            color: #475569;
+            margin-left: auto;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1100px) {
             .sidebar-panel.open { width: 260px; }
             .sidebar-panel-content { width: 260px; }
+            .sidebar { width: 200px; min-width: 200px; }
         }
 
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; gap: 10px; }
-            .top-header h1 { font-size: 16px; letter-spacing: 2px; }
+            .top-header h1 { font-size: 14px; letter-spacing: 2px; }
             .top-header .header-tagline { display: none; }
             .top-header .header-right { display: none; }
             .dashboard-layout { flex-direction: column; }
-            .icon-strip {
+            .sidebar {
                 width: 100%; min-width: 100%; height: auto;
                 flex-direction: row; position: relative; top: 0;
-                justify-content: center; padding: 8px 0;
+                overflow-x: auto; overflow-y: hidden;
+                flex-wrap: wrap; padding: 8px 12px;
             }
-            .icon-btn-label { display: none !important; }
+            .sidebar-brand { display: none; }
+            .sidebar-separator { display: none; }
+            .sidebar-section { padding: 4px 4px; }
+            .sidebar-section-label { display: none; }
+            .sidebar-nav-item { padding: 6px 8px; }
             .sidebar-panel {
                 width: 100% !important; height: auto;
                 position: relative; top: 0;
@@ -1630,23 +1885,84 @@
 
         <div class="dashboard-layout">
 
-        <!-- Icon strip -->
-        <div class="icon-strip">
-            <div class="icon-btn" data-panel="chat" onclick="toggleSidebarPanel('chat')">
-                💬<span class="icon-btn-label">Chat</span>
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-name">⚡ Smart Brands</div>
+                <div class="sidebar-brand-sub">Mission Control</div>
             </div>
-            <div class="icon-btn" data-panel="council" onclick="toggleSidebarPanel('council')">
-                👥<span class="icon-btn-label">Council</span>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-label">Command Center</div>
+                <div class="sidebar-nav-item active" onclick="setSidebarActive(this)">
+                    <span class="sidebar-nav-icon">📊</span>
+                    <span class="sidebar-nav-text">Overview</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="setSidebarActive(this); toggleSidebarPanel('chat')">
+                    <span class="sidebar-nav-icon">💬</span>
+                    <span class="sidebar-nav-text">Chat</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="setSidebarActive(this); toggleSidebarPanel('tasks')">
+                    <span class="sidebar-nav-icon">📋</span>
+                    <span class="sidebar-nav-text">Tasks</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="setSidebarActive(this); toggleSidebarPanel('review')" id="sidebar-review-btn">
+                    <span class="sidebar-nav-icon">📝</span>
+                    <span class="sidebar-nav-text">Review Queue</span>
+                    <span class="sidebar-notif" id="review-notif-dot"></span>
+                </div>
+                <div class="sidebar-nav-item" onclick="setSidebarActive(this); toggleSidebarPanel('links')">
+                    <span class="sidebar-nav-icon">⚡</span>
+                    <span class="sidebar-nav-text">Quick Links</span>
+                </div>
             </div>
-            <div class="icon-btn" data-panel="tasks" onclick="toggleSidebarPanel('tasks')">
-                📋<span class="icon-btn-label">Tasks</span>
+
+            <hr class="sidebar-separator">
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-label">Ventures</div>
+                <div class="sidebar-nav-item" onclick="openVenture('snaptosell')">
+                    <span class="sidebar-nav-icon">🔷</span>
+                    <span class="sidebar-nav-text">SnapToSell</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="openVenture('book')">
+                    <span class="sidebar-nav-icon">📕</span>
+                    <span class="sidebar-nav-text">The Enemy Within</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="openVenture('scripture')">
+                    <span class="sidebar-nav-icon">✝️</span>
+                    <span class="sidebar-nav-text">Scripture Unlocked</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="openVenture('farm')">
+                    <span class="sidebar-nav-icon">🐎</span>
+                    <span class="sidebar-nav-text">Farm Flow</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="openVenture('aeromind')">
+                    <span class="sidebar-nav-icon">✈️</span>
+                    <span class="sidebar-nav-text">AeroMind Ops</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="openVenture('coaching')">
+                    <span class="sidebar-nav-icon">🙏</span>
+                    <span class="sidebar-nav-text">BE DO HAVE</span>
+                </div>
             </div>
-            <div class="icon-btn" data-panel="review" onclick="toggleSidebarPanel('review')">
-                📝<span class="icon-btn-label">Review</span>
-                <span class="notif-dot" id="review-notif-dot" style="display:none;"></span>
-            </div>
-            <div class="icon-btn" data-panel="links" onclick="toggleSidebarPanel('links')">
-                ⚡<span class="icon-btn-label">Quick Links</span>
+
+            <hr class="sidebar-separator">
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-label">Council</div>
+                <div class="sidebar-nav-item" onclick="showAgents()">
+                    <span class="sidebar-nav-icon">👥</span>
+                    <span class="sidebar-nav-text">All 13 Agents</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="showCouncilTasks()">
+                    <span class="sidebar-nav-icon">📊</span>
+                    <span class="sidebar-nav-text">Council Tasks</span>
+                </div>
+                <div class="sidebar-nav-item" onclick="showMarkTasks()">
+                    <span class="sidebar-nav-icon">✅</span>
+                    <span class="sidebar-nav-text">Mark's Tasks</span>
+                </div>
             </div>
         </div>
 
@@ -1757,169 +2073,120 @@
 
         <!-- MAIN CONTENT -->
         <div class="main-content">
-        <div class="header">
-            <h1>SMART BRANDS MISSION CONTROL</h1>
-            <div class="subtitle">Six Ventures. One Vision. Billion Dollar Future.</div>
+
+        <!-- Hidden venture grid — preserves JS IDs for task count updates -->
+        <div class="ventures-grid" style="display:none;">
+            <div id="snaptosell-tasks"></div>
+            <div id="book-tasks"></div>
+            <div id="farm-tasks"></div>
+            <div id="aeromind-tasks"></div>
+            <div id="coaching-tasks"></div>
         </div>
 
-        <div class="ventures-grid">
-            <!-- SnapToSell -->
-            <div class="venture-box" style="--brand-color: #FF6B35" onclick="openVenture('snaptosell')">
-                <div class="venture-name">SnapToSell</div>
-                <div class="venture-tagline">AI-Powered Marketplace Security</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="snaptosell-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Status</div>
-                        <div class="stat-value" style="font-size: 22px;">Pre-Launch</div>
-                    </div>
+        <!-- Compact Metric Cards Row -->
+        <div class="metric-cards-row">
+            <!-- Council Tasks -->
+            <div class="metric-card" onclick="showCouncilTasks()">
+                <div class="metric-card-label">📋 Council Tasks</div>
+                <div class="metric-card-value" id="council-task-count">—</div>
+                <div class="metric-card-sub">Click to manage</div>
+            </div>
+            <!-- Mark's Tasks -->
+            <div class="metric-card" onclick="showMarkTasks()">
+                <div class="metric-card-label">✅ Mark's Tasks</div>
+                <div class="metric-card-value" id="mark-task-count">—</div>
+                <div class="metric-card-sub">Your action items</div>
+            </div>
+            <!-- Review Queue -->
+            <div class="metric-card" onclick="showDeliverables()" style="position:relative;">
+                <div class="metric-card-label">📝 Review Queue</div>
+                <div class="metric-card-value" style="display:flex; align-items:center; gap:8px;">
+                    <span id="deliverables-count" style="background:#f87171; color:#fff; font-size:16px; padding:2px 8px; border-radius:10px; font-weight:700; display:none;">0</span>
+                    <span id="deliverables-count-display">—</span>
+                </div>
+                <div class="metric-card-sub">Pending review</div>
+            </div>
+            <!-- Agents -->
+            <div class="metric-card" onclick="showAgents()">
+                <div class="metric-card-label">👥 Agents</div>
+                <div class="metric-card-value">13</div>
+                <div class="metric-card-sub">Council active</div>
+            </div>
+            <!-- API Cost -->
+            <div class="metric-card" style="cursor:default;">
+                <div class="metric-card-label">💰 API Today</div>
+                <div class="metric-card-value" id="api-cost-display">—</div>
+                <div class="metric-card-sub" id="api-calls-display">— calls</div>
+            </div>
+        </div>
+
+        <!-- Overview Two-Column Grid -->
+        <div class="overview-grid">
+            <!-- Task Feed -->
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <span class="overview-card-title">📋 Task Feed</span>
+                    <span class="overview-card-action" onclick="showCouncilTasks()">View All →</span>
+                </div>
+                <div id="overview-task-feed">
+                    <div style="font-size:13px; color:#475569; text-align:center; padding:20px 0;">Loading tasks…</div>
                 </div>
             </div>
-
-            <!-- The Enemy Within -->
-            <div class="venture-box" style="--brand-color: #8B0000" onclick="openVenture('book')">
-                <div class="venture-name">The Enemy Within</div>
-                <div class="venture-tagline">20 Years of Research. July 4, 2026</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="book-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Launch</div>
-                        <div class="stat-value" style="font-size: 22px;">139 Days</div>
-                    </div>
+            <!-- Council Activity -->
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <span class="overview-card-title">👥 Council of 13</span>
+                    <span class="overview-card-action" onclick="showAgents()">All Agents →</span>
                 </div>
-            </div>
-
-            <!-- Scripture Unlocked -->
-            <div class="venture-box" style="--brand-color: #D4AE39" onclick="openVenture('scripture')">
-                <div class="venture-name">Scripture Unlocked</div>
-                <div class="venture-tagline">Ancient Wisdom, Modern AI</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Subscribers</div>
-                        <div class="stat-value">2.4K</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Views</div>
-                        <div class="stat-value">58K</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Farm Flow -->
-            <div class="venture-box" style="--brand-color: #228B22" onclick="openVenture('farm')">
-                <div class="venture-name">Farm Flow</div>
-                <div class="venture-tagline">Voice-Guided Animal Care</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="farm-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Status</div>
-                        <div class="stat-value" style="font-size: 22px;">Development</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Aeromind Ops -->
-            <div class="venture-box" style="--brand-color: #0EA5E9" onclick="openVenture('aeromind')">
-                <div class="venture-name">Aeromind Ops</div>
-                <div class="venture-tagline">AI Strategy Consulting</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="aeromind-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Status</div>
-                        <div class="stat-value" style="font-size: 22px;">Active</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BE DO HAVE -->
-            <div class="venture-box" style="--brand-color: #C9A54C" onclick="openVenture('coaching')">
-                <div class="venture-name">BE ✝ DO ✝ HAVE</div>
-                <div class="venture-tagline">Creator Mindset Coaching</div>
-                <div class="venture-stats">
-                    <div class="stat">
-                        <div class="stat-label">Tasks</div>
-                        <div class="stat-value" id="coaching-tasks">—</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Status</div>
-                        <div class="stat-value" style="font-size: 22px;">Active</div>
-                    </div>
+                <div id="overview-agent-list">
+                    <div style="font-size:13px; color:#475569; text-align:center; padding:20px 0;">Loading agents…</div>
                 </div>
             </div>
         </div>
 
         <!-- API Usage Widget -->
-        <div class="usage-widget" style="background: rgba(17, 24, 39, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid #2d5a8a; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+        <div class="usage-widget" style="background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <h3 style="margin: 0; font-size: 16px; color: #00d9ff;">📊 API Usage</h3>
+                <h3 style="margin: 0; font-size: 13px; font-weight:700; color: #60a5fa; text-transform:uppercase; letter-spacing:0.8px;">📊 API Usage</h3>
                 <div style="display: flex; gap: 4px;">
-                    <button id="toggle-tokens" onclick="toggleUsageView('tokens')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(0,217,255,0.3); background: rgba(0,217,255,0.2); color: #00d9ff; cursor: pointer; font-size: 12px; font-weight: 600;">Tokens</button>
-                    <button id="toggle-dollars" onclick="toggleUsageView('dollars')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #8899aa; cursor: pointer; font-size: 12px;">Dollars</button>
+                    <button id="toggle-tokens" onclick="toggleUsageView('tokens')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(59,130,246,0.3); background: rgba(59,130,246,0.15); color: #60a5fa; cursor: pointer; font-size: 12px; font-weight: 600;">Tokens</button>
+                    <button id="toggle-dollars" onclick="toggleUsageView('dollars')" style="padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: #64748b; cursor: pointer; font-size: 12px;">Dollars</button>
                 </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
                 <div style="text-align: center;">
-                    <div id="usage-total" style="font-size: 24px; font-weight: 700; color: #00d9ff;">—</div>
-                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Total</div>
+                    <div id="usage-total" style="font-size: 20px; font-weight: 700; color: #60a5fa;">—</div>
+                    <div style="font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing:0.5px;">Total</div>
                 </div>
                 <div style="text-align: center;">
-                    <div id="usage-input" style="font-size: 24px; font-weight: 700; color: #4ade80;">—</div>
-                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Input</div>
+                    <div id="usage-input" style="font-size: 20px; font-weight: 700; color: #4ade80;">—</div>
+                    <div style="font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing:0.5px;">Input</div>
                 </div>
                 <div style="text-align: center;">
-                    <div id="usage-output" style="font-size: 24px; font-weight: 700; color: #f97316;">—</div>
-                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Output</div>
+                    <div id="usage-output" style="font-size: 20px; font-weight: 700; color: #fb923c;">—</div>
+                    <div style="font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing:0.5px;">Output</div>
                 </div>
                 <div style="text-align: center;">
-                    <div id="usage-cache" style="font-size: 24px; font-weight: 700; color: #a78bfa;">—</div>
-                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">Cache Saved</div>
+                    <div id="usage-cache" style="font-size: 20px; font-weight: 700; color: #a78bfa;">—</div>
+                    <div style="font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing:0.5px;">Cache Saved</div>
                 </div>
                 <div style="text-align: center;">
-                    <div id="usage-calls" style="font-size: 24px; font-weight: 700; color: #fbbf24;">—</div>
-                    <div style="font-size: 11px; color: #8899aa; text-transform: uppercase;">API Calls</div>
+                    <div id="usage-calls" style="font-size: 20px; font-weight: 700; color: #fbbf24;">—</div>
+                    <div style="font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing:0.5px;">API Calls</div>
                 </div>
             </div>
-            <div id="usage-daily" style="margin-top: 12px; display: flex; gap: 6px; align-items: flex-end; height: 60px;"></div>
-            <div style="text-align: right; margin-top: 8px; font-size: 10px; color: #556677;" id="usage-updated">—</div>
+            <div id="usage-daily" style="margin-top: 12px; display: flex; gap: 4px; align-items: flex-end; height: 50px;"></div>
+            <div style="text-align: right; margin-top: 8px; font-size: 10px; color: #334155;" id="usage-updated">—</div>
         </div>
 
-        <!-- Command Center -->
-        <div class="command-center">
-            <h2>⚡ COMMAND CENTER</h2>
+        <!-- Hidden legacy command center — keeps CSS class stable, hidden via CSS -->
+        <div class="command-center" style="display:none;">
             <div class="command-stats">
-                <div class="command-stat clickable" onclick="showCouncilTasks()">
-                    <div id="council-task-count" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">—</div>
-                    <div class="command-stat-label">Council's Tasks</div>
-                </div>
-                <div class="command-stat clickable" onclick="showChat()">
-                    <div class="command-stat-value">💬</div>
-                    <div class="command-stat-label">Chat</div>
-                </div>
-                <div class="command-stat clickable" onclick="showDeliverables()">
-                    <div class="command-stat-value" style="position: relative;">
-                        📋
-                        <span id="deliverables-count" style="display: none; position: absolute; top: -8px; right: -8px; background: #ff4444; color: white; font-size: 0.7em; padding: 2px 6px; border-radius: 10px; font-weight: 700;">0</span>
-                    </div>
-                    <div class="command-stat-label">Review Queue</div>
-                </div>
-                <div class="command-stat clickable" onclick="showMarkTasks()">
-                    <div id="mark-task-count" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">—</div>
-                    <div class="command-stat-label">Mark's Tasks</div>
-                </div>
+                <div class="command-stat"><div id="council-task-count-legacy">—</div></div>
+                <div class="command-stat"><div id="mark-task-count-legacy">—</div></div>
             </div>
         </div>
+
         </div><!-- end main-content -->
         </div><!-- end dashboard-layout -->
     </div>
@@ -2335,15 +2602,16 @@
                         }
                     });
                     
-                    // Update UI
-                    document.getElementById('snaptosell-tasks').textContent = taskCounts.snaptosell;
-                    document.getElementById('coaching-tasks').textContent = taskCounts.coaching;
-                    document.getElementById('book-tasks').textContent = taskCounts.book;
-                    document.getElementById('farm-tasks').textContent = taskCounts.farm;
-                    document.getElementById('aeromind-tasks').textContent = taskCounts.aeromind;
-                    
+                    // Update UI — venture counters live in hidden grid (preserve JS refs)
+                    const _set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+                    _set('snaptosell-tasks', taskCounts.snaptosell);
+                    _set('coaching-tasks',   taskCounts.coaching);
+                    _set('book-tasks',       taskCounts.book);
+                    _set('farm-tasks',       taskCounts.farm);
+                    _set('aeromind-tasks',   taskCounts.aeromind);
+
                     const totalActive = Object.values(taskCounts).reduce((a, b) => a + b, 0);
-                    document.getElementById('total-tasks').textContent = totalActive;
+                    _set('total-tasks', totalActive); // legacy element (hidden)
                 }
                 
                 // Fetch goals count
@@ -2359,7 +2627,8 @@
                     const count = goalsResponse.headers.get('Content-Range');
                     if (count) {
                         const total = count.split('/')[1];
-                        document.getElementById('total-goals').textContent = total;
+                        const goalsEl = document.getElementById('total-goals');
+                        if (goalsEl) goalsEl.textContent = total; // legacy element (hidden)
                     }
                 }
                 
@@ -2605,7 +2874,7 @@
                         style="flex:1;padding:14px 18px;font-size:22px;border:1px solid #2d5a8a;border-radius:10px;background:#0a0e1a;color:#e0e0e0;outline:none;font-family:inherit;"
                         onkeydown="if(event.key==='Enter')sendVentureChat()">
                     <button onclick="sendVentureChat()" 
-                        style="padding:14px 28px;background:#00d9ff;color:#0a0e1a;border:none;border-radius:10px;font-size:22px;font-weight:600;cursor:pointer;">Send</button>
+                        style="padding:14px 28px;background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border:none;border-radius:10px;font-size:22px;font-weight:600;cursor:pointer;">Send</button>
                 </div>
             </div>`;
             
@@ -3536,30 +3805,31 @@
             }
         }
 
+        // ===== SIDEBAR ACTIVE STATE =====
+        function setSidebarActive(el) {
+            document.querySelectorAll('.sidebar-nav-item').forEach(item => item.classList.remove('active'));
+            if (el) el.classList.add('active');
+        }
+
         // ===== SIDEBAR PANEL TOGGLE =====
         let activeSidebarPanel = null;
 
         function toggleSidebarPanel(panelId) {
             const panel = document.getElementById('sidebarPanel');
             const allContent = document.querySelectorAll('.sidebar-panel-content');
-            const allIcons = document.querySelectorAll('.icon-btn');
             const targetContent = document.getElementById('panel-' + panelId);
-            const targetIcon = document.querySelector('.icon-btn[data-panel="' + panelId + '"]');
 
             // Clicking the already-active panel closes it
             if (activeSidebarPanel === panelId && panel.classList.contains('open')) {
                 panel.classList.remove('open');
                 allContent.forEach(c => c.classList.remove('active'));
-                allIcons.forEach(i => i.classList.remove('active'));
                 activeSidebarPanel = null;
                 return;
             }
 
             // Switch to the target panel
             allContent.forEach(c => c.classList.remove('active'));
-            allIcons.forEach(i => i.classList.remove('active'));
             if (targetContent) targetContent.classList.add('active');
-            if (targetIcon) targetIcon.classList.add('active');
             panel.classList.add('open');
             activeSidebarPanel = panelId;
         }
@@ -3635,12 +3905,13 @@
         function spawnPulse() {
             if (traces.length === 0) return;
             const t = traces[Math.floor(Math.random() * traces.length)];
+            const r = Math.random();
             pulses.push({
                 trace: t,
                 progress: 0,
-                speed: 0.003 + Math.random() * 0.008,
-                color: Math.random() > 0.3 ? '#00d9ff' : '#a855f7',
-                size: 2 + Math.random() * 2
+                speed: 0.003 + Math.random() * 0.007,
+                color: r > 0.6 ? '#3b82f6' : r > 0.25 ? '#818cf8' : '#6366f1',
+                size: 1.5 + Math.random() * 2
             });
         }
         
@@ -3651,7 +3922,7 @@
             ctx.lineCap = 'round';
             for (const t of traces) {
                 ctx.beginPath();
-                ctx.strokeStyle = 'rgba(0, 217, 255, 0.07)';
+                ctx.strokeStyle = 'rgba(59, 130, 246, 0.06)';
                 ctx.lineWidth = t.width;
                 
                 if (t.bend) {
@@ -3672,15 +3943,15 @@
                 if (n.type === 'chip') {
                     // IC chip - small rectangle
                     const s = n.size * 2;
-                    ctx.fillStyle = 'rgba(0, 217, 255, 0.12)';
-                    ctx.strokeStyle = 'rgba(0, 217, 255, 0.2)';
+                    ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.18)';
                     ctx.lineWidth = 0.5;
                     ctx.fillRect(n.x - s, n.y - s * 0.6, s * 2, s * 1.2);
                     ctx.strokeRect(n.x - s, n.y - s * 0.6, s * 2, s * 1.2);
                     // Pins
                     for (let p = 0; p < 3; p++) {
                         const px = n.x - s + (p + 0.5) * (s * 2 / 3);
-                        ctx.fillStyle = 'rgba(0, 217, 255, 0.25)';
+                        ctx.fillStyle = 'rgba(129, 140, 248, 0.22)';
                         ctx.fillRect(px - 1, n.y - s * 0.6 - 3, 2, 3);
                         ctx.fillRect(px - 1, n.y + s * 0.6, 2, 3);
                     }
@@ -3688,16 +3959,16 @@
                     // Solder pad
                     ctx.beginPath();
                     ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0, 217, 255, 0.15)';
+                    ctx.fillStyle = 'rgba(99, 102, 241, 0.12)';
                     ctx.fill();
-                    ctx.strokeStyle = 'rgba(0, 217, 255, 0.25)';
+                    ctx.strokeStyle = 'rgba(129, 140, 248, 0.2)';
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 } else {
                     // Via / small node
                     ctx.beginPath();
                     ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0, 217, 255, 0.08)';
+                    ctx.fillStyle = 'rgba(59, 130, 246, 0.07)';
                     ctx.fill();
                 }
             }
@@ -3732,19 +4003,21 @@
                     py = t.y1 + (t.y2 - t.y1) * p.progress;
                 }
                 
-                // Glow
+                // Glow — map hex to rgba prefix for clean interpolation
+                const glowMap = {'#3b82f6':'rgba(59,130,246,','#818cf8':'rgba(129,140,248,','#6366f1':'rgba(99,102,241,'};
+                const glowBase = glowMap[p.color] || 'rgba(59,130,246,';
                 const gradient = ctx.createRadialGradient(px, py, 0, px, py, p.size * 6);
-                gradient.addColorStop(0, p.color.replace(')', ', 0.6)').replace('rgb', 'rgba').replace('#00d9ff', 'rgba(0, 217, 255, 0.6)').replace('#a855f7', 'rgba(168, 85, 247, 0.6)'));
+                gradient.addColorStop(0, glowBase + '0.5)');
                 gradient.addColorStop(1, 'transparent');
                 ctx.beginPath();
                 ctx.arc(px, py, p.size * 6, 0, Math.PI * 2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
-                
+
                 // Core dot
                 ctx.beginPath();
                 ctx.arc(px, py, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color === '#00d9ff' ? 'rgba(0, 217, 255, 0.9)' : 'rgba(168, 85, 247, 0.9)';
+                ctx.fillStyle = glowBase + '0.9)';
                 ctx.fill();
             }
             
@@ -3795,10 +4068,78 @@
 
     <!-- Scripts -->
     <script src="./tasks-addon.js"></script>
-    <script src="./deliverables-review.js">
+    <script src="./deliverables-review.js"></script>
+    <script>
     // ===== SIDEBAR POPULATION =====
     async function populateSidebar() {
-        await Promise.all([populateSidebarAgents(), populateSidebarTasks()]);
+        await Promise.all([populateSidebarAgents(), populateSidebarTasks(), loadOverviewPanels()]);
+    }
+
+    async function loadOverviewPanels() {
+        await Promise.all([loadOverviewTasks(), loadOverviewAgents()]);
+    }
+
+    async function loadOverviewTasks() {
+        const el = document.getElementById('overview-task-feed');
+        if (!el) return;
+        try {
+            const resp = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?select=id,from_agent,to_agent,task_description,priority,status,created_at&status=neq.done&order=created_at.desc&limit=12`, {
+                headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+            });
+            if (!resp.ok) throw new Error('fetch failed');
+            const tasks = await resp.json();
+            if (!tasks.length) {
+                el.innerHTML = '<div style="font-size:13px;color:#475569;text-align:center;padding:24px 0;">No active tasks — the Council is idle 🎉</div>';
+                return;
+            }
+            const agentNames = {
+                madison:'Madison', cos:'COS', ceo:'CEO', coo:'COO',
+                cto:'Marcus', cmo:'Alexis', cfo:'CFO', cro:'CRO',
+                legal:'Legal', media:'Media', intel:'Intel', hr:'HR',
+                comms:'Comms', mark:'Mark', allen:'Allen'
+            };
+            el.innerHTML = tasks.map(t => {
+                const from = agentNames[t.from_agent] || t.from_agent || '?';
+                const to   = agentNames[t.to_agent]   || t.to_agent   || '?';
+                const preview = (t.task_description || '').substring(0, 90);
+                return `<div class="qt-item">
+                    <div class="qt-dot ${t.status}"></div>
+                    <div class="qt-body">
+                        <div style="font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:2px;">${from} → ${to}</div>
+                        ${preview}${t.task_description && t.task_description.length > 90 ? '…' : ''}
+                        <div class="qt-meta">${t.priority ? t.priority.toUpperCase() : 'MEDIUM'} · ${t.status.replace('_',' ')}</div>
+                    </div>
+                </div>`;
+            }).join('');
+        } catch(e) {
+            el.innerHTML = '<div style="font-size:12px;color:#ef4444;padding:12px 0;">Could not load tasks</div>';
+        }
+    }
+
+    async function loadOverviewAgents() {
+        const el = document.getElementById('overview-agent-list');
+        if (!el) return;
+        const agentList = [
+            { slug:'cos',     name:'Chief of Staff',    title:'Executive Operations' },
+            { slug:'ceo',     name:'CEO',               title:'Strategic Direction' },
+            { slug:'coo',     name:'COO',               title:'Operational Excellence' },
+            { slug:'cto',     name:'Marcus Steele',     title:'CTO — Tech Architecture' },
+            { slug:'cmo',     name:'Alexis Monroe',     title:'CMO — Marketing Strategy' },
+            { slug:'cfo',     name:'CFO',               title:'Financial Oversight' },
+            { slug:'cro',     name:'CRO',               title:'Revenue & Funnels' },
+            { slug:'legal',   name:'Legal',             title:'Compliance & Contracts' },
+            { slug:'media',   name:'Media Director',    title:'Content & Social' },
+            { slug:'intel',   name:'Intelligence',      title:'Social Listening' },
+            { slug:'hr',      name:'HR',                title:'Culture & Recruiting' },
+            { slug:'comms',   name:'Communications',    title:'Response Protocols' },
+            { slug:'madison', name:'Madison Harper',    title:'Book Marketing Director' }
+        ];
+        el.innerHTML = agentList.map(a => `
+            <div class="agent-ql-item" onclick="openAgentDetail('${a.slug}')">
+                <div class="agent-ql-dot"></div>
+                <div class="agent-ql-name">${a.name}</div>
+                <div class="agent-ql-role">${a.title}</div>
+            </div>`).join('');
     }
 
     async function populateSidebarAgents() {
@@ -3875,11 +4216,12 @@
         }
     }
 
-    // Call sidebar population after login
+    // Call sidebar population + usage data after login
     const _origShowDashboard = window.showDashboard;
     window.showDashboard = function() {
         if (_origShowDashboard) _origShowDashboard();
         setTimeout(populateSidebar, 500);
+        setTimeout(function() { if (typeof loadUsage === 'function') loadUsage(); }, 700);
     };
 
     // Auto-refresh sidebar every 60 seconds
@@ -3903,12 +4245,12 @@
 
     function toggleUsageView(view) {
         usageView = view;
-        document.getElementById('toggle-tokens').style.background = view === 'tokens' ? 'rgba(0,217,255,0.2)' : 'transparent';
-        document.getElementById('toggle-tokens').style.color = view === 'tokens' ? '#00d9ff' : '#8899aa';
-        document.getElementById('toggle-tokens').style.borderColor = view === 'tokens' ? 'rgba(0,217,255,0.3)' : 'rgba(255,255,255,0.1)';
-        document.getElementById('toggle-dollars').style.background = view === 'dollars' ? 'rgba(0,217,255,0.2)' : 'transparent';
-        document.getElementById('toggle-dollars').style.color = view === 'dollars' ? '#00d9ff' : '#8899aa';
-        document.getElementById('toggle-dollars').style.borderColor = view === 'dollars' ? 'rgba(0,217,255,0.3)' : 'rgba(255,255,255,0.1)';
+        document.getElementById('toggle-tokens').style.background = view === 'tokens' ? 'rgba(59,130,246,0.2)' : 'transparent';
+        document.getElementById('toggle-tokens').style.color = view === 'tokens' ? '#60a5fa' : '#8899aa';
+        document.getElementById('toggle-tokens').style.borderColor = view === 'tokens' ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)';
+        document.getElementById('toggle-dollars').style.background = view === 'dollars' ? 'rgba(59,130,246,0.2)' : 'transparent';
+        document.getElementById('toggle-dollars').style.color = view === 'dollars' ? '#60a5fa' : '#8899aa';
+        document.getElementById('toggle-dollars').style.borderColor = view === 'dollars' ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)';
         renderUsage();
     }
 
@@ -3948,12 +4290,18 @@
             const display = usageView === 'tokens' ? fmtTokens(val) : '$' + val.toFixed(2);
             return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">' +
                 '<div style="font-size:9px;color:#8899aa;">' + display + '</div>' +
-                '<div style="width:100%;background:rgba(0,217,255,0.3);border-radius:3px;height:' + Math.max(pct * 0.5, 2) + 'px;"></div>' +
+                '<div style="width:100%;background:rgba(59,130,246,0.35);border-radius:3px;height:' + Math.max(pct * 0.5, 2) + 'px;"></div>' +
                 '<div style="font-size:9px;color:#556677;">' + label + '</div></div>';
         }).join('');
         document.getElementById('usage-daily').innerHTML = bars;
         const updated = new Date(usageData.generated);
         document.getElementById('usage-updated').textContent = 'Updated: ' + updated.toLocaleString();
+
+        // Also update the compact metric card in the overview header
+        const apiCostEl = document.getElementById('api-cost-display');
+        const apiCallsEl = document.getElementById('api-calls-display');
+        if (apiCostEl) apiCostEl.textContent = '$' + (t.totalCost || 0).toFixed(2);
+        if (apiCallsEl) apiCallsEl.textContent = (t.calls || 0).toLocaleString() + ' calls';
     }
 
     // Load usage on dashboard open
