@@ -4249,11 +4249,14 @@
         youtube: { bg:'rgba(255,0,0,0.15)', color:'#ff4444', label:'YouTube' }
     };
 
+    // Make.com webhook — fires when Mark approves a post
+    const MAKE_APPROVE_WEBHOOK = window.MAKE_APPROVE_WEBHOOK || '';
+
     async function loadSuggestedPosts() {
         const el = document.getElementById('overview-suggested-posts');
         if (!el) return;
         try {
-            const resp = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?select=id,from_agent,task,context,created_at,status&task=like.SUGGESTED_POST%3A%3A*&status=eq.pending&order=created_at.desc&limit=8`, {
+            const resp = await fetch(`${SUPABASE_URL}/rest/v1/suggested_posts?status=eq.pending&order=created_at.desc&limit=8`, {
                 headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
             });
             const posts = await resp.json();
@@ -4261,8 +4264,8 @@
             // Update count card
             const countEl = document.getElementById('suggested-count-display');
             const subEl = document.getElementById('suggested-count-sub');
-            if (countEl) countEl.textContent = posts.length;
-            if (subEl) subEl.textContent = posts.length === 1 ? 'Pending approval' : 'Pending approval';
+            if (countEl) countEl.textContent = posts.length || 0;
+            if (subEl) subEl.textContent = posts.length === 1 ? '1 pending approval' : `${posts.length || 0} pending approval`;
 
             if (!posts || !posts.length) {
                 el.innerHTML = '<div style="font-size:13px;color:#8b9ab2;text-align:center;padding:20px 0;">No posts pending approval</div>';
@@ -4270,18 +4273,13 @@
             }
 
             el.innerHTML = posts.map(p => {
-                // Parse platform from task string: SUGGESTED_POST::platform::venture
-                const parts = p.task.split('::');
-                const platform = (parts[1] || 'facebook').toLowerCase();
-                const venture = parts[2] || 'general';
-                const pc = PLATFORM_COLORS[platform] || PLATFORM_COLORS.facebook;
+                // Platform can be comma-separated — show first one as badge
+                const firstPlatform = (p.platform || 'facebook').split(',')[0].trim().toLowerCase();
+                const allPlatforms = (p.platform || '').split(',').map(s => s.trim());
+                const pc = PLATFORM_COLORS[firstPlatform] || PLATFORM_COLORS.facebook;
 
-                // Parse content from context field
-                let content = p.context || '';
-                // Get first paragraph as preview
-                const lines = content.split('\n').filter(l => l.trim());
-                const preview = lines.slice(0, 3).join('\n');
-                const hasMore = lines.length > 3;
+                const preview = (p.caption || p.content || '').substring(0, 220);
+                const hasMore = (p.caption || p.content || '').length > 220;
 
                 const ago = (() => {
                     const d = new Date(p.created_at);
@@ -4291,16 +4289,24 @@
                     return Math.floor(mins/1440) + 'd ago';
                 })();
 
+                // Platform badges
+                const platformBadges = allPlatforms.map(plt => {
+                    const c = PLATFORM_COLORS[plt.toLowerCase()] || PLATFORM_COLORS.facebook;
+                    return `<span class="spost-platform" style="background:${c.bg};color:${c.color};margin-right:4px;">${c.label}</span>`;
+                }).join('');
+
                 return `
                 <div class="spost-card" id="spost-${p.id}">
                     <div class="spost-header">
-                        <span class="spost-platform" style="background:${pc.bg};color:${pc.color};">${pc.label}</span>
-                        <span class="spost-agent">✍️ ${p.from_agent}</span>
+                        <div>${platformBadges}</div>
+                        <span class="spost-agent">✍️ ${p.suggested_by}</span>
                         <span class="spost-time">${ago}</span>
                     </div>
-                    <div class="spost-content">${preview.replace(/\n/g,'<br>')}${hasMore ? '<span style="color:#64748b"> ...</span>' : ''}</div>
+                    <div style="font-size:10px;color:#f97316;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">${p.venture}</div>
+                    <div class="spost-content" id="spost-content-${p.id}">${preview.replace(/\n/g,'<br>')}${hasMore ? '<span style="color:#64748b"> ...</span>' : ''}</div>
+                    ${p.hashtags ? `<div style="font-size:11px;color:#60a5fa;margin-top:6px;">${p.hashtags}</div>` : ''}
                     <div class="spost-actions">
-                        <button class="spost-btn approve" onclick="approvePost('${p.id}')">✅ Approve</button>
+                        <button class="spost-btn approve" onclick="approvePost('${p.id}')">✅ Approve & Post</button>
                         <button class="spost-btn edit" onclick="editPost('${p.id}')">✏️ Edit</button>
                         <button class="spost-btn reject" onclick="rejectPost('${p.id}')">❌ Reject</button>
                     </div>
@@ -4312,42 +4318,72 @@
     }
 
     async function approvePost(id) {
-        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+        const card = document.getElementById('spost-' + id);
+        if (!card) return;
+        card.style.opacity = '0.6';
+
+        // 1. Update status in Supabase
+        const patchResp = await fetch(`${SUPABASE_URL}/rest/v1/suggested_posts?id=eq.${id}`, {
             method: 'PATCH',
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'approved' })
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+            body: JSON.stringify({ status: 'approved', approved_at: new Date().toISOString() })
         });
-        document.getElementById('spost-' + id).style.opacity = '0.4';
-        document.getElementById('spost-' + id).innerHTML += '<div style="text-align:center;color:#22c55e;font-weight:700;padding:8px;">✅ Approved</div>';
-        setTimeout(() => loadSuggestedPosts(), 1500);
+        const updated = await patchResp.json();
+        const post = updated[0] || {};
+
+        // 2. Fire Make.com webhook to trigger posting
+        if (MAKE_APPROVE_WEBHOOK) {
+            fetch(MAKE_APPROVE_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: post.id || id,
+                    venture: post.venture,
+                    platform: post.platform,
+                    content: post.content,
+                    caption: post.caption,
+                    hashtags: post.hashtags,
+                    image_prompt: post.image_prompt,
+                    suggested_by: post.suggested_by,
+                    approved_at: post.approved_at
+                })
+            }).catch(e => console.warn('Make webhook failed:', e));
+        }
+
+        card.innerHTML += '<div style="text-align:center;color:#22c55e;font-weight:700;padding:8px;font-size:13px;">✅ Approved — sending to Make.com</div>';
+        setTimeout(() => loadSuggestedPosts(), 2000);
     }
 
     async function rejectPost(id) {
-        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/suggested_posts?id=eq.${id}`, {
             method: 'PATCH',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'rejected' })
         });
-        document.getElementById('spost-' + id).style.opacity = '0.4';
-        document.getElementById('spost-' + id).innerHTML += '<div style="text-align:center;color:#ef4444;font-weight:700;padding:8px;">❌ Rejected</div>';
+        const card = document.getElementById('spost-' + id);
+        if (card) {
+            card.style.opacity = '0.4';
+            card.innerHTML += '<div style="text-align:center;color:#ef4444;font-weight:700;padding:8px;font-size:13px;">❌ Rejected</div>';
+        }
         setTimeout(() => loadSuggestedPosts(), 1500);
     }
 
     function editPost(id) {
-        const card = document.getElementById('spost-' + id);
-        const contentEl = card.querySelector('.spost-content');
+        const contentEl = document.getElementById('spost-content-' + id);
+        if (!contentEl) return;
         const currentText = contentEl.innerText;
         contentEl.innerHTML = `<textarea style="width:100%;height:120px;background:#1a2234;border:1px solid rgba(59,130,246,0.3);border-radius:8px;color:#f0f4ff;padding:8px;font-size:12px;resize:vertical;">${currentText}</textarea>
-        <button onclick="saveEditPost('${id}', this)" style="margin-top:6px;padding:4px 12px;background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.4);border-radius:6px;color:#60a5fa;cursor:pointer;font-size:12px;">Save</button>`;
+        <button onclick="saveEditPost('${id}')" style="margin-top:6px;padding:4px 12px;background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.4);border-radius:6px;color:#60a5fa;cursor:pointer;font-size:12px;">Save</button>`;
     }
 
-    async function saveEditPost(id, btn) {
-        const card = document.getElementById('spost-' + id);
-        const newText = card.querySelector('textarea').value;
-        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+    async function saveEditPost(id) {
+        const contentEl = document.getElementById('spost-content-' + id);
+        if (!contentEl) return;
+        const newText = contentEl.querySelector('textarea').value;
+        await fetch(`${SUPABASE_URL}/rest/v1/suggested_posts?id=eq.${id}`, {
             method: 'PATCH',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ context: newText })
+            body: JSON.stringify({ caption: newText })
         });
         loadSuggestedPosts();
     }
