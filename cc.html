@@ -1858,6 +1858,67 @@
         }
 
     
+        /* ── Suggested Post Cards ── */
+        .spost-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s;
+        }
+        .spost-card:hover { border-color: rgba(59,130,246,0.3); }
+        .spost-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .spost-platform {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spost-agent {
+            font-size: 11px;
+            color: #8b9ab2;
+            font-weight: 500;
+        }
+        .spost-time {
+            font-size: 10px;
+            color: #475569;
+            margin-left: auto;
+        }
+        .spost-content {
+            font-size: 12px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            max-height: 80px;
+            overflow: hidden;
+        }
+        .spost-actions {
+            display: flex;
+            gap: 6px;
+        }
+        .spost-btn {
+            flex: 1;
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .spost-btn:hover { opacity: 0.8; }
+        .spost-btn.approve { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+        .spost-btn.edit { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+        .spost-btn.reject { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+
         /* ── Agent Tooltip ── */
         .agent-ql-item { position: relative; }
         .agent-tooltip {
@@ -2155,29 +2216,28 @@
 
         <!-- Overview Two-Column Grid -->
         <div class="overview-grid">
-            <!-- Task Feed -->
+            <!-- Suggested Posts Approval Queue -->
             <div class="overview-card">
                 <div class="overview-card-header">
-                    <span class="overview-card-title">📋 Task Feed</span>
-                    <span class="overview-card-action" onclick="showCouncilTasks()">View All →</span>
+                    <span class="overview-card-title">?? Suggested Posts</span>
+                    <span class="overview-card-action" onclick="showSuggestedPosts()">View All </span>
                 </div>
-                <div id="overview-task-feed">
-                    <div style="font-size:13px; color:#475569; text-align:center; padding:20px 0;">Loading tasks…</div>
+                <div id="overview-suggested-posts">
+                    <div style="font-size:13px;color:#8b9ab2;text-align:center;padding:20px 0;">Loading posts...</div>
                 </div>
             </div>
-            <!-- Council Activity -->
+            <!-- Council of 13 -->
             <div class="overview-card">
                 <div class="overview-card-header">
-                    <span class="overview-card-title">👥 Council of 13</span>
-                    <span class="overview-card-action" onclick="showAgents()">All Agents →</span>
+                    <span class="overview-card-title">?? Council of 13</span>
+                    <span class="overview-card-action" onclick="showAgents()">All Agents </span>
                 </div>
                 <div id="overview-agent-list">
-                    <div style="font-size:13px; color:#475569; text-align:center; padding:20px 0;">Loading agents…</div>
+                    <div style="font-size:13px;color:#8b9ab2;text-align:center;padding:20px 0;">Loading agents...</div>
                 </div>
             </div>
         </div>
-
-        <!-- API Usage Widget -->
+<!-- API Usage Widget -->
         <div class="usage-widget" style="background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <h3 style="margin: 0; font-size: 13px; font-weight:700; color: #60a5fa; text-transform:uppercase; letter-spacing:0.8px;">📊 API Usage</h3>
@@ -4147,8 +4207,122 @@
     }
 
     async function loadOverviewPanels() {
-        await Promise.all([loadOverviewTasks(), loadOverviewAgents()]);
+        await Promise.all([loadSuggestedPosts(), loadOverviewAgents()]);
     }
+
+    // ── Platform badge colors ──
+    const PLATFORM_COLORS = {
+        facebook: { bg:'rgba(24,119,242,0.15)', color:'#4f8ef7', label:'Facebook' },
+        instagram: { bg:'rgba(225,48,108,0.15)', color:'#e1306c', label:'Instagram' },
+        twitter: { bg:'rgba(29,161,242,0.15)', color:'#1da1f2', label:'X / Twitter' },
+        linkedin: { bg:'rgba(0,119,181,0.15)', color:'#0077b5', label:'LinkedIn' },
+        youtube: { bg:'rgba(255,0,0,0.15)', color:'#ff4444', label:'YouTube' }
+    };
+
+    async function loadSuggestedPosts() {
+        const el = document.getElementById('overview-suggested-posts');
+        if (!el) return;
+        try {
+            const resp = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?select=id,from_agent,task,context,created_at,status&task=like.SUGGESTED_POST%3A%3A*&status=eq.pending&order=created_at.desc&limit=8`, {
+                headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+            });
+            const posts = await resp.json();
+
+            // Update count card
+            const countEl = document.getElementById('suggested-count-display');
+            const subEl = document.getElementById('suggested-count-sub');
+            if (countEl) countEl.textContent = posts.length;
+            if (subEl) subEl.textContent = posts.length === 1 ? 'Pending approval' : 'Pending approval';
+
+            if (!posts || !posts.length) {
+                el.innerHTML = '<div style="font-size:13px;color:#8b9ab2;text-align:center;padding:20px 0;">No posts pending approval</div>';
+                return;
+            }
+
+            el.innerHTML = posts.map(p => {
+                // Parse platform from task string: SUGGESTED_POST::platform::venture
+                const parts = p.task.split('::');
+                const platform = (parts[1] || 'facebook').toLowerCase();
+                const venture = parts[2] || 'general';
+                const pc = PLATFORM_COLORS[platform] || PLATFORM_COLORS.facebook;
+
+                // Parse content from context field
+                let content = p.context || '';
+                // Get first paragraph as preview
+                const lines = content.split('\n').filter(l => l.trim());
+                const preview = lines.slice(0, 3).join('\n');
+                const hasMore = lines.length > 3;
+
+                const ago = (() => {
+                    const d = new Date(p.created_at);
+                    const mins = Math.floor((Date.now() - d) / 60000);
+                    if (mins < 60) return mins + 'm ago';
+                    if (mins < 1440) return Math.floor(mins/60) + 'h ago';
+                    return Math.floor(mins/1440) + 'd ago';
+                })();
+
+                return `
+                <div class="spost-card" id="spost-${p.id}">
+                    <div class="spost-header">
+                        <span class="spost-platform" style="background:${pc.bg};color:${pc.color};">${pc.label}</span>
+                        <span class="spost-agent">✍️ ${p.from_agent}</span>
+                        <span class="spost-time">${ago}</span>
+                    </div>
+                    <div class="spost-content">${preview.replace(/\n/g,'<br>')}${hasMore ? '<span style="color:#64748b"> ...</span>' : ''}</div>
+                    <div class="spost-actions">
+                        <button class="spost-btn approve" onclick="approvePost('${p.id}')">✅ Approve</button>
+                        <button class="spost-btn edit" onclick="editPost('${p.id}')">✏️ Edit</button>
+                        <button class="spost-btn reject" onclick="rejectPost('${p.id}')">❌ Reject</button>
+                    </div>
+                </div>`;
+            }).join('');
+        } catch(e) {
+            el.innerHTML = `<div style="font-size:13px;color:#ef4444;text-align:center;padding:20px 0;">Could not load posts</div>`;
+        }
+    }
+
+    async function approvePost(id) {
+        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+            method: 'PATCH',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'approved' })
+        });
+        document.getElementById('spost-' + id).style.opacity = '0.4';
+        document.getElementById('spost-' + id).innerHTML += '<div style="text-align:center;color:#22c55e;font-weight:700;padding:8px;">✅ Approved</div>';
+        setTimeout(() => loadSuggestedPosts(), 1500);
+    }
+
+    async function rejectPost(id) {
+        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+            method: 'PATCH',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'rejected' })
+        });
+        document.getElementById('spost-' + id).style.opacity = '0.4';
+        document.getElementById('spost-' + id).innerHTML += '<div style="text-align:center;color:#ef4444;font-weight:700;padding:8px;">❌ Rejected</div>';
+        setTimeout(() => loadSuggestedPosts(), 1500);
+    }
+
+    function editPost(id) {
+        const card = document.getElementById('spost-' + id);
+        const contentEl = card.querySelector('.spost-content');
+        const currentText = contentEl.innerText;
+        contentEl.innerHTML = `<textarea style="width:100%;height:120px;background:#1a2234;border:1px solid rgba(59,130,246,0.3);border-radius:8px;color:#f0f4ff;padding:8px;font-size:12px;resize:vertical;">${currentText}</textarea>
+        <button onclick="saveEditPost('${id}', this)" style="margin-top:6px;padding:4px 12px;background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.4);border-radius:6px;color:#60a5fa;cursor:pointer;font-size:12px;">Save</button>`;
+    }
+
+    async function saveEditPost(id, btn) {
+        const card = document.getElementById('spost-' + id);
+        const newText = card.querySelector('textarea').value;
+        await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+            method: 'PATCH',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ context: newText })
+        });
+        loadSuggestedPosts();
+    }
+
+    function showSuggestedPosts() { showPanel('tasks'); }
 
     async function loadOverviewTasks() {
         const el = document.getElementById('overview-task-feed');
@@ -4590,6 +4764,7 @@ function _renderSnapEmpty() {
     });
 }
 </script>
+
 
 
 
