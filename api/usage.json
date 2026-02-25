@@ -1,27 +1,16 @@
-{
-  "generated": "2026-02-22T19:59:50.666Z",
-  "totals": {
-    "input": 1236686,
-    "output": 337111,
-    "cacheRead": 98052278,
-    "cacheWrite": 43504487,
-    "totalTokens": 143130562,
-    "totalCost": 313.94192830000026,
-    "calls": 1338
-  },
-  "daily": [
-    {
-      "date": "unknown",
-      "tokens": 143130562,
-      "cost": 313.94192830000026,
-      "calls": 1338
-    }
-  ],
-  "pricing": {
-    "model": "claude-opus-4-6",
-    "inputPerMTok": 15,
-    "outputPerMTok": 75,
-    "cacheReadPerMTok": 1.5,
-    "cacheWritePerMTok": 18.75
-  }
+﻿{
+    "daily":  [
+                  {
+                      "date":  "2026-02-25",
+                      "cost":  17.8,
+                      "tokens":  30300000,
+                      "calls":  127
+                  }
+              ],
+    "totals":  {
+                   "totalCost":  17.8,
+                   "totalTokens":  30300000,
+                   "calls":  127
+               },
+    "generated":  "2026-02-25T14:49:50.1369065-05:00"
 }

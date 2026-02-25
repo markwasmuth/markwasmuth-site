@@ -4191,29 +4191,69 @@
         const el = document.getElementById('overview-agent-list');
         if (!el) return;
         const agentList = [
-            { slug:'cos',     name:'Chief of Staff',    title:'Executive Operations' },
-            { slug:'ceo',     name:'CEO',               title:'Strategic Direction' },
-            { slug:'coo',     name:'COO',               title:'Operational Excellence' },
-            { slug:'cto',     name:'Marcus Steele',     title:'CTO — Tech Architecture' },
-            { slug:'cmo',     name:'Alexis Monroe',     title:'CMO — Marketing Strategy' },
-            { slug:'cfo',     name:'CFO',               title:'Financial Oversight' },
-            { slug:'cro',     name:'CRO',               title:'Revenue & Funnels' },
-            { slug:'legal',   name:'Legal',             title:'Compliance & Contracts' },
-            { slug:'media',   name:'Media Director',    title:'Content & Social' },
-            { slug:'intel',   name:'Intelligence',      title:'Social Listening' },
-            { slug:'hr',      name:'HR',                title:'Culture & Recruiting' },
-            { slug:'comms',   name:'Communications',    title:'Response Protocols' },
-            { slug:'madison', name:'Madison Harper',    title:'Book Marketing Director' }
+            { slug:'cos',     name:'Alan — Chief of Staff',   title:'Executive Operations',      ai:'Claude Sonnet 4.6',   aiLocal:false,
+              mission:'Orchestrates all 13 Council agents. Monitors Mark\'s operations, surfaces important info, protects his time.',
+              primaryAI:'Claude Sonnet 4.6', primaryProvider:'Anthropic API', secondaryAI:'ChatGPT Custom GPT', secondaryProvider:'Bible research', usage:95 },
+            { slug:'ceo',     name:'CEO',                     title:'Master Orchestrator',        ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'Strategic decisions, Virtual Board of Advisors, OOC/EMR framework.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'ChatGPT Custom GPT', secondaryProvider:'Virtual Board', usage:60 },
+            { slug:'coo',     name:'COO',                     title:'Operating Officer',          ai:'gemma3:27b',          aiLocal:true,
+              mission:'Operational excellence, process optimization, team efficiency across all ventures.',
+              primaryAI:'gemma3:27b (27B)', primaryProvider:'Ollama — Local', secondaryAI:'Claude Opus 4.6', secondaryProvider:'Anthropic (fallback)', usage:40 },
+            { slug:'cto',     name:'Marcus Steele',           title:'CTO — Tech Architecture',   ai:'qwen2.5-coder:32b',   aiLocal:true,
+              mission:'All SnapToSell technology. Flutter app, AI/ML pipeline, scan speed, Firebase, Trust OS.',
+              primaryAI:'qwen2.5-coder:32b (33B)', primaryProvider:'Ollama — Local', secondaryAI:'Claude Opus 4.6', secondaryProvider:'Anthropic (fallback)', usage:80 },
+            { slug:'cmo',     name:'Alexis Monroe',           title:'CMO — Marketing',           ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'SnapToSell + Scripture Unlocked marketing, B2B SaaS strategy, brand positioning.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'—', secondaryProvider:'', usage:45 },
+            { slug:'cfo',     name:'CFO',                     title:'Financial Oversight',        ai:'mistral-small3.2:24b',aiLocal:true,
+              mission:'Cash flow, burn rate, ROI, budgets, investor-ready financials across all ventures.',
+              primaryAI:'mistral-small3.2:24b (24B)', primaryProvider:'Ollama — Local', secondaryAI:'Claude Opus 4.6', secondaryProvider:'Anthropic (fallback)', usage:25 },
+            { slug:'cro',     name:'CRO',                     title:'Revenue & Funnels',          ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'Sales optimization, B2B partnerships, revenue growth across all three ventures.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'—', secondaryProvider:'', usage:30 },
+            { slug:'legal',   name:'Legal',                   title:'Compliance & Contracts',     ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'Contract review, IP protection, App Store policies, terms of service.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'—', secondaryProvider:'', usage:20 },
+            { slug:'media',   name:'Media Director',          title:'Content & Distribution',     ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'YouTube, video production, content calendar, Scripture Unlocked + SnapToSell pipelines.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'Gemini Veo-3.1', secondaryProvider:'Video generation', usage:35 },
+            { slug:'intel',   name:'Intelligence Officer',    title:'Market Intel & Research',    ai:'deepseek-r1:14b',     aiLocal:true,
+              mission:'Competitive intel, market trends, threat detection across all three ventures.',
+              primaryAI:'deepseek-r1:14b (15B)', primaryProvider:'Ollama — Local', secondaryAI:'Claude Opus 4.6', secondaryProvider:'Anthropic (fallback)', usage:35 },
+            { slug:'hr',      name:'HR',                      title:'Culture & People Ops',       ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'Hiring, contractor management, team culture, performance frameworks.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'—', secondaryProvider:'', usage:15 },
+            { slug:'comms',   name:'Communications',          title:'PR & Media Outreach',        ai:'Claude Sonnet 4.5',   aiLocal:false,
+              mission:'PR, press releases, podcast booking, brand voice across all channels.',
+              primaryAI:'Claude Sonnet 4.5', primaryProvider:'Anthropic API', secondaryAI:'Grok-3', secondaryProvider:'PR visuals', usage:25 },
+            { slug:'madison', name:'Madison Harper',          title:'Book Marketing Director',    ai:'Claude Opus 4.6',     aiLocal:false,
+              mission:'Owns The Enemy Within launch. ARC, podcasts, Amazon, July 4, 2026.',
+              primaryAI:'Claude Opus 4.6', primaryProvider:'Anthropic API (Premium)', secondaryAI:'—', secondaryProvider:'', usage:55 }
         ];
         el.innerHTML = agentList.map(a => `
             <div class="agent-ql-item" onclick="openAgentDetail('${a.slug}')">
                 <div class="agent-ql-dot"></div>
-                <div class="agent-ql-name">${a.name}</div>
-                <div class="agent-ql-role">${a.title}</div>
+                <div style="flex:1;min-width:0;overflow:hidden;">
+                    <div class="agent-ql-name">${a.name}</div>
+                    <div style="font-size:10px;color:#8b9ab2;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                        ${a.title}&nbsp;&nbsp;·&nbsp;&nbsp;<span style="color:${a.aiLocal ? '#22c55e' : '#f97316'};">${a.ai}</span>
+                    </div>
+                </div>
+                <div class="agent-tooltip">
+                    <div class="at-name">${a.name}</div>
+                    <div class="at-mission">${a.mission}</div>
+                    <div class="at-divider"></div>
+                    <div class="at-row"><span class="at-label">Primary AI</span><span class="at-value primary">${a.primaryAI}</span></div>
+                    <div class="at-row"><span class="at-label">Provider</span><span class="at-value">${a.primaryProvider}</span></div>
+                    ${a.secondaryAI !== '—' ? `<div class="at-row"><span class="at-label">Fallback AI</span><span class="at-value secondary">${a.secondaryAI}</span></div><div class="at-row"><span class="at-label">Fallback via</span><span class="at-value">${a.secondaryProvider}</span></div>` : ''}
+                    <div class="at-divider"></div>
+                    <div class="at-usage-row"><span class="at-label">Session Usage</span><span class="at-value">${a.usage}%</span></div>
+                    <div class="at-bar-wrap"><div class="at-bar" style="width:${a.usage}%"></div></div>
+                </div>
             </div>`).join('');
     }
-
-    async function populateSidebarAgents() {
+async function populateSidebarAgents() {
         try {
             const { data, error } = await supabase
                 .from('agents')
@@ -4335,6 +4375,15 @@
         if (!usageData) return;
         const t = usageData.totals;
         const p = usageData.pricing;
+        // Update API Today metric card from today's daily data
+        const todayRow = usageData.daily && usageData.daily.find(d => d.date === new Date().toISOString().slice(0,10));
+        const latestDay = todayRow || (usageData.daily && usageData.daily[0]);
+        if (latestDay) {
+            const costEl = document.getElementById('api-cost-display');
+            const callsEl = document.getElementById('api-calls-display');
+            if (costEl) costEl.textContent = '$' + (latestDay.cost || 0).toFixed(2);
+            if (callsEl) callsEl.textContent = fmtTokens(latestDay.tokens || 0) + ' tokens today';
+        }
         if (usageView === 'tokens') {
             document.getElementById('usage-total').textContent = fmtTokens(t.totalTokens);
             document.getElementById('usage-input').textContent = fmtTokens(t.input);
@@ -4541,6 +4590,10 @@ function _renderSnapEmpty() {
     });
 }
 </script>
+
+
+
+
 
 
 
