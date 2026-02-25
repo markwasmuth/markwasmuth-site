@@ -4249,7 +4249,8 @@
         youtube: { bg:'rgba(255,0,0,0.15)', color:'#ff4444', label:'YouTube' }
     };
 
-    // Make.com webhook — fires when Mark approves a post
+    // Make.com polls Supabase every 15 min for approved posts — no webhook needed
+    // Optional: set MAKE_APPROVE_WEBHOOK for instant posting (future enhancement)
     const MAKE_APPROVE_WEBHOOK = window.MAKE_APPROVE_WEBHOOK || '';
 
     async function loadSuggestedPosts() {
@@ -4350,7 +4351,7 @@
             }).catch(e => console.warn('Make webhook failed:', e));
         }
 
-        card.innerHTML += '<div style="text-align:center;color:#22c55e;font-weight:700;padding:8px;font-size:13px;">✅ Approved — sending to Make.com</div>';
+        card.innerHTML += '<div style="text-align:center;color:#22c55e;font-weight:700;padding:8px;font-size:13px;">✅ Approved — Make.com will post within 15 min</div>';
         setTimeout(() => loadSuggestedPosts(), 2000);
     }
 
