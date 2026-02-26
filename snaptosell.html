@@ -1,410 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQTE286FTT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MQTE286FTT');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapToSell — Build Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapToSell "“ Sell Safer, Smarter, Faster | Mark Wasmuth</title>
-    <meta name="description" content="Let AI multiply your results, not your hours. Snap a photo, get instant pricing, list everywhere in 2 minutes with built-in fraud protection.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="SnapToSell "“ Sell Safer, Smarter, Faster">
-    <meta property="og:description" content="AI-powered marketplace selling. Snap a photo, get instant pricing, list everywhere in 2 minutes.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://markwasmuth.com/snaptosell">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
-                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
-                            800: '#243b53', 900: '#102a43',
-                        },
-                        amber: {
-                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
-                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
-                            800: '#92400e', 900: '#78350f',
-                        },
-                        warm: {
-                            50: '#faf9f7', 100: '#f5f3f0', 200: '#e8e4de', 300: '#d6d0c7',
-                            400: '#b8b0a3', 500: '#9a9184', 600: '#7d7568', 700: '#635c52',
-                            800: '#4a453d', 900: '#332f2a',
-                        }
-                    },
-                    fontFamily: {
-                        'display': ['"Source Serif 4"', 'Georgia', 'serif'],
-                        'body': ['"DM Sans"', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        body { font-family: 'DM Sans', system-ui, sans-serif; }
-        .font-display { font-family: 'Source Serif 4', Georgia, serif; }
-        html { scroll-behavior: smooth; }
-        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .btn-primary { background: linear-gradient(135deg, #102a43 0%, #243b53 100%); transition: all 0.3s ease; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(16, 42, 67, 0.5); }
-        .link-underline { position: relative; }
-        .link-underline::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
-            background: #d97706; transition: width 0.3s ease;
-        }
-        .link-underline:hover::after { width: 100%; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeInUp 0.7s ease forwards; }
-        .delay-100 { animation-delay: 0.1s; opacity: 0; }
-        .delay-200 { animation-delay: 0.2s; opacity: 0; }
-        .delay-300 { animation-delay: 0.3s; opacity: 0; }
-        .delay-400 { animation-delay: 0.4s; opacity: 0; }
-        input:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
-        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12); }
-    </style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0f1e;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    /* ── PASSWORD SCREEN ── */
+    #passwordScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 50%, #0a0f1e 100%);
+    }
+    .pw-box {
+      background: rgba(15, 31, 61, 0.9);
+      border: 1px solid rgba(255, 107, 0, 0.4);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 40px rgba(255, 107, 0, 0.1);
+    }
+    .pw-logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .pw-logo span { color: #ff6b00; }
+    .pw-sub { color: #64748b; font-size: 0.9rem; margin-bottom: 32px; }
+    .pw-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: #f1f5f9;
+      font-size: 1rem;
+      font-family: inherit;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .pw-input:focus { border-color: rgba(255,107,0,0.5); }
+    .pw-btn {
+      width: 100%;
+      padding: 14px;
+      background: #ff6b00;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .pw-btn:hover { background: #e55a00; }
+    .pw-error { color: #f87171; font-size: 0.85rem; margin-top: 12px; display: none; }
+
+    /* ── MAIN DASHBOARD ── */
+    #dashboard { display: none; }
+
+    header {
+      background: rgba(10, 15, 30, 0.95);
+      border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .header-left h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .header-left h1 span { color: #ff6b00; }
+    .header-meta {
+      font-size: 0.75rem;
+      color: #475569;
+      margin-top: 2px;
+    }
+    .launch-countdown {
+      background: rgba(255, 107, 0, 0.1);
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    .countdown-label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+    .countdown-days { font-size: 2rem; font-weight: 800; color: #ff6b00; line-height: 1; }
+    .countdown-date { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+
+    .main-content {
+      padding: 32px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-strip {
+      background: rgba(15, 31, 61, 0.6);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .progress-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; }
+    .progress-bar-wrap { flex: 1; background: rgba(255,255,255,0.06); border-radius: 99px; height: 12px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #ff6b00, #ff9d4d); transition: width 0.8s ease; }
+    .progress-pct { font-size: 1.4rem; font-weight: 800; color: #ff6b00; flex-shrink: 0; }
+    .progress-stats { display: flex; gap: 24px; flex-shrink: 0; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.4rem; font-weight: 700; }
+    .stat-lbl { font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-num.green { color: #22c55e; }
+    .stat-num.blue { color: #3b82f6; }
+    .stat-num.orange { color: #f97316; }
+    .stat-num.red { color: #ef4444; }
+
+    /* ── TWO COLUMNS ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── COLUMN HEADERS ── */
+    .col-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid rgba(255,255,255,0.06);
+    }
+    .col-icon { font-size: 1.6rem; }
+    .col-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; }
+    .col-sub { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 12px;
+    }
+    .section-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .section-dot.green { background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+    .section-dot.blue { background: #3b82f6; box-shadow: 0 0 8px rgba(59,130,246,0.5); }
+    .section-dot.orange { background: #f97316; box-shadow: 0 0 8px rgba(249,115,22,0.5); }
+    .section-dot.red { background: #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+    .section-dot.purple { background: #a855f7; box-shadow: 0 0 8px rgba(168,85,247,0.5); }
+    .section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #94a3b8; }
+    .section-count {
+      font-size: 0.7rem;
+      color: #475569;
+      background: rgba(255,255,255,0.05);
+      padding: 2px 8px;
+      border-radius: 99px;
+      margin-left: auto;
+    }
+
+    /* ── TASK ROWS ── */
+    .task-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 3px solid transparent;
+      transition: background 0.15s;
+      margin-bottom: 4px;
+    }
+    .task-row:hover { background: rgba(255,255,255,0.03); }
+    .task-row.done { border-left-color: #22c55e; opacity: 0.65; }
+    .task-row.active { border-left-color: #3b82f6; }
+    .task-row.pending { border-left-color: #f97316; }
+    .task-row.blocked { border-left-color: #ef4444; }
+    .task-row.milestone { border-left-color: #a855f7; }
+
+    .task-check { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+    .task-body { flex: 1; min-width: 0; }
+    .task-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+    .task-row.done .task-name { text-decoration: line-through; color: #64748b; }
+    .task-note {
+      font-size: 0.76rem;
+      color: #475569;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .task-tags { display: flex; align-items: center; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .tag.mark { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+    .tag.vigen { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
+    .tag.arnold { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+    .tag.marcus { background: rgba(255,107,0,0.15); color: #fb923c; border: 1px solid rgba(255,107,0,0.2); }
+    .tag.team { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.15); }
+    .tag.blocker { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+
+    /* ── LAST UPDATED ── */
+    .updated-bar {
+      text-align: center;
+      color: #334155;
+      font-size: 0.75rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-warm-50 text-navy-900">
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <div class="pw-box">
+    <div class="pw-logo">Snap<span>To</span>Sell</div>
+    <div class="pw-sub">Build Tracker · Internal Only</div>
+    <input type="password" class="pw-input" id="pwInput" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="pw-btn" onclick="checkPw()">Enter</button>
+    <div class="pw-error" id="pwError">Incorrect code</div>
+  </div>
+</div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-warm-50/90 border-b border-warm-200">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-xl font-bold tracking-tight text-navy-900">Mark Wasmuth</a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="/" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Home</a>
-                    <a href="/coaching.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Business Advisory</a>
-                    <a href="/book.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">The Book</a>
-                    <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 hover:text-navy-900 link-underline">Bible Studies</a>
-                    <a href="#notify" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">Get Early Access</a>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-navy-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
-                <div class="flex flex-col gap-4">
-                    <a href="/" class="text-sm font-medium text-navy-700 py-2">Home</a>
-                    <a href="/coaching.html" class="text-sm font-medium text-navy-700 py-2">Business Advisory</a>
-                    <a href="/book.html" class="text-sm font-medium text-navy-700 py-2">The Book</a>
-                    <a href="/bible-studies.html" class="text-sm font-medium text-navy-700 py-2">Bible Studies</a>
-                    <a href="#notify" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center">Get Early Access</a>
-                </div>
-            </div>
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <h1>Snap<span>To</span>Sell — Build Tracker</h1>
+      <div class="header-meta">APP · MARKETPLACE · LAUNCH STATUS &nbsp;·&nbsp; Internal · Marcus Steele (CTO)</div>
+    </div>
+    <div class="launch-countdown">
+      <div class="countdown-label">Days to Launch</div>
+      <div class="countdown-days" id="daysLeft">—</div>
+      <div class="countdown-date">April 21, 2026</div>
+    </div>
+  </header>
+
+  <div class="main-content">
+
+    <!-- PROGRESS STRIP -->
+    <div class="progress-strip">
+      <div class="progress-label">Launch Readiness</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="progressPct">0%</div>
+      <div class="progress-stats">
+        <div class="stat"><div class="stat-num green" id="cntDone">0</div><div class="stat-lbl">Done</div></div>
+        <div class="stat"><div class="stat-num blue" id="cntActive">0</div><div class="stat-lbl">Active</div></div>
+        <div class="stat"><div class="stat-num orange" id="cntPending">0</div><div class="stat-lbl">To Build</div></div>
+        <div class="stat"><div class="stat-num red" id="cntBlocked">0</div><div class="stat-lbl">Blocked</div></div>
+      </div>
+    </div>
+
+    <!-- TWO COLUMNS -->
+    <div class="two-col">
+
+      <!-- ═══════════════════════════════════════════
+           COLUMN 1: APP
+      ═══════════════════════════════════════════ -->
+      <div id="appColumn">
+        <div class="col-header">
+          <div class="col-icon">📱</div>
+          <div>
+            <div class="col-title">The App</div>
+            <div class="col-sub">Core product · Camera · AI scan · Auth · Trust layer</div>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-amber-50/50 to-transparent hidden lg:block"></div>
-        <div class="absolute left-1/4 top-1/4 w-96 h-96 bg-amber-100/30 rounded-full filter blur-3xl"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <p class="text-amber-600 font-semibold mb-6 tracking-wide uppercase text-sm animate-fade-in">For Sellers</p>
-                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-in delay-100">
-                        Sell Safer, Smarter, Faster
-                    </h1>
-                    <p class="text-xl md:text-2xl text-navy-700 mb-6 leading-relaxed animate-fade-in delay-200">
-                        Let AI multiply your results. Not your hours.
-                    </p>
-                    <p class="text-lg text-navy-600 mb-10 leading-relaxed animate-fade-in delay-300">
-                        Snap a photo, get instant pricing, list everywhere in 2 minutes. Built-in fraud protection keeps you safe. Speed is important. Trust is essential.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-400">
-                        <a href="#notify" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
-                            Get Early Access
-                        </a>
-                        <a href="#features" class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-lg font-semibold text-center hover:bg-navy-900 hover:text-white transition">
-                            See How It Works
-                        </a>
-                    </div>
-                </div>
-                <div class="hidden lg:block animate-fade-in delay-400">
-                    <div class="bg-white rounded-2xl shadow-2xl p-8">
-                        <img 
-                            src="/snaptoselllogo.jpg" 
-                            alt="SnapToSell Logo" 
-                            class="w-full rounded-xl"
-                        >
-                    </div>
-                </div>
-            </div>
+        <!-- DONE -->
+        <div class="section-header">
+          <div class="section-dot green"></div>
+          <div class="section-title">✅ Built &amp; Done</div>
+          <div class="section-count" id="appDoneCount">0 items</div>
         </div>
-    </section>
+        <div id="appDone"></div>
 
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">How It Works</p>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                    Three Steps to Sold
-                </h2>
-                <p class="text-lg text-navy-600 max-w-2xl mx-auto">
-                    Stop wasting hours on research and listings. Let AI do the heavy lifting.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-warm-50 rounded-2xl p-8 card-lift">
-                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
-                        <span class="text-2xl font-bold text-amber-700">1</span>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Snap a Photo</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        Take a picture of what you want to sell. Our AI identifies it instantly"”make, model, condition, and all.
-                    </p>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="bg-warm-50 rounded-2xl p-8 card-lift">
-                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
-                        <span class="text-2xl font-bold text-amber-700">2</span>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Get Instant Pricing</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        AI analyzes current market data to give you the right price. No more guessing or leaving money on the table.
-                    </p>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="bg-warm-50 rounded-2xl p-8 card-lift">
-                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
-                        <span class="text-2xl font-bold text-amber-700">3</span>
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-3">List Everywhere</h3>
-                    <p class="text-navy-600 leading-relaxed">
-                        One click publishes to multiple marketplaces. Built-in fraud detection protects you from scammers.
-                    </p>
-                </div>
-            </div>
+        <!-- IN PROGRESS -->
+        <div class="section-header">
+          <div class="section-dot blue"></div>
+          <div class="section-title">🔄 In Progress</div>
+          <div class="section-count" id="appActiveCount">0 items</div>
         </div>
-    </section>
+        <div id="appActive"></div>
 
-    <!-- Stats Section -->
-    <section class="py-20 bg-navy-900 text-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-12 text-center">
-                <div>
-                    <p class="text-4xl md:text-5xl font-bold text-amber-400 mb-2">93-96%</p>
-                    <p class="text-navy-200">AI Accuracy</p>
-                </div>
-                <div>
-                    <p class="text-4xl md:text-5xl font-bold text-amber-400 mb-2">87%</p>
-                    <p class="text-navy-200">Time Reduction</p>
-                </div>
-                <div>
-                    <p class="text-4xl md:text-5xl font-bold text-amber-400 mb-2">2 min</p>
-                    <p class="text-navy-200">Photo to Listed</p>
-                </div>
-            </div>
+        <!-- TO BUILD -->
+        <div class="section-header">
+          <div class="section-dot orange"></div>
+          <div class="section-title">📋 To Build</div>
+          <div class="section-count" id="appPendingCount">0 items</div>
         </div>
-    </section>
+        <div id="appPending"></div>
 
-    <!-- Who It's For Section -->
-    <section class="py-24 bg-warm-100">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-amber-600 font-semibold mb-4 tracking-wide uppercase text-sm">Who It's For</p>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                    Built for People Who Sell
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl p-8 card-lift">
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-4">Individual Sellers</h3>
-                    <p class="text-navy-600 leading-relaxed mb-4">
-                        Cleaning out the garage? Downsizing? Flipping finds? SnapToSell turns your stuff into cash without the hassle of researching prices and writing listings.
-                    </p>
-                    <ul class="space-y-2 text-navy-600">
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            No more hours of research
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            Price with confidence
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            Avoid scammers
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 card-lift">
-                    <h3 class="font-display text-xl font-bold text-navy-900 mb-4">Businesses with Inventory</h3>
-                    <p class="text-navy-600 leading-relaxed mb-4">
-                        Got backlog piling up? Equipment to liquidate? SnapToSell helps businesses move inventory fast without dedicated staff.
-                    </p>
-                    <ul class="space-y-2 text-navy-600">
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            Bulk listing capabilities
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            Market-accurate pricing
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            Turn dead stock into cash
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <!-- BLOCKED -->
+        <div class="section-header">
+          <div class="section-dot red"></div>
+          <div class="section-title">🚫 Blocked</div>
+          <div class="section-count" id="appBlockedCount">0 items</div>
         </div>
-    </section>
+        <div id="appBlocked"></div>
+      </div>
 
-    <!-- Early Access Section -->
-    <section id="notify" class="py-24 bg-navy-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-400 rounded-full filter blur-3xl"></div>
+      <!-- ═══════════════════════════════════════════
+           COLUMN 2: MARKETPLACE
+      ═══════════════════════════════════════════ -->
+      <div id="mktColumn">
+        <div class="col-header">
+          <div class="col-icon">🏪</div>
+          <div>
+            <div class="col-title">The Marketplace</div>
+            <div class="col-sub">Buy flow · Listings · Seller trust · Scale · Acquisition thesis</div>
+          </div>
         </div>
-        
-        <div class="max-w-xl mx-auto px-6 relative z-10 text-center">
-            <p class="text-amber-400 font-semibold mb-4 tracking-wide uppercase text-sm">Coming Soon</p>
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
-                Get Early Access
-            </h2>
-            <p class="text-lg text-navy-200 mb-8">
-                Be first in line when SnapToSell launches. We'll notify you the moment it's ready.
-            </p>
 
-            <!-- Custom form with success message -->
-            <form id="snaptosell-form" class="space-y-4">
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        placeholder="Enter your email"
-                        class="flex-1 px-5 py-4 bg-navy-800 border border-navy-600 rounded-lg text-white placeholder-navy-400 text-center sm:text-left"
-                    >
-                    <button
-                        type="submit"
-                        class="bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold py-4 px-8 rounded-lg transition whitespace-nowrap"
-                    >
-                        Notify Me
-                    </button>
-                </div>
-                <p class="text-sm text-navy-400">No spam. Just launch updates.</p>
-            </form>
-
-            <!-- Success message (hidden by default) -->
-            <div id="success-message" class="hidden">
-                <div class="bg-navy-800/50 backdrop-blur rounded-2xl p-8">
-                    <svg class="w-16 h-16 text-amber-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <h3 class="font-display text-2xl font-bold mb-2">You're on the list!</h3>
-                    <p class="text-navy-200">We'll let you know the moment SnapToSell is ready.</p>
-                </div>
-            </div>
+        <!-- PHASE 1 LAUNCH -->
+        <div class="section-header">
+          <div class="section-dot blue"></div>
+          <div class="section-title">🚀 Phase 1 — April Launch</div>
+          <div class="section-count" id="mkt1Count">0 items</div>
         </div>
-    </section>
+        <div id="mkt1"></div>
 
-    <!-- Footer -->
-    <footer class="bg-navy-900 text-white py-16 border-t border-navy-800">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div class="md:col-span-2">
-                    <h3 class="font-display text-xl font-bold mb-4">Mark Wasmuth</h3>
-                    <p class="text-navy-300 mb-6 max-w-md leading-relaxed">
-                        Entrepreneur, author, and advisor. Building businesses that create freedom, documenting truth, and leveraging AI to multiply time.
-                    </p>
-                    <p class="text-navy-400 text-sm">Smart Brands Inc. · Pittsboro, NC</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Explore</h4>
-                    <ul class="space-y-3 text-navy-300">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/coaching.html" class="hover:text-white transition">Business Advisory</a></li>
-                        <li><a href="/book.html" class="hover:text-white transition">The Enemy Within</a></li>
-                        <li><a href="/bible-studies.html" class="hover:text-white transition">Bible Studies</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Connect</h4>
-                    <ul class="space-y-3 text-navy-300">
-                        <li><a href="mailto:markwasmuth@gmail.com" class="hover:text-white transition">Email</a></li>
-                        <li><a href="https://www.linkedin.com/in/mark-wasmuth/" target="_blank" class="hover:text-white transition">LinkedIn</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-navy-400 text-sm">© 2026 Mark Wasmuth. All rights reserved.</p>
-                <div class="flex gap-6 text-sm text-navy-400">
-                    <a href/privacy-policy.html class="hover:text-white transition">Privacy Policy</a>
-                    <a href/terms-of-service.html class="hover:text-white transition">Terms of Service</a>
-                </div>
-            </div>
+        <!-- PHASE 2 -->
+        <div class="section-header">
+          <div class="section-dot orange"></div>
+          <div class="section-title">📈 Phase 2 — Post-Launch</div>
+          <div class="section-count" id="mkt2Count">0 items</div>
         </div>
-    </footer>
+        <div id="mkt2"></div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        <!-- PHASE 3 -->
+        <div class="section-header">
+          <div class="section-dot purple"></div>
+          <div class="section-title">🏛️ Phase 3 — Scale &amp; Acquisition</div>
+          <div class="section-count" id="mkt3Count">0 items</div>
+        </div>
+        <div id="mkt3"></div>
 
-        // SnapToSell early access form
-        const snaptosellForm = document.getElementById('snaptosell-form');
-        const successMessage = document.getElementById('success-message');
+        <!-- LAUNCH MILESTONES -->
+        <div class="section-header">
+          <div class="section-dot purple"></div>
+          <div class="section-title">🎯 Launch Milestones</div>
+          <div class="section-count" id="milestonesCount">0 items</div>
+        </div>
+        <div id="milestones"></div>
+      </div>
 
-        snaptosellForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const submitBtn = snaptosellForm.querySelector('button[type="submit"]');
+    </div><!-- /.two-col -->
 
-            submitBtn.textContent = 'Signing up...';
-            submitBtn.disabled = true;
+    <div class="updated-bar">
+      Last updated by Marcus Steele · February 26, 2026 · Auto-refreshes every 60s
+      &nbsp;·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">← Mission Control</a>
+    </div>
 
-            try {
-                const formData = new FormData();
-                formData.append('email', email);
+  </div><!-- /.main-content -->
+</div><!-- /#dashboard -->
 
-                await fetch('https://subscribe-forms.beehiiv.com/subscribe/46138cde-ade1-4aaf-bfe6-f3417d089dd5', {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                // Request sent even if CORS blocks response
-            }
+<script>
+/* ──────────────────────────────────────────────
+   PASSWORD
+────────────────────────────────────────────── */
+function checkPw() {
+  const v = document.getElementById('pwInput').value;
+  // Same pattern as cc.html — simple passphrase
+  const valid = ['snaptosell2026','sts2026','marcus','smartbrands'].includes(v.toLowerCase().trim());
+  if (valid) {
+    document.getElementById('passwordScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    init();
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
 
-            // Show success message
-            snaptosellForm.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-        });
-    </script>
+/* ──────────────────────────────────────────────
+   DATA — The full task list
+   status: 'done' | 'active' | 'pending' | 'blocked'
+   owner:  'mark' | 'vigen' | 'arnold' | 'marcus' | 'team'
+   col:    'app-done'|'app-active'|'app-pending'|'app-blocked'
+            'mkt1'|'mkt2'|'mkt3'|'milestones'
+────────────────────────────────────────────── */
+const TASKS = [
 
+  // ═══ APP — DONE ═══════════════════════════
+  { col:'app-done', name:'Firebase Auth — email, phone OTP, Google, Apple', owner:'vigen' },
+  { col:'app-done', name:'Camera screen — 1-5 photos, flash, grid, gallery', owner:'vigen' },
+  { col:'app-done', name:'AI scan API client — parallel upload, retry, callbacks', owner:'vigen' },
+  { col:'app-done', name:'Trust signals service — Firestore logging', owner:'vigen' },
+  { col:'app-done', name:'Home, marketplace, messages, profile, settings screens', owner:'vigen' },
+  { col:'app-done', name:'Auth wrapper + login + register + OTP screens', owner:'vigen' },
+  { col:'app-done', name:'EXIF metadata extraction (backend)', owner:'vigen' },
+  { col:'app-done', name:'pHash generation — duplicate listing detection', owner:'vigen' },
+  { col:'app-done', name:'Stock photo detection', owner:'vigen' },
+  { col:'app-done', name:'Device fingerprinting', owner:'vigen' },
+  { col:'app-done', name:'Seller velocity rules — fraud flag logic', owner:'vigen' },
+  { col:'app-done', name:'Pricing anomaly detection engine', owner:'vigen' },
+  { col:'app-done', name:'Seller trust score calculation', owner:'vigen' },
+  { col:'app-done', name:'Fraud taxonomy — 14 scam types, 5 categories', owner:'marcus', note:'4-layer: Visual AI + Behavioral + Pricing + Identity · 3/3 tests passed · 0 false positives' },
+  { col:'app-done', name:'Fraud detection engine — 4-layer scoring', owner:'marcus' },
+  { col:'app-done', name:'Trust Signals Card widget (ready to wire)', owner:'marcus' },
+  { col:'app-done', name:'Onboarding screen — 3-screen animated (ready to wire)', owner:'marcus' },
+  { col:'app-done', name:'Android Share Intent — overlay without leaving FB Marketplace', owner:'marcus', note:'ShareActivity.kt + AndroidManifest registered' },
+  { col:'app-done', name:'UX mockups — Variants A, B, C designed', owner:'marcus', note:'Variant C (The Jobs Move) recommended · In Drive' },
+
+  // ═══ APP — IN PROGRESS ════════════════════
+  { col:'app-active', name:'AI identification accuracy — sustained 93-96%', owner:'vigen', note:'Currently hitting target in POC · Maintaining in MVP' },
+  { col:'app-active', name:'Scan speed — under 10 seconds (currently 30-35s)', owner:'vigen', note:'Parallel processing active in snap_to_sell_api.dart · Needs confirmed measurement on device' },
+  { col:'app-active', name:'Google Play Console — developer@snaptosell.com', owner:'mark', note:'Google Workspace setup in progress today' },
+  { col:'app-active', name:'Buy flow + Stripe payments', owner:'vigen', note:'Largest remaining gap · Est. 2 weeks' },
+
+  // ═══ APP — TO BUILD ═══════════════════════
+  { col:'app-pending', name:'Wire onboarding into main.dart routing', owner:'vigen', note:'30 min · Code exists · Just needs wiring' },
+  { col:'app-pending', name:'Wire TrustSignalsCard to scan result screen', owner:'vigen', note:'30 min · Code exists · Just needs wiring' },
+  { col:'app-pending', name:'Release signing keystore — generate and configure', owner:'vigen', note:'Required for Play Store upload · keytool command ready' },
+  { col:'app-pending', name:'Test Android Share Intent on Mark\'s device', owner:'arnold', note:'Add kotlinx-coroutines-android:1.7.3 first' },
+  { col:'app-pending', name:'Image compression on upload', owner:'vigen' },
+  { col:'app-pending', name:'Photo quality detection — blur/lighting flag', owner:'vigen' },
+  { col:'app-pending', name:'"Ask for more photos" prompt if AI confidence <80%', owner:'vigen' },
+  { col:'app-pending', name:'Camera overlay guide frame', owner:'arnold' },
+  { col:'app-pending', name:'API error handling — no blank screens on failure', owner:'arnold', note:'Timeout · API error · No internet states all need graceful UI' },
+  { col:'app-pending', name:'eBay OAuth integration — post directly from app', owner:'vigen' },
+  { col:'app-pending', name:'Facebook Marketplace clipboard copy workflow', owner:'vigen' },
+  { col:'app-pending', name:'Multi-platform selector UI', owner:'arnold' },
+  { col:'app-pending', name:'Listing preview before posting', owner:'arnold' },
+  { col:'app-pending', name:'Edit AI content before posting', owner:'arnold' },
+  { col:'app-pending', name:'Seller trust badge on listing cards', owner:'arnold', note:'Green=Verified · Orange=Basic · Grey=Unverified' },
+  { col:'app-pending', name:'Scan history screen', owner:'arnold', note:'Past scans with thumbnail, product, date, status' },
+  { col:'app-pending', name:'Donation slider UI — 0-100% give', owner:'arnold' },
+  { col:'app-pending', name:'User profile page — full', owner:'arnold' },
+  { col:'app-pending', name:'Transaction history page', owner:'arnold' },
+  { col:'app-pending', name:'Full AI response logging (raw JSON)', owner:'vigen' },
+  { col:'app-pending', name:'User correction tracking — "was a scam / was fine"', owner:'marcus', note:'Ground truth feedback loop · Feeds back into fraud model' },
+  { col:'app-pending', name:'Price history logging', owner:'vigen' },
+  { col:'app-pending', name:'API cost monitoring per analysis', owner:'vigen' },
+  { col:'app-pending', name:'Seller metrics logging', owner:'vigen' },
+  { col:'app-pending', name:'Database schema finalized', owner:'vigen' },
+  { col:'app-pending', name:'API rate limiting', owner:'vigen' },
+  { col:'app-pending', name:'iOS App Store submission build', owner:'vigen', note:'Due April 1' },
+  { col:'app-pending', name:'Google Play submission build — Android', owner:'vigen' },
+  { col:'app-pending', name:'POST /api/scan/url listing scraper endpoint', owner:'marcus', note:'Required for Share Intent to work · endpoint does not exist yet' },
+  { col:'app-pending', name:'VF-004 Bait & Switch visual signal parser', owner:'marcus', note:'GPT-4o image vs description mismatch detection' },
+  { col:'app-pending', name:'Parallel processing across all 4 detection layers', owner:'marcus', note:'Promise.all() · Target: under 5s' },
+
+  // ═══ APP — BLOCKED ════════════════════════
+  { col:'app-blocked', name:'Apple Developer Account ($99) — OVERDUE', owner:'mark', note:'Required for TestFlight + App Store · developer.apple.com/programs · Vigen blocked on iOS until resolved' },
+  { col:'app-blocked', name:'Privacy Policy live URL — due March 1', owner:'mark', note:'Required by both app stores · snaptosell.com/privacy-policy' },
+  { col:'app-blocked', name:'Terms of Service live URL — due March 1', owner:'mark', note:'Required by both app stores · snaptosell.com/terms' },
+  { col:'app-blocked', name:'UX variant decision — A, B, or C', owner:'mark', note:'Pick one before scan result screen can be built' },
+  { col:'app-blocked', name:'Pricing model decision — free tier limits, paid tier', owner:'mark', note:'Blocks onboarding flow design and in-app purchase setup' },
+  { col:'app-blocked', name:'App Store screenshots + copy — due March 15', owner:'mark', note:'2+ screenshots per platform · 1024x500 feature graphic · 80/4000 char descriptions' },
+
+  // ═══ MARKETPLACE — PHASE 1 (Launch) ═══════
+  { col:'mkt1', name:'Browse + search listings UI', owner:'arnold', note:'Buyer-facing · Core loop for April launch' },
+  { col:'mkt1', name:'Item detail page', owner:'arnold' },
+  { col:'mkt1', name:'Messaging — buyer ↔ seller', owner:'vigen', note:'Screen exists · Full send/receive flow needed' },
+  { col:'mkt1', name:'Offer + counter-offer flow', owner:'arnold' },
+  { col:'mkt1', name:'Stripe payments — buyer completes purchase in-app', owner:'vigen', note:'Largest remaining gap · Critical path for April' },
+  { col:'mkt1', name:'Seller trust badge on profile', owner:'vigen' },
+  { col:'mkt1', name:'Fraud alert push notification to buyer', owner:'vigen', note:'When SnapToSell detects risk after listing goes live' },
+  { col:'mkt1', name:'Delayed payout rules for new sellers', owner:'vigen', note:'High-risk sellers held 7 days before payout' },
+  { col:'mkt1', name:'Charitable giving — donation slider + charity list', owner:'mark', note:'Confirm % structure first · Mark decision needed' },
+  { col:'mkt1', name:'Beta tester list — 50-100 users recruited', owner:'mark', note:'Target: March 2026' },
+  { col:'mkt1', name:'B2B prospect list — estate sale / consignment / pawn', owner:'mark' },
+  { col:'mkt1', name:'Advisory onboarding — Terry Fisher', owner:'mark' },
+  { col:'mkt1', name:'Advisory onboarding — Jake', owner:'mark' },
+  { col:'mkt1', name:'Investor deck updated post-demo', owner:'mark', note:'Seed round outreach begins March 2026' },
+
+  // ═══ MARKETPLACE — PHASE 2 (Post-Launch) ══
+  { col:'mkt2', name:'OfferUp integration', owner:'vigen' },
+  { col:'mkt2', name:'Nextdoor integration', owner:'vigen' },
+  { col:'mkt2', name:'Mercari integration', owner:'vigen' },
+  { col:'mkt2', name:'Craigslist workflow', owner:'arnold' },
+  { col:'mkt2', name:'Chrome browser extension — auto-scans every listing viewed', owner:'marcus', note:'The invisible fraud layer across all marketplaces' },
+  { col:'mkt2', name:'Verified Seller badge — network effect feature', owner:'vigen' },
+  { col:'mkt2', name:'Seller analytics dashboard', owner:'arnold' },
+  { col:'mkt2', name:'Bulk listing tools', owner:'vigen' },
+  { col:'mkt2', name:'Price recommendation engine — display to user', owner:'marcus', note:'Backend pricing anomaly detection built · Display UI not wired' },
+  { col:'mkt2', name:'Duplicate listing alert — display to user', owner:'marcus', note:'pHash backend built · Display UI not wired' },
+  { col:'mkt2', name:'Fraud intel digest — weekly seller report', owner:'marcus' },
+  { col:'mkt2', name:'Public seller trust score + review system', owner:'vigen' },
+
+  // ═══ MARKETPLACE — PHASE 3 (Scale) ════════
+  { col:'mkt3', name:'B2B fraud intelligence API — licensing play', owner:'marcus', note:'Every scan builds the data asset · Structured taxonomy with scamId + confidence + evidence chains · Target: eBay, Meta, Etsy' },
+  { col:'mkt3', name:'SnapToSell Marketplace — own the platform', owner:'team', note:'The Meta acquisition thesis · Full buyer + seller ecosystem' },
+  { col:'mkt3', name:'Scam pattern reporting to platforms (API partner)', owner:'marcus', note:'Real-time fraud sharing with eBay/FB · Partnership revenue' },
+  { col:'mkt3', name:'Insurance product — protect scam victims', owner:'mark', note:'Revenue + trust flywheel · Needs legal/insurance partner' },
+  { col:'mkt3', name:'Enterprise tier — pawn shops / consignment chains', owner:'mark', note:'B2B SaaS revenue · $500-2000/mo per location' },
+  { col:'mkt3', name:'Wasmuth Family Foundation integration', owner:'mark', note:'Charitable giving as brand differentiator at scale' },
+
+  // ═══ MILESTONES ═══════════════════════════
+  { col:'milestones', name:'Internal demo complete', owner:'team', note:'End of February 2026 · Sign-off milestone' },
+  { col:'milestones', name:'Alpha testing — internal team', owner:'team', note:'March 2026' },
+  { col:'milestones', name:'TestFlight beta + Play internal testing', owner:'team', note:'March 15, 2026 target · Blocked on Apple account' },
+  { col:'milestones', name:'Beta testing — 50-100 external users', owner:'team', note:'March / April 2026' },
+  { col:'milestones', name:'App Store submission — iOS', owner:'vigen', note:'April 1, 2026' },
+  { col:'milestones', name:'Google Play submission — Android', owner:'vigen', note:'April 1, 2026' },
+  { col:'milestones', name:'First 100 real listings on platform', owner:'team', note:'Launch week goal' },
+  { col:'milestones', name:'🚀 PUBLIC LAUNCH', owner:'team', note:'April 21, 2026' },
+];
+
+/* ──────────────────────────────────────────────
+   RENDER
+────────────────────────────────────────────── */
+const icons = { done:'✅', active:'🔄', pending:'○', blocked:'🚫', mkt1:'🔄', mkt2:'○', mkt3:'○', milestones:'🎯' };
+const rowClass = { done:'done', active:'active', pending:'pending', blocked:'blocked', mkt1:'active', mkt2:'pending', mkt3:'pending', milestones:'milestone' };
+
+function makeTag(owner) {
+  if (!owner) return '';
+  return `<span class="tag ${owner}">${owner.toUpperCase()}</span>`;
+}
+
+function renderTask(t, colKey) {
+  const icon = icons[colKey] || '○';
+  const cls = rowClass[colKey] || 'pending';
+  const note = t.note ? `<div class="task-note">${t.note}</div>` : '';
+  return `
+    <div class="task-row ${cls}">
+      <div class="task-check">${icon}</div>
+      <div class="task-body">
+        <div class="task-name">${t.name}</div>
+        ${note}
+      </div>
+      <div class="task-tags">${makeTag(t.owner)}</div>
+    </div>`;
+}
+
+function init() {
+  // Countdown
+  const launch = new Date('2026-04-21T09:00:00-04:00');
+  const today = new Date();
+  const diff = Math.ceil((launch - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '🚀';
+
+  // Group tasks by column
+  const groups = {};
+  TASKS.forEach(t => {
+    const k = t.col;
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(t);
+  });
+
+  const colKeys = ['app-done','app-active','app-pending','app-blocked','mkt1','mkt2','mkt3','milestones'];
+  const containers = {
+    'app-done':    'appDone',
+    'app-active':  'appActive',
+    'app-pending': 'appPending',
+    'app-blocked': 'appBlocked',
+    'mkt1':        'mkt1',
+    'mkt2':        'mkt2',
+    'mkt3':        'mkt3',
+    'milestones':  'milestones',
+  };
+  const counters = {
+    'app-done':    'appDoneCount',
+    'app-active':  'appActiveCount',
+    'app-pending': 'appPendingCount',
+    'app-blocked': 'appBlockedCount',
+    'mkt1':        'mkt1Count',
+    'mkt2':        'mkt2Count',
+    'mkt3':        'mkt3Count',
+    'milestones':  'milestonesCount',
+  };
+
+  colKeys.forEach(k => {
+    const items = groups[k] || [];
+    const el = document.getElementById(containers[k]);
+    const cnt = document.getElementById(counters[k]);
+    if (el) el.innerHTML = items.map(t => renderTask(t, k)).join('');
+    if (cnt) cnt.textContent = `${items.length} item${items.length !== 1 ? 's' : ''}`;
+  });
+
+  // Progress stats
+  const done    = (groups['app-done']    || []).length;
+  const active  = (groups['app-active']  || []).length;
+  const pending = (groups['app-pending'] || []).length + (groups['mkt1'] || []).length;
+  const blocked = (groups['app-blocked'] || []).length;
+  const total   = done + active + pending + blocked;
+  const pct     = total ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('cntDone').textContent    = done;
+  document.getElementById('cntActive').textContent  = active;
+  document.getElementById('cntPending').textContent = pending;
+  document.getElementById('cntBlocked').textContent = blocked;
+  document.getElementById('progressPct').textContent = pct + '%';
+  setTimeout(() => {
+    document.getElementById('progressFill').style.width = pct + '%';
+  }, 100);
+}
+</script>
 </body>
 </html>
