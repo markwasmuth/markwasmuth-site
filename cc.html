@@ -2735,7 +2735,7 @@
             }
         }
 
-        /* ── SNAPTOSELL BUILD TRACKER ── */
+        /* == SNAPTOSELL BUILD TRACKER == */
         async function loadSTSTracker() {
           try {
             const res = await fetch(`${SUPABASE_URL}/rest/v1/agent_tasks?to_agent=eq.sts_tracker&limit=200&order=created_at.asc`, {
@@ -2759,14 +2759,14 @@
             tasks.forEach(t => { if (!groups[t.col]) groups[t.col] = []; groups[t.col].push(t); });
 
             const colMap = {
-              'app-done':    { el:'sts-app-done',    cnt:'sts-app-done-cnt',    icon:'✓',  cls:'done'    },
-              'app-active':  { el:'sts-app-active',  cnt:'sts-app-active-cnt',  icon:'↻',  cls:'active'  },
-              'app-pending': { el:'sts-app-pending', cnt:'sts-app-pending-cnt', icon:'○',  cls:''        },
-              'app-blocked': { el:'sts-app-blocked', cnt:'sts-app-blocked-cnt', icon:'⊘',  cls:'blocked' },
-              'mkt1':        { el:'sts-mkt1',        cnt:'sts-mkt1-cnt',        icon:'○',  cls:''        },
-              'mkt2':        { el:'sts-mkt2',        cnt:'sts-mkt2-cnt',        icon:'○',  cls:''        },
-              'mkt3':        { el:'sts-mkt3',        cnt:'sts-mkt3-cnt',        icon:'○',  cls:''        },
-              'milestones':  { el:'sts-milestones',  cnt:'sts-milestones-cnt',  icon:'🎯', cls:''        },
+              'app-done':    { el:'sts-app-done',    cnt:'sts-app-done-cnt',    icon:'&#10003;', cls:'done'    },
+              'app-active':  { el:'sts-app-active',  cnt:'sts-app-active-cnt',  icon:'&#8635;',  cls:'active'  },
+              'app-pending': { el:'sts-app-pending', cnt:'sts-app-pending-cnt', icon:'&#9675;',  cls:''        },
+              'app-blocked': { el:'sts-app-blocked', cnt:'sts-app-blocked-cnt', icon:'&#8856;',  cls:'blocked' },
+              'mkt1':        { el:'sts-mkt1',        cnt:'sts-mkt1-cnt',        icon:'&#9675;',  cls:''        },
+              'mkt2':        { el:'sts-mkt2',        cnt:'sts-mkt2-cnt',        icon:'&#9675;',  cls:''        },
+              'mkt3':        { el:'sts-mkt3',        cnt:'sts-mkt3-cnt',        icon:'&#9675;',  cls:''        },
+              'milestones':  { el:'sts-milestones',  cnt:'sts-milestones-cnt',  icon:'&#127919;',  cls:''        },
             };
 
             Object.keys(colMap).forEach(k => {
