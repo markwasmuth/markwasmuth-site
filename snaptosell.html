@@ -397,17 +397,45 @@
 const SB_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
 
-/* ── PASSWORD ── */
+/* ── USERS ── */
+const USERS = {
+  'Grizzly123': 'mark',
+  'STS-Vigen':  'vigen',
+  'STS-Terry':  'advisor',
+  'STS-Team':   'viewer'
+};
+
+/* ── PASSWORD + PERSISTENT LOGIN ── */
 function checkPw() {
-  const v = document.getElementById('pwInput').value;
-  if (v.trim() === 'Grizzly123') {
-    document.getElementById('passwordScreen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    init();
-    setInterval(loadAndRender, 60000);
+  const v = document.getElementById('pwInput').value.trim();
+  if (USERS[v]) {
+    localStorage.setItem('sts_auth', v);
+    localStorage.setItem('sts_user', USERS[v]);
+    launch();
   } else {
     document.getElementById('pwError').style.display = 'block';
   }
+}
+
+function launch() {
+  document.getElementById('passwordScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  init();
+  setInterval(loadAndRender, 60000);
+}
+
+function autoLogin() {
+  const saved = localStorage.getItem('sts_auth');
+  if (saved && USERS[saved]) {
+    launch();
+    return true;
+  }
+  return false;
+}
+
+// Try auto-login on page load
+if (!autoLogin()) {
+  // Show password screen (already visible by default)
 }
 
 /* ── FETCH FROM SUPABASE ── */
