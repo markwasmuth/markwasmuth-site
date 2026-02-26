@@ -2744,12 +2744,16 @@
             const tasks = rows.map(r => {
               let ctx = {};
               try { ctx = JSON.parse(r.context || '{}'); } catch(e) {}
+              const completedAt = r.completed_at ? new Date(r.completed_at) : null;
               return {
-                col:   ctx.col   || 'app-pending',
-                owner: ctx.owner || 'team',
-                note:  ctx.note  || '',
-                name:  r.task.replace(/^\[STS:[^\]]+\]\s*/, ''),
-                status: r.status
+                col:          ctx.col   || 'app-pending',
+                owner:        ctx.owner || 'team',
+                note:         ctx.note  || '',
+                name:         r.task.replace(/^\[STS:[^\]]+\]\s*/, ''),
+                status:       r.status,
+                completedStr: completedAt
+                  ? completedAt.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' })
+                  : null
               };
             });
 
@@ -2773,13 +2777,16 @@
               const elEl  = document.getElementById(cfg.el);
               const cntEl = document.getElementById(cfg.cnt);
               if (!elEl) return;
-              elEl.innerHTML = items.map(t =>
-                `<div class="sts-row ${cfg.cls}">
+              elEl.innerHTML = items.map(t => {
+                const stamp = (cfg.cls === 'done' && t.completedStr)
+                  ? `<span style="font-size:0.65rem;color:#22c55e;opacity:0.7;margin-left:4px;">&#10003; ${t.completedStr}</span>`
+                  : '';
+                return `<div class="sts-row ${cfg.cls}">
                   <span class="sts-icon">${cfg.icon}</span>
-                  <span class="sts-name">${t.name}</span>
+                  <span class="sts-name">${t.name}${stamp}</span>
                   <span class="sts-tag ${t.owner}">${t.owner.toUpperCase()}</span>
-                </div>`
-              ).join('');
+                </div>`;
+              }).join('');
               if (cntEl) cntEl.textContent = `(${items.length})`;
             });
 

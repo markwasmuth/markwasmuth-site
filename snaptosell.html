@@ -448,11 +448,15 @@ async function fetchTasks() {
   return rows.map(r => {
     let ctx = {};
     try { ctx = JSON.parse(r.context || '{}'); } catch(e) {}
-    const name = r.task.replace(/^\[STS:[^\]]+\]\s*/, '');
-    const col  = ctx.col  || 'app-pending';
-    const owner = ctx.owner || 'team';
-    const note  = ctx.note  || '';
-    return { col, name, owner, note, status: r.status };
+    const name        = r.task.replace(/^\[STS:[^\]]+\]\s*/, '');
+    const col         = ctx.col   || 'app-pending';
+    const owner       = ctx.owner || 'team';
+    const note        = ctx.note  || '';
+    const completedAt = r.completed_at ? new Date(r.completed_at) : null;
+    const completedStr = completedAt
+      ? completedAt.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' })
+      : null;
+    return { col, name, owner, note, status: r.status, completedStr };
   });
 }
 
@@ -465,14 +469,17 @@ function makeTag(owner) {
 }
 
 function renderTask(t, colKey) {
-  const icon = icons[colKey] || '○';
-  const cls  = rowClass[colKey] || 'pending';
-  const note = t.note ? `<div class="task-note">${t.note}</div>` : '';
+  const icon      = icons[colKey] || '&#9675;';
+  const cls       = rowClass[colKey] || 'pending';
+  const note      = t.note ? `<div class="task-note">${t.note}</div>` : '';
+  const doneStamp = (cls === 'done' && t.completedStr)
+    ? `<div class="task-note" style="color:#22c55e;opacity:0.7;">&#10003; Done ${t.completedStr}</div>`
+    : '';
   return `
     <div class="task-row ${cls}">
       <div class="task-check">${icon}</div>
       <div class="task-body">
-        <div class="task-name">${t.name}</div>${note}
+        <div class="task-name">${t.name}</div>${note}${doneStamp}
       </div>
       <div class="task-tags">${makeTag(t.owner)}</div>
     </div>`;
