@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SnapToSell — Build Tracker</title>
+  <title>SnapToSell â€” Build Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -16,7 +16,7 @@
       min-height: 100vh;
     }
 
-    /* ── PASSWORD SCREEN ── */
+    /* â”€â”€ PASSWORD SCREEN â”€â”€ */
     #passwordScreen {
       display: flex;
       align-items: center;
@@ -72,7 +72,7 @@
     .pw-btn:hover { background: #e55a00; }
     .pw-error { color: #f87171; font-size: 0.85rem; margin-top: 12px; display: none; }
 
-    /* ── MAIN DASHBOARD ── */
+    /* â”€â”€ MAIN DASHBOARD â”€â”€ */
     #dashboard { display: none; }
 
     header {
@@ -115,7 +115,7 @@
       margin: 0 auto;
     }
 
-    /* ── PROGRESS BAR ── */
+    /* â”€â”€ PROGRESS BAR â”€â”€ */
     .progress-strip {
       background: rgba(15, 31, 61, 0.6);
       border: 1px solid rgba(255,255,255,0.06);
@@ -139,7 +139,7 @@
     .stat-num.orange { color: #f97316; }
     .stat-num.red { color: #ef4444; }
 
-    /* ── TWO COLUMNS ── */
+    /* â”€â”€ TWO COLUMNS â”€â”€ */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -148,7 +148,7 @@
     }
     @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
 
-    /* ── COLUMN HEADERS ── */
+    /* â”€â”€ COLUMN HEADERS â”€â”€ */
     .col-header {
       display: flex;
       align-items: center;
@@ -161,7 +161,7 @@
     .col-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; }
     .col-sub { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
 
-    /* ── SECTION HEADERS ── */
+    /* â”€â”€ SECTION HEADERS â”€â”€ */
     .section-header {
       display: flex;
       align-items: center;
@@ -184,7 +184,7 @@
       margin-left: auto;
     }
 
-    /* ── TASK ROWS ── */
+    /* â”€â”€ TASK ROWS â”€â”€ */
     .task-row {
       display: flex;
       align-items: flex-start;
@@ -235,7 +235,7 @@
     .tag.team { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.15); }
     .tag.blocker { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
 
-    /* ── LAST UPDATED ── */
+    /* â”€â”€ LAST UPDATED â”€â”€ */
     .updated-bar {
       text-align: center;
       color: #334155;
@@ -252,7 +252,7 @@
 <div id="passwordScreen">
   <div class="pw-box">
     <div class="pw-logo">Snap<span>To</span>Sell</div>
-    <div class="pw-sub">Build Tracker · Internal Only</div>
+    <div class="pw-sub">Build Tracker Â· Internal Only</div>
     <input type="password" class="pw-input" id="pwInput" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="pw-btn" onclick="checkPw()">Enter</button>
     <div class="pw-error" id="pwError">Incorrect code</div>
@@ -265,12 +265,12 @@
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <h1>Snap<span>To</span>Sell — Build Tracker</h1>
-      <div class="header-meta">APP · MARKETPLACE · LAUNCH STATUS &nbsp;·&nbsp; Internal · Marcus Steele (CTO)</div>
+      <h1>Snap<span>To</span>Sell â€” Build Tracker</h1>
+      <div class="header-meta">APP Â· MARKETPLACE Â· LAUNCH STATUS &nbsp;Â·&nbsp; Internal Â· Marcus Steele (CTO)</div>
     </div>
     <div class="launch-countdown">
       <div class="countdown-label">Days to Launch</div>
-      <div class="countdown-days" id="daysLeft">—</div>
+      <div class="countdown-days" id="daysLeft">â€”</div>
       <div class="countdown-date">April 21, 2026</div>
     </div>
   </header>
@@ -295,22 +295,22 @@
     <!-- TWO COLUMNS -->
     <div class="two-col">
 
-      <!-- ═══════════════════════════════════════════
+      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
            COLUMN 1: APP
-      ═══════════════════════════════════════════ -->
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
       <div id="appColumn">
         <div class="col-header">
-          <div class="col-icon">📱</div>
+          <div class="col-icon">ðŸ“±</div>
           <div>
             <div class="col-title">The App</div>
-            <div class="col-sub">Core product · Camera · AI scan · Auth · Trust layer</div>
+            <div class="col-sub">Core product Â· Camera Â· AI scan Â· Auth Â· Trust layer</div>
           </div>
         </div>
 
         <!-- DONE -->
         <div class="section-header">
           <div class="section-dot green"></div>
-          <div class="section-title">✅ Built &amp; Done</div>
+          <div class="section-title">âœ… Built &amp; Done</div>
           <div class="section-count" id="appDoneCount">0 items</div>
         </div>
         <div id="appDone"></div>
@@ -318,7 +318,7 @@
         <!-- IN PROGRESS -->
         <div class="section-header">
           <div class="section-dot blue"></div>
-          <div class="section-title">🔄 In Progress</div>
+          <div class="section-title">ðŸ”„ In Progress</div>
           <div class="section-count" id="appActiveCount">0 items</div>
         </div>
         <div id="appActive"></div>
@@ -326,7 +326,7 @@
         <!-- TO BUILD -->
         <div class="section-header">
           <div class="section-dot orange"></div>
-          <div class="section-title">📋 To Build</div>
+          <div class="section-title">ðŸ“‹ To Build</div>
           <div class="section-count" id="appPendingCount">0 items</div>
         </div>
         <div id="appPending"></div>
@@ -334,28 +334,28 @@
         <!-- BLOCKED -->
         <div class="section-header">
           <div class="section-dot red"></div>
-          <div class="section-title">🚫 Blocked</div>
+          <div class="section-title">ðŸš« Blocked</div>
           <div class="section-count" id="appBlockedCount">0 items</div>
         </div>
         <div id="appBlocked"></div>
       </div>
 
-      <!-- ═══════════════════════════════════════════
+      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
            COLUMN 2: MARKETPLACE
-      ═══════════════════════════════════════════ -->
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
       <div id="mktColumn">
         <div class="col-header">
-          <div class="col-icon">🏪</div>
+          <div class="col-icon">ðŸª</div>
           <div>
             <div class="col-title">The Marketplace</div>
-            <div class="col-sub">Buy flow · Listings · Seller trust · Scale · Acquisition thesis</div>
+            <div class="col-sub">Buy flow Â· Listings Â· Seller trust Â· Scale Â· Acquisition thesis</div>
           </div>
         </div>
 
         <!-- PHASE 1 LAUNCH -->
         <div class="section-header">
           <div class="section-dot blue"></div>
-          <div class="section-title">🚀 Phase 1 — April Launch</div>
+          <div class="section-title">ðŸš€ Phase 1 â€” April Launch</div>
           <div class="section-count" id="mkt1Count">0 items</div>
         </div>
         <div id="mkt1"></div>
@@ -363,7 +363,7 @@
         <!-- PHASE 2 -->
         <div class="section-header">
           <div class="section-dot orange"></div>
-          <div class="section-title">📈 Phase 2 — Post-Launch</div>
+          <div class="section-title">ðŸ“ˆ Phase 2 â€” Post-Launch</div>
           <div class="section-count" id="mkt2Count">0 items</div>
         </div>
         <div id="mkt2"></div>
@@ -371,7 +371,7 @@
         <!-- PHASE 3 -->
         <div class="section-header">
           <div class="section-dot purple"></div>
-          <div class="section-title">🏛️ Phase 3 — Scale &amp; Acquisition</div>
+          <div class="section-title">ðŸ›ï¸ Phase 3 â€” Scale &amp; Acquisition</div>
           <div class="section-count" id="mkt3Count">0 items</div>
         </div>
         <div id="mkt3"></div>
@@ -379,7 +379,7 @@
         <!-- LAUNCH MILESTONES -->
         <div class="section-header">
           <div class="section-dot purple"></div>
-          <div class="section-title">🎯 Launch Milestones</div>
+          <div class="section-title">ðŸŽ¯ Launch Milestones</div>
           <div class="section-count" id="milestonesCount">0 items</div>
         </div>
         <div id="milestones"></div>
@@ -388,231 +388,95 @@
     </div><!-- /.two-col -->
 
     <div class="updated-bar">
-      Last updated by Marcus Steele · February 26, 2026 · Auto-refreshes every 60s
-      &nbsp;·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">← Mission Control</a>
+      Last updated by Marcus Steele Â· February 26, 2026 Â· Auto-refreshes every 60s
+      &nbsp;Â·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">â† Mission Control</a>
     </div>
 
   </div><!-- /.main-content -->
 </div><!-- /#dashboard -->
 
 <script>
-/* ──────────────────────────────────────────────
-   PASSWORD
-────────────────────────────────────────────── */
+const SB_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
+
+/* ── PASSWORD ── */
 function checkPw() {
   const v = document.getElementById('pwInput').value;
-  // Same pattern as cc.html — simple passphrase
-  const valid = (v.trim() === 'Grizzly123');
-  if (valid) {
+  if (v.trim() === 'Grizzly123') {
     document.getElementById('passwordScreen').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
     init();
+    setInterval(loadAndRender, 60000);
   } else {
     document.getElementById('pwError').style.display = 'block';
   }
 }
 
-/* ──────────────────────────────────────────────
-   DATA — The full task list
-   status: 'done' | 'active' | 'pending' | 'blocked'
-   owner:  'mark' | 'vigen' | 'arnold' | 'marcus' | 'team'
-   col:    'app-done'|'app-active'|'app-pending'|'app-blocked'
-            'mkt1'|'mkt2'|'mkt3'|'milestones'
-────────────────────────────────────────────── */
-const TASKS = [
+/* ── FETCH FROM SUPABASE ── */
+async function fetchTasks() {
+  const res = await fetch(`${SB_URL}/rest/v1/agent_tasks?to_agent=eq.sts_tracker&limit=200&order=created_at.asc`, {
+    headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY }
+  });
+  if (!res.ok) return [];
+  const rows = await res.json();
+  return rows.map(r => {
+    let ctx = {};
+    try { ctx = JSON.parse(r.context || '{}'); } catch(e) {}
+    const name = r.task.replace(/^\[STS:[^\]]+\]\s*/, '');
+    const col  = ctx.col  || 'app-pending';
+    const owner = ctx.owner || 'team';
+    const note  = ctx.note  || '';
+    return { col, name, owner, note, status: r.status };
+  });
+}
 
-  // ═══ APP — DONE ═══════════════════════════
-  { col:'app-done', name:'Firebase Auth — email, phone OTP, Google, Apple', owner:'vigen' },
-  { col:'app-done', name:'Camera screen — 1-5 photos, flash, grid, gallery', owner:'vigen' },
-  { col:'app-done', name:'AI scan API client — parallel upload, retry, callbacks', owner:'vigen' },
-  { col:'app-done', name:'Trust signals service — Firestore logging', owner:'vigen' },
-  { col:'app-done', name:'Home, marketplace, messages, profile, settings screens', owner:'vigen' },
-  { col:'app-done', name:'Auth wrapper + login + register + OTP screens', owner:'vigen' },
-  { col:'app-done', name:'EXIF metadata extraction (backend)', owner:'vigen' },
-  { col:'app-done', name:'pHash generation — duplicate listing detection', owner:'vigen' },
-  { col:'app-done', name:'Stock photo detection', owner:'vigen' },
-  { col:'app-done', name:'Device fingerprinting', owner:'vigen' },
-  { col:'app-done', name:'Seller velocity rules — fraud flag logic', owner:'vigen' },
-  { col:'app-done', name:'Pricing anomaly detection engine', owner:'vigen' },
-  { col:'app-done', name:'Seller trust score calculation', owner:'vigen' },
-  { col:'app-done', name:'Fraud taxonomy — 14 scam types, 5 categories', owner:'marcus', note:'4-layer: Visual AI + Behavioral + Pricing + Identity · 3/3 tests passed · 0 false positives' },
-  { col:'app-done', name:'Fraud detection engine — 4-layer scoring', owner:'marcus' },
-  { col:'app-done', name:'Trust Signals Card widget (ready to wire)', owner:'marcus' },
-  { col:'app-done', name:'Onboarding screen — 3-screen animated (ready to wire)', owner:'marcus' },
-  { col:'app-done', name:'Android Share Intent — overlay without leaving FB Marketplace', owner:'marcus', note:'ShareActivity.kt + AndroidManifest registered' },
-  { col:'app-done', name:'UX mockups — Variants A, B, C designed', owner:'marcus', note:'Variant C (The Jobs Move) recommended · In Drive' },
-
-  // ═══ APP — IN PROGRESS ════════════════════
-  { col:'app-active', name:'AI identification accuracy — sustained 93-96%', owner:'vigen', note:'Currently hitting target in POC · Maintaining in MVP' },
-  { col:'app-active', name:'Scan speed — under 10 seconds (currently 30-35s)', owner:'vigen', note:'Parallel processing active in snap_to_sell_api.dart · Needs confirmed measurement on device' },
-  { col:'app-active', name:'Google Play Console — developer@snaptosell.com', owner:'mark', note:'Google Workspace setup in progress today' },
-  { col:'app-active', name:'Buy flow + Stripe payments', owner:'vigen', note:'Largest remaining gap · Est. 2 weeks' },
-
-  // ═══ APP — TO BUILD ═══════════════════════
-  { col:'app-pending', name:'Wire onboarding into main.dart routing', owner:'vigen', note:'30 min · Code exists · Just needs wiring' },
-  { col:'app-pending', name:'Wire TrustSignalsCard to scan result screen', owner:'vigen', note:'30 min · Code exists · Just needs wiring' },
-  { col:'app-pending', name:'Release signing keystore — generate and configure', owner:'vigen', note:'Required for Play Store upload · keytool command ready' },
-  { col:'app-pending', name:'Test Android Share Intent on Mark\'s device', owner:'arnold', note:'Add kotlinx-coroutines-android:1.7.3 first' },
-  { col:'app-pending', name:'Image compression on upload', owner:'vigen' },
-  { col:'app-pending', name:'Photo quality detection — blur/lighting flag', owner:'vigen' },
-  { col:'app-pending', name:'"Ask for more photos" prompt if AI confidence <80%', owner:'vigen' },
-  { col:'app-pending', name:'Camera overlay guide frame', owner:'arnold' },
-  { col:'app-pending', name:'API error handling — no blank screens on failure', owner:'arnold', note:'Timeout · API error · No internet states all need graceful UI' },
-  { col:'app-pending', name:'eBay OAuth integration — post directly from app', owner:'vigen' },
-  { col:'app-pending', name:'Facebook Marketplace clipboard copy workflow', owner:'vigen' },
-  { col:'app-pending', name:'Multi-platform selector UI', owner:'arnold' },
-  { col:'app-pending', name:'Listing preview before posting', owner:'arnold' },
-  { col:'app-pending', name:'Edit AI content before posting', owner:'arnold' },
-  { col:'app-pending', name:'Seller trust badge on listing cards', owner:'arnold', note:'Green=Verified · Orange=Basic · Grey=Unverified' },
-  { col:'app-pending', name:'Scan history screen', owner:'arnold', note:'Past scans with thumbnail, product, date, status' },
-  { col:'app-pending', name:'Donation slider UI — 0-100% give', owner:'arnold' },
-  { col:'app-pending', name:'User profile page — full', owner:'arnold' },
-  { col:'app-pending', name:'Transaction history page', owner:'arnold' },
-  { col:'app-pending', name:'Full AI response logging (raw JSON)', owner:'vigen' },
-  { col:'app-pending', name:'User correction tracking — "was a scam / was fine"', owner:'marcus', note:'Ground truth feedback loop · Feeds back into fraud model' },
-  { col:'app-pending', name:'Price history logging', owner:'vigen' },
-  { col:'app-pending', name:'API cost monitoring per analysis', owner:'vigen' },
-  { col:'app-pending', name:'Seller metrics logging', owner:'vigen' },
-  { col:'app-pending', name:'Database schema finalized', owner:'vigen' },
-  { col:'app-pending', name:'API rate limiting', owner:'vigen' },
-  { col:'app-pending', name:'iOS App Store submission build', owner:'vigen', note:'Due April 1' },
-  { col:'app-pending', name:'Google Play submission build — Android', owner:'vigen' },
-  { col:'app-pending', name:'POST /api/scan/url listing scraper endpoint', owner:'marcus', note:'Required for Share Intent to work · endpoint does not exist yet' },
-  { col:'app-pending', name:'VF-004 Bait & Switch visual signal parser', owner:'marcus', note:'GPT-4o image vs description mismatch detection' },
-  { col:'app-pending', name:'Parallel processing across all 4 detection layers', owner:'marcus', note:'Promise.all() · Target: under 5s' },
-
-  // ═══ APP — BLOCKED ════════════════════════
-  { col:'app-blocked', name:'Apple Developer Account ($99) — OVERDUE', owner:'mark', note:'Required for TestFlight + App Store · developer.apple.com/programs · Vigen blocked on iOS until resolved' },
-  { col:'app-blocked', name:'Privacy Policy live URL — due March 1', owner:'mark', note:'Required by both app stores · snaptosell.com/privacy-policy' },
-  { col:'app-blocked', name:'Terms of Service live URL — due March 1', owner:'mark', note:'Required by both app stores · snaptosell.com/terms' },
-  { col:'app-blocked', name:'UX variant decision — A, B, or C', owner:'mark', note:'Pick one before scan result screen can be built' },
-  { col:'app-blocked', name:'Pricing model decision — free tier limits, paid tier', owner:'mark', note:'Blocks onboarding flow design and in-app purchase setup' },
-  { col:'app-blocked', name:'App Store screenshots + copy — due March 15', owner:'mark', note:'2+ screenshots per platform · 1024x500 feature graphic · 80/4000 char descriptions' },
-
-  // ═══ MARKETPLACE — PHASE 1 (Launch) ═══════
-  { col:'mkt1', name:'Browse + search listings UI', owner:'arnold', note:'Buyer-facing · Core loop for April launch' },
-  { col:'mkt1', name:'Item detail page', owner:'arnold' },
-  { col:'mkt1', name:'Messaging — buyer ↔ seller', owner:'vigen', note:'Screen exists · Full send/receive flow needed' },
-  { col:'mkt1', name:'Offer + counter-offer flow', owner:'arnold' },
-  { col:'mkt1', name:'Stripe payments — buyer completes purchase in-app', owner:'vigen', note:'Largest remaining gap · Critical path for April' },
-  { col:'mkt1', name:'Seller trust badge on profile', owner:'vigen' },
-  { col:'mkt1', name:'Fraud alert push notification to buyer', owner:'vigen', note:'When SnapToSell detects risk after listing goes live' },
-  { col:'mkt1', name:'Delayed payout rules for new sellers', owner:'vigen', note:'High-risk sellers held 7 days before payout' },
-  { col:'mkt1', name:'Charitable giving — donation slider + charity list', owner:'mark', note:'Confirm % structure first · Mark decision needed' },
-  { col:'mkt1', name:'Beta tester list — 50-100 users recruited', owner:'mark', note:'Target: March 2026' },
-  { col:'mkt1', name:'B2B prospect list — estate sale / consignment / pawn', owner:'mark' },
-  { col:'mkt1', name:'Advisory onboarding — Terry Fisher', owner:'mark' },
-  { col:'mkt1', name:'Advisory onboarding — Jake', owner:'mark' },
-  { col:'mkt1', name:'Investor deck updated post-demo', owner:'mark', note:'Seed round outreach begins March 2026' },
-
-  // ═══ MARKETPLACE — PHASE 2 (Post-Launch) ══
-  { col:'mkt2', name:'OfferUp integration', owner:'vigen' },
-  { col:'mkt2', name:'Nextdoor integration', owner:'vigen' },
-  { col:'mkt2', name:'Mercari integration', owner:'vigen' },
-  { col:'mkt2', name:'Craigslist workflow', owner:'arnold' },
-  { col:'mkt2', name:'Chrome browser extension — auto-scans every listing viewed', owner:'marcus', note:'The invisible fraud layer across all marketplaces' },
-  { col:'mkt2', name:'Verified Seller badge — network effect feature', owner:'vigen' },
-  { col:'mkt2', name:'Seller analytics dashboard', owner:'arnold' },
-  { col:'mkt2', name:'Bulk listing tools', owner:'vigen' },
-  { col:'mkt2', name:'Price recommendation engine — display to user', owner:'marcus', note:'Backend pricing anomaly detection built · Display UI not wired' },
-  { col:'mkt2', name:'Duplicate listing alert — display to user', owner:'marcus', note:'pHash backend built · Display UI not wired' },
-  { col:'mkt2', name:'Fraud intel digest — weekly seller report', owner:'marcus' },
-  { col:'mkt2', name:'Public seller trust score + review system', owner:'vigen' },
-
-  // ═══ MARKETPLACE — PHASE 3 (Scale) ════════
-  { col:'mkt3', name:'B2B fraud intelligence API — licensing play', owner:'marcus', note:'Every scan builds the data asset · Structured taxonomy with scamId + confidence + evidence chains · Target: eBay, Meta, Etsy' },
-  { col:'mkt3', name:'SnapToSell Marketplace — own the platform', owner:'team', note:'The Meta acquisition thesis · Full buyer + seller ecosystem' },
-  { col:'mkt3', name:'Scam pattern reporting to platforms (API partner)', owner:'marcus', note:'Real-time fraud sharing with eBay/FB · Partnership revenue' },
-  { col:'mkt3', name:'Insurance product — protect scam victims', owner:'mark', note:'Revenue + trust flywheel · Needs legal/insurance partner' },
-  { col:'mkt3', name:'Enterprise tier — pawn shops / consignment chains', owner:'mark', note:'B2B SaaS revenue · $500-2000/mo per location' },
-  { col:'mkt3', name:'Wasmuth Family Foundation integration', owner:'mark', note:'Charitable giving as brand differentiator at scale' },
-
-  // ═══ MILESTONES ═══════════════════════════
-  { col:'milestones', name:'Internal demo complete', owner:'team', note:'End of February 2026 · Sign-off milestone' },
-  { col:'milestones', name:'Alpha testing — internal team', owner:'team', note:'March 2026' },
-  { col:'milestones', name:'TestFlight beta + Play internal testing', owner:'team', note:'March 15, 2026 target · Blocked on Apple account' },
-  { col:'milestones', name:'Beta testing — 50-100 external users', owner:'team', note:'March / April 2026' },
-  { col:'milestones', name:'App Store submission — iOS', owner:'vigen', note:'April 1, 2026' },
-  { col:'milestones', name:'Google Play submission — Android', owner:'vigen', note:'April 1, 2026' },
-  { col:'milestones', name:'First 100 real listings on platform', owner:'team', note:'Launch week goal' },
-  { col:'milestones', name:'🚀 PUBLIC LAUNCH', owner:'team', note:'April 21, 2026' },
-];
-
-/* ──────────────────────────────────────────────
-   RENDER
-────────────────────────────────────────────── */
-const icons = { done:'✅', active:'🔄', pending:'○', blocked:'🚫', mkt1:'🔄', mkt2:'○', mkt3:'○', milestones:'🎯' };
-const rowClass = { done:'done', active:'active', pending:'pending', blocked:'blocked', mkt1:'active', mkt2:'pending', mkt3:'pending', milestones:'milestone' };
+/* ── RENDER ── */
+const icons    = { 'app-done':'✅', 'app-active':'🔄', 'app-pending':'○', 'app-blocked':'🚫', mkt1:'🔄', mkt2:'○', mkt3:'○', milestones:'🎯' };
+const rowClass = { 'app-done':'done', 'app-active':'active', 'app-pending':'pending', 'app-blocked':'blocked', mkt1:'active', mkt2:'pending', mkt3:'pending', milestones:'milestone' };
 
 function makeTag(owner) {
-  if (!owner) return '';
-  return `<span class="tag ${owner}">${owner.toUpperCase()}</span>`;
+  return owner ? `<span class="tag ${owner}">${owner.toUpperCase()}</span>` : '';
 }
 
 function renderTask(t, colKey) {
   const icon = icons[colKey] || '○';
-  const cls = rowClass[colKey] || 'pending';
+  const cls  = rowClass[colKey] || 'pending';
   const note = t.note ? `<div class="task-note">${t.note}</div>` : '';
   return `
     <div class="task-row ${cls}">
       <div class="task-check">${icon}</div>
       <div class="task-body">
-        <div class="task-name">${t.name}</div>
-        ${note}
+        <div class="task-name">${t.name}</div>${note}
       </div>
       <div class="task-tags">${makeTag(t.owner)}</div>
     </div>`;
 }
 
-function init() {
-  // Countdown
-  const launch = new Date('2026-04-21T09:00:00-04:00');
-  const today = new Date();
-  const diff = Math.ceil((launch - today) / (1000 * 60 * 60 * 24));
-  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '🚀';
+const containers = {
+  'app-done':'appDone','app-active':'appActive','app-pending':'appPending','app-blocked':'appBlocked',
+  mkt1:'mkt1',mkt2:'mkt2',mkt3:'mkt3',milestones:'milestones'
+};
+const counters = {
+  'app-done':'appDoneCount','app-active':'appActiveCount','app-pending':'appPendingCount','app-blocked':'appBlockedCount',
+  mkt1:'mkt1Count',mkt2:'mkt2Count',mkt3:'mkt3Count',milestones:'milestonesCount'
+};
 
-  // Group tasks by column
+async function loadAndRender() {
+  const tasks = await fetchTasks();
   const groups = {};
-  TASKS.forEach(t => {
-    const k = t.col;
-    if (!groups[k]) groups[k] = [];
-    groups[k].push(t);
-  });
+  tasks.forEach(t => { if (!groups[t.col]) groups[t.col] = []; groups[t.col].push(t); });
 
-  const colKeys = ['app-done','app-active','app-pending','app-blocked','mkt1','mkt2','mkt3','milestones'];
-  const containers = {
-    'app-done':    'appDone',
-    'app-active':  'appActive',
-    'app-pending': 'appPending',
-    'app-blocked': 'appBlocked',
-    'mkt1':        'mkt1',
-    'mkt2':        'mkt2',
-    'mkt3':        'mkt3',
-    'milestones':  'milestones',
-  };
-  const counters = {
-    'app-done':    'appDoneCount',
-    'app-active':  'appActiveCount',
-    'app-pending': 'appPendingCount',
-    'app-blocked': 'appBlockedCount',
-    'mkt1':        'mkt1Count',
-    'mkt2':        'mkt2Count',
-    'mkt3':        'mkt3Count',
-    'milestones':  'milestonesCount',
-  };
-
-  colKeys.forEach(k => {
+  Object.keys(containers).forEach(k => {
     const items = groups[k] || [];
-    const el = document.getElementById(containers[k]);
+    const el  = document.getElementById(containers[k]);
     const cnt = document.getElementById(counters[k]);
-    if (el) el.innerHTML = items.map(t => renderTask(t, k)).join('');
+    if (el)  el.innerHTML = items.map(t => renderTask(t, k)).join('');
     if (cnt) cnt.textContent = `${items.length} item${items.length !== 1 ? 's' : ''}`;
   });
 
-  // Progress stats
   const done    = (groups['app-done']    || []).length;
-  const active  = (groups['app-active']  || []).length;
-  const pending = (groups['app-pending'] || []).length + (groups['mkt1'] || []).length;
+  const active  = (groups['app-active']  || []).length + (groups['mkt1'] || []).filter(t=>t.status==='in_progress').length;
+  const pending = (groups['app-pending'] || []).length;
   const blocked = (groups['app-blocked'] || []).length;
   const total   = done + active + pending + blocked;
   const pct     = total ? Math.round((done / total) * 100) : 0;
@@ -622,9 +486,18 @@ function init() {
   document.getElementById('cntPending').textContent = pending;
   document.getElementById('cntBlocked').textContent = blocked;
   document.getElementById('progressPct').textContent = pct + '%';
-  setTimeout(() => {
-    document.getElementById('progressFill').style.width = pct + '%';
-  }, 100);
+  setTimeout(() => { document.getElementById('progressFill').style.width = pct + '%'; }, 100);
+
+  const now = new Date();
+  document.querySelector('.updated-bar').innerHTML =
+    `Last refreshed ${now.toLocaleTimeString()} &nbsp;·&nbsp; Data: Supabase live &nbsp;·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">← Mission Control</a>`;
+}
+
+function init() {
+  const launch = new Date('2026-04-21T09:00:00-04:00');
+  const diff   = Math.ceil((launch - new Date()) / 86400000);
+  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '🚀';
+  loadAndRender();
 }
 </script>
 </body>
