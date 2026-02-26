@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SnapToSell â€” Build Tracker</title>
+  <title>SnapToSell &mdash; Build Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -16,7 +16,7 @@
       min-height: 100vh;
     }
 
-    /* â”€â”€ PASSWORD SCREEN â”€â”€ */
+    /*  == PASSWORD SCREEN == */
     #passwordScreen {
       display: flex;
       align-items: center;
@@ -72,7 +72,7 @@
     .pw-btn:hover { background: #e55a00; }
     .pw-error { color: #f87171; font-size: 0.85rem; margin-top: 12px; display: none; }
 
-    /* â”€â”€ MAIN DASHBOARD â”€â”€ */
+    /*  == MAIN DASHBOARD == */
     #dashboard { display: none; }
 
     header {
@@ -115,7 +115,7 @@
       margin: 0 auto;
     }
 
-    /* â”€â”€ PROGRESS BAR â”€â”€ */
+    /*  == PROGRESS BAR == */
     .progress-strip {
       background: rgba(15, 31, 61, 0.6);
       border: 1px solid rgba(255,255,255,0.06);
@@ -139,7 +139,7 @@
     .stat-num.orange { color: #f97316; }
     .stat-num.red { color: #ef4444; }
 
-    /* â”€â”€ TWO COLUMNS â”€â”€ */
+    /*  == TWO COLUMNS == */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -148,7 +148,7 @@
     }
     @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
 
-    /* â”€â”€ COLUMN HEADERS â”€â”€ */
+    /*  == COLUMN HEADERS == */
     .col-header {
       display: flex;
       align-items: center;
@@ -161,7 +161,7 @@
     .col-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; }
     .col-sub { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
 
-    /* â”€â”€ SECTION HEADERS â”€â”€ */
+    /*  == SECTION HEADERS == */
     .section-header {
       display: flex;
       align-items: center;
@@ -184,7 +184,7 @@
       margin-left: auto;
     }
 
-    /* â”€â”€ TASK ROWS â”€â”€ */
+    /*  == TASK ROWS == */
     .task-row {
       display: flex;
       align-items: flex-start;
@@ -233,7 +233,7 @@
     .tag.marcus { background: rgba(255,107,0,0.18);   color: #fb923c;  border: 1px solid rgba(255,107,0,0.35);   }
     .tag.blocker { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
 
-    /* â”€â”€ LAST UPDATED â”€â”€ */
+    /*  == LAST UPDATED == */
     .updated-bar {
       text-align: center;
       color: #334155;
@@ -250,7 +250,7 @@
 <div id="passwordScreen">
   <div class="pw-box">
     <div class="pw-logo">Snap<span>To</span>Sell</div>
-    <div class="pw-sub">Build Tracker Â· Internal Only</div>
+    <div class="pw-sub">Build Tracker &middot; Internal Only</div>
     <input type="password" class="pw-input" id="pwInput" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="pw-btn" onclick="checkPw()">Enter</button>
     <div class="pw-error" id="pwError">Incorrect code</div>
@@ -263,7 +263,7 @@
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <h1>Snap<span>To</span>Sell â€” Build Tracker</h1>
+      <h1>Snap<span>To</span>Sell &mdash; Build Tracker</h1>
       <div class="header-meta">APP &middot; MARKETPLACE &middot; LAUNCH STATUS &nbsp;&middot;&nbsp; Internal &middot; Marcus Steele (CTO)</div>
     </div>
     <div class="launch-countdown">
@@ -293,9 +293,9 @@
     <!-- TWO COLUMNS -->
     <div class="two-col">
 
-      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      <!-- 
            COLUMN 1: APP
-      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+       -->
       <div id="appColumn">
         <div class="col-header">
           <div class="col-icon">&#128247;</div>
@@ -338,9 +338,9 @@
         <div id="appBlocked"></div>
       </div>
 
-      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      <!-- 
            COLUMN 2: MARKETPLACE
-      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+       -->
       <div id="mktColumn">
         <div class="col-header">
           <div class="col-icon">&#127978;</div>
@@ -386,8 +386,7 @@
     </div><!-- /.two-col -->
 
     <div class="updated-bar">
-      Last updated by Marcus Steele Â· February 26, 2026 Â· Auto-refreshes every 60s
-      &nbsp;Â·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">â† Mission Control</a>
+      Last updated by Marcus Steele &middot; February 26, 2026 &middot; Auto-refreshes every 60s &nbsp;&middot;&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">&#8592; Mission Control</a>
     </div>
 
   </div><!-- /.main-content -->
@@ -397,7 +396,7 @@
 const SB_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
 
-/* ── USERS ── */
+/*  == USERS == */
 const USERS = {
   'Grizzly123': 'mark',
   'STS-Vigen':  'vigen',
@@ -405,7 +404,7 @@ const USERS = {
   'STS-Team':   'viewer'
 };
 
-/* ── PASSWORD + PERSISTENT LOGIN ── */
+/*  -- PASSWORD + PERSISTENT LOGIN -- */
 function checkPw() {
   const v = document.getElementById('pwInput').value.trim();
   if (USERS[v]) {
@@ -438,7 +437,7 @@ if (!autoLogin()) {
   // Show password screen (already visible by default)
 }
 
-/* ── FETCH FROM SUPABASE ── */
+/*  == FETCH FROM SUPABASE == */
 async function fetchTasks() {
   const res = await fetch(`${SB_URL}/rest/v1/agent_tasks?to_agent=eq.sts_tracker&limit=200&order=created_at.asc`, {
     headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY }
@@ -460,8 +459,8 @@ async function fetchTasks() {
   });
 }
 
-/* ── RENDER ── */
-const icons    = { 'app-done':'✅', 'app-active':'🔄', 'app-pending':'○', 'app-blocked':'🚫', mkt1:'🔄', mkt2:'○', mkt3:'○', milestones:'🎯' };
+/*  == RENDER == */
+const icons    = { 'app-done':'', 'app-active':'', 'app-pending':'', 'app-blocked':'', mkt1:'', mkt2:'', mkt3:'', milestones:'' };
 const rowClass = { 'app-done':'done', 'app-active':'active', 'app-pending':'pending', 'app-blocked':'blocked', mkt1:'active', mkt2:'pending', mkt3:'pending', milestones:'milestone' };
 
 function makeTag(owner) {
@@ -523,13 +522,13 @@ async function loadAndRender() {
 
   const now = new Date();
   document.querySelector('.updated-bar').innerHTML =
-    `Last refreshed ${now.toLocaleTimeString()} &nbsp;·&nbsp; Data: Supabase live &nbsp;·&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">← Mission Control</a>`;
+    `Last refreshed ${now.toLocaleTimeString()} &nbsp;&middot;&nbsp; Data: Supabase live &nbsp;&middot;&nbsp;  <a href="/cc" style="color:#334155;text-decoration:none;">&#8592; Mission Control</a>`;
 }
 
 function init() {
   const launch = new Date('2026-04-21T09:00:00-04:00');
   const diff   = Math.ceil((launch - new Date()) / 86400000);
-  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '🚀';
+  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '';
   loadAndRender();
 }
 </script>
