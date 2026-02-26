@@ -402,7 +402,7 @@
 function checkPw() {
   const v = document.getElementById('pwInput').value;
   // Same pattern as cc.html — simple passphrase
-  const valid = ['snaptosell2026','sts2026','marcus','smartbrands'].includes(v.toLowerCase().trim());
+  const valid = (v.trim() === 'Grizzly123');
   if (valid) {
     document.getElementById('passwordScreen').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
