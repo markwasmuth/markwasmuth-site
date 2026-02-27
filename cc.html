@@ -1972,6 +1972,17 @@
             <div class="header-right">
                 <div class="header-stat">Ventures <span class="header-stat-val">6</span></div>
                 <div class="header-stat">Agents <span class="header-stat-val">13</span></div>
+                <button id="voiceToggleBtn" onclick="openVoicePanel()" title="Talk to Council" style="
+                    display:flex;align-items:center;gap:7px;
+                    background:rgba(249,115,22,0.15);
+                    border:1px solid rgba(249,115,22,0.4);
+                    border-radius:8px;padding:7px 14px;
+                    color:#f97316;font-size:13px;font-weight:700;
+                    cursor:pointer;letter-spacing:0.5px;
+                    transition:all 0.2s;
+                " onmouseover="this.style.background='rgba(249,115,22,0.28)'" onmouseout="this.style.background='rgba(249,115,22,0.15)'">
+                    <span id="voiceBtnIcon">🎙️</span> VOICE
+                </button>
             </div>
         </div>
 
@@ -4986,6 +4997,317 @@ function _renderSnapEmpty() {
         var b = document.getElementById('snap-' + p + '-bar');   if (b) b.style.width = '0%';
     });
 }
+</script>
+
+<!-- ============================================================ -->
+<!--  VOICE CONSOLE — Talk to Council                             -->
+<!-- ============================================================ -->
+<div id="voicePanel" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:#0d1525;border:1px solid rgba(249,115,22,0.4);border-radius:16px;padding:28px;width:92%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,0.7),0 0 40px rgba(249,115,22,0.1);">
+
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:#f0f4ff;letter-spacing:0.5px;">🎙️ Voice Console</div>
+        <div style="font-size:12px;color:#64748b;margin-top:2px;">Talk to any Council agent</div>
+      </div>
+      <button onclick="closeVoicePanel()" style="background:none;border:none;color:#64748b;font-size:22px;cursor:pointer;padding:4px 8px;border-radius:6px;" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#64748b'">✕</button>
+    </div>
+
+    <!-- Agent Selector -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Speaking with</div>
+      <div id="voiceAgentGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;"></div>
+    </div>
+
+    <!-- Active Agent Display -->
+    <div id="voiceActiveAgent" style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:rgba(249,115,22,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;">🤖</div>
+      <div>
+        <div id="voiceAgentName" style="font-size:14px;font-weight:700;color:#f97316;">Alan — Chief of Staff</div>
+        <div id="voiceAgentStatus" style="font-size:12px;color:#64748b;margin-top:1px;">Ready</div>
+      </div>
+      <div id="voiceWaveform" style="margin-left:auto;display:flex;gap:3px;align-items:center;height:24px;opacity:0;transition:opacity 0.3s;">
+        <div class="wave-bar" style="width:3px;background:#f97316;border-radius:2px;animation:wavePulse 0.8s ease-in-out infinite;animation-delay:0s;"></div>
+        <div class="wave-bar" style="width:3px;background:#f97316;border-radius:2px;animation:wavePulse 0.8s ease-in-out infinite;animation-delay:0.1s;"></div>
+        <div class="wave-bar" style="width:3px;background:#f97316;border-radius:2px;animation:wavePulse 0.8s ease-in-out infinite;animation-delay:0.2s;"></div>
+        <div class="wave-bar" style="width:3px;background:#f97316;border-radius:2px;animation:wavePulse 0.8s ease-in-out infinite;animation-delay:0.3s;"></div>
+        <div class="wave-bar" style="width:3px;background:#f97316;border-radius:2px;animation:wavePulse 0.8s ease-in-out infinite;animation-delay:0.4s;"></div>
+      </div>
+    </div>
+
+    <!-- Transcript -->
+    <div id="voiceTranscriptBox" style="min-height:48px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:#94a3b8;line-height:1.5;display:none;">
+      <span id="voiceTranscriptLabel" style="font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.7px;display:block;margin-bottom:4px;">You said</span>
+      <span id="voiceTranscript">...</span>
+    </div>
+
+    <!-- Response -->
+    <div id="voiceResponseBox" style="min-height:48px;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:8px;padding:10px 14px;margin-bottom:20px;font-size:13px;color:#cbd5e1;line-height:1.5;display:none;">
+      <span id="voiceResponseLabel" style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.7px;display:block;margin-bottom:4px;">Response</span>
+      <span id="voiceResponse">...</span>
+    </div>
+
+    <!-- Push-to-Talk Button -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <button id="voicePTTBtn" onmousedown="startRecording()" onmouseup="stopRecording()" ontouchstart="startRecording()" ontouchend="stopRecording()"
+        style="width:80px;height:80px;border-radius:50%;border:3px solid rgba(249,115,22,0.5);background:rgba(249,115,22,0.12);color:#f97316;font-size:30px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;user-select:none;">
+        🎙️
+      </button>
+      <div id="voicePTTLabel" style="font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">Hold to Talk</div>
+    </div>
+
+    <!-- Error -->
+    <div id="voiceError" style="margin-top:14px;font-size:12px;color:#f87171;text-align:center;display:none;"></div>
+  </div>
+</div>
+
+<style>
+@keyframes wavePulse {
+  0%, 100% { height: 4px; }
+  50% { height: 20px; }
+}
+</style>
+
+<script>
+// ============================================================
+//  VOICE CONSOLE LOGIC
+// ============================================================
+
+const VOICE_AGENTS = [
+  { slug:'cos',    name:'Alan',    title:'Chief of Staff',       emoji:'🤖' },
+  { slug:'ceo',    name:'CEO',     title:'Chief Executive',      emoji:'👑' },
+  { slug:'coo',    name:'COO',     title:'Operations',           emoji:'⚙️' },
+  { slug:'cto',    name:'Marcus',  title:'Technology',           emoji:'💻' },
+  { slug:'cmo',    name:'Alexis',  title:'Marketing',            emoji:'📣' },
+  { slug:'cfo',    name:'CFO',     title:'Finance',              emoji:'💰' },
+  { slug:'cro',    name:'CRO',     title:'Revenue',              emoji:'📈' },
+  { slug:'legal',  name:'Legal',   title:'Legal Counsel',        emoji:'⚖️' },
+  { slug:'media',  name:'Media',   title:'Media Director',       emoji:'🎬' },
+  { slug:'intel',  name:'Intel',   title:'Intelligence',         emoji:'🔍' },
+  { slug:'hr',     name:'HR',      title:'People & Culture',     emoji:'👥' },
+  { slug:'comms',  name:'Comms',   title:'Communications',       emoji:'📡' },
+  { slug:'madison',name:'Madison', title:'Brand & Book',         emoji:'✍️' },
+];
+
+let voiceActiveSlug = 'cos';
+let voiceActiveSystemPrompt = '';
+let voiceMediaRecorder = null;
+let voiceChunks = [];
+let voiceAudioEl = null;
+
+function openVoicePanel() {
+  const panel = document.getElementById('voicePanel');
+  panel.style.display = 'flex';
+  renderVoiceAgentGrid();
+  setVoiceAgent('cos');
+}
+
+function closeVoicePanel() {
+  document.getElementById('voicePanel').style.display = 'none';
+  stopRecording();
+}
+
+function renderVoiceAgentGrid() {
+  const grid = document.getElementById('voiceAgentGrid');
+  grid.innerHTML = VOICE_AGENTS.map(a => `
+    <button onclick="setVoiceAgent('${a.slug}')" id="vagent-${a.slug}"
+      title="${a.title}"
+      style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:7px;padding:6px 4px;cursor:pointer;transition:all 0.15s;color:#94a3b8;font-size:11px;text-align:center;"
+      onmouseover="this.style.borderColor='rgba(249,115,22,0.4)';this.style.color='#f97316'"
+      onmouseout="if('${a.slug}'!==voiceActiveSlug){this.style.borderColor='rgba(255,255,255,0.08)';this.style.color='#94a3b8';}">
+      <div style="font-size:16px;margin-bottom:2px;">${a.emoji}</div>
+      <div style="font-weight:600;font-size:10px;">${a.name}</div>
+    </button>
+  `).join('');
+}
+
+function setVoiceAgent(slug) {
+  voiceActiveSlug = slug;
+  const agent = VOICE_AGENTS.find(a => a.slug === slug) || VOICE_AGENTS[0];
+
+  // Update active display
+  document.getElementById('voiceAgentName').textContent = `${agent.name} — ${agent.title}`;
+  document.getElementById('voiceAgentStatus').textContent = 'Ready';
+
+  // Highlight selected in grid
+  VOICE_AGENTS.forEach(a => {
+    const btn = document.getElementById('vagent-' + a.slug);
+    if (!btn) return;
+    if (a.slug === slug) {
+      btn.style.borderColor = 'rgba(249,115,22,0.6)';
+      btn.style.background = 'rgba(249,115,22,0.12)';
+      btn.style.color = '#f97316';
+    } else {
+      btn.style.borderColor = 'rgba(255,255,255,0.08)';
+      btn.style.background = 'rgba(255,255,255,0.04)';
+      btn.style.color = '#94a3b8';
+    }
+  });
+
+  // Fetch system prompt from Supabase
+  fetch(`${SUPABASE_URL}/rest/v1/agents?slug=eq.${slug}&select=system_prompt`, {
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
+  })
+  .then(r => r.json())
+  .then(data => {
+    voiceActiveSystemPrompt = data?.[0]?.system_prompt || '';
+  })
+  .catch(() => { voiceActiveSystemPrompt = ''; });
+}
+
+async function startRecording() {
+  const btn = document.getElementById('voicePTTBtn');
+  const label = document.getElementById('voicePTTLabel');
+  const waveform = document.getElementById('voiceWaveform');
+  const status = document.getElementById('voiceAgentStatus');
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    voiceChunks = [];
+
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+      ? 'audio/webm;codecs=opus'
+      : MediaRecorder.isTypeSupported('audio/mp4')
+      ? 'audio/mp4'
+      : 'audio/webm';
+
+    voiceMediaRecorder = new MediaRecorder(stream, { mimeType });
+    voiceMediaRecorder.ondataavailable = e => { if (e.data.size > 0) voiceChunks.push(e.data); };
+    voiceMediaRecorder.start();
+
+    // UI: recording state
+    btn.style.background = 'rgba(239,68,68,0.25)';
+    btn.style.borderColor = 'rgba(239,68,68,0.7)';
+    btn.style.color = '#f87171';
+    btn.textContent = '⏺';
+    label.textContent = 'Recording... Release to send';
+    label.style.color = '#f87171';
+    waveform.style.opacity = '1';
+    status.textContent = 'Listening...';
+
+    document.getElementById('voiceError').style.display = 'none';
+    document.getElementById('voiceTranscriptBox').style.display = 'none';
+    document.getElementById('voiceResponseBox').style.display = 'none';
+
+  } catch (err) {
+    showVoiceError('Microphone access denied. Please allow microphone in your browser.');
+  }
+}
+
+function stopRecording() {
+  if (!voiceMediaRecorder || voiceMediaRecorder.state === 'inactive') return;
+
+  const btn = document.getElementById('voicePTTBtn');
+  const label = document.getElementById('voicePTTLabel');
+  const waveform = document.getElementById('voiceWaveform');
+  const status = document.getElementById('voiceAgentStatus');
+
+  voiceMediaRecorder.onstop = async () => {
+    const mimeType = voiceMediaRecorder.mimeType;
+    const blob = new Blob(voiceChunks, { type: mimeType });
+    voiceMediaRecorder.stream.getTracks().forEach(t => t.stop());
+
+    // UI: processing
+    btn.textContent = '⏳';
+    btn.style.background = 'rgba(99,102,241,0.15)';
+    btn.style.borderColor = 'rgba(99,102,241,0.4)';
+    btn.style.color = '#818cf8';
+    label.textContent = 'Processing...';
+    label.style.color = '#818cf8';
+    waveform.style.opacity = '0';
+    status.textContent = 'Thinking...';
+
+    try {
+      // Convert blob to base64
+      const base64 = await blobToBase64(blob);
+
+      const res = await fetch('/api/voice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          audio: base64,
+          mimeType,
+          agentSlug: voiceActiveSlug,
+          systemPrompt: voiceActiveSystemPrompt,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'API error');
+
+      // Show transcript
+      if (data.transcript) {
+        document.getElementById('voiceTranscript').textContent = data.transcript;
+        document.getElementById('voiceTranscriptBox').style.display = 'block';
+      }
+
+      // Show response text
+      if (data.responseText) {
+        document.getElementById('voiceResponse').textContent = data.responseText;
+        document.getElementById('voiceResponseBox').style.display = 'block';
+      }
+
+      // Play audio
+      if (data.audio) {
+        const audioData = 'data:audio/mpeg;base64,' + data.audio;
+        if (voiceAudioEl) { voiceAudioEl.pause(); voiceAudioEl = null; }
+        voiceAudioEl = new Audio(audioData);
+        status.textContent = 'Speaking...';
+        waveform.style.opacity = '1';
+        voiceAudioEl.play();
+        voiceAudioEl.onended = () => {
+          status.textContent = 'Ready';
+          waveform.style.opacity = '0';
+        };
+      } else {
+        status.textContent = 'Ready';
+      }
+
+    } catch (err) {
+      showVoiceError('Error: ' + (err.message || 'Something went wrong. Try again.'));
+      status.textContent = 'Ready';
+    }
+
+    // Reset button
+    btn.textContent = '🎙️';
+    btn.style.background = 'rgba(249,115,22,0.12)';
+    btn.style.borderColor = 'rgba(249,115,22,0.5)';
+    btn.style.color = '#f97316';
+    label.textContent = 'Hold to Talk';
+    label.style.color = '#64748b';
+  };
+
+  voiceMediaRecorder.stop();
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+function showVoiceError(msg) {
+  const el = document.getElementById('voiceError');
+  el.textContent = msg;
+  el.style.display = 'block';
+  const btn = document.getElementById('voicePTTBtn');
+  btn.textContent = '🎙️';
+  btn.style.background = 'rgba(249,115,22,0.12)';
+  btn.style.borderColor = 'rgba(249,115,22,0.5)';
+  btn.style.color = '#f97316';
+  document.getElementById('voicePTTLabel').textContent = 'Hold to Talk';
+  document.getElementById('voicePTTLabel').style.color = '#64748b';
+  document.getElementById('voiceWaveform').style.opacity = '0';
+}
+
+// Close panel on backdrop click
+document.getElementById('voicePanel').addEventListener('click', function(e) {
+  if (e.target === this) closeVoicePanel();
+});
 </script>
 
 
