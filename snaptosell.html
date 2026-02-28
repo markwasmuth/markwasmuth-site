@@ -328,5 +328,355 @@
         });
     </script>
 
+<<<<<<< Updated upstream
+=======
+        <!-- LAUNCH MILESTONES -->
+        <div class="section-header">
+          <div class="section-dot purple"></div>
+          <div class="section-title">&#127919; Launch Milestones</div>
+          <div class="section-count" id="milestonesCount">0 items</div>
+        </div>
+        <div id="milestones"></div>
+      </div>
+
+    </div><!-- /.two-col -->
+
+    <div class="updated-bar">
+      Last updated by Marcus Steele &middot; February 26, 2026 &middot; Auto-refreshes every 60s &nbsp;&middot;&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">&#8592; Mission Control</a>
+    </div>
+
+  </div><!-- /.main-content -->
+</div><!-- /#dashboard -->
+
+<style>
+  /* INTERACTIVE ADDITIONS */
+  .task-row { cursor: pointer; position: relative; }
+  .task-row:hover .task-actions { opacity: 1; }
+  .task-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; opacity: 0.5; transition: opacity 0.15s; }
+  .btn-complete {
+    width: 20px; height: 20px; border-radius: 5px;
+    border: 2px solid #475569; background: transparent;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .btn-complete:hover { border-color: #22c55e; background: rgba(34,197,94,0.1); }
+  .btn-complete.checked { border-color: #22c55e; background: #22c55e; }
+  .btn-complete.checked::after { content: ''; display: block; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg) translate(-1px,-1px); }
+  .btn-comment {
+    font-size: 0.7rem; color: #475569; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 5px;
+    padding: 2px 7px; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  }
+  .btn-comment:hover { background: rgba(255,255,255,0.1); color: #94a3b8; }
+  .btn-comment.has-comments { color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+
+  .comment-panel {
+    display: none; margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .comment-panel.open { display: block; }
+  .comment-item { display: flex; gap: 8px; margin-bottom: 10px; }
+  .comment-avatar {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  }
+  .avatar-mark   { background: rgba(96,165,250,0.25);  color: #93c5fd; }
+  .avatar-vigen  { background: rgba(192,132,252,0.25); color: #d8b4fe; }
+  .avatar-terry  { background: rgba(251,146,60,0.25);  color: #fdba74; }
+  .avatar-jake   { background: rgba(34,197,94,0.25);   color: #86efac; }
+  .avatar-marcus { background: rgba(255,107,0,0.25);   color: #fb923c; }
+  .avatar-team   { background: rgba(148,163,184,0.2);  color: #94a3b8; }
+  .comment-body { flex: 1; }
+  .comment-meta { font-size: 0.68rem; color: #475569; margin-bottom: 3px; }
+  .comment-meta strong { color: #94a3b8; }
+  .comment-text { font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; }
+
+  .comment-input-row { display: flex; gap: 8px; margin-top: 8px; align-items: flex-end; }
+  .comment-textarea {
+    flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; color: #f1f5f9; font-size: 0.82rem; font-family: inherit;
+    padding: 8px 12px; resize: none; min-height: 36px; max-height: 120px;
+    outline: none; line-height: 1.4;
+  }
+  .comment-textarea:focus { border-color: rgba(255,107,0,0.4); }
+  .btn-voice {
+    width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04); color: #64748b; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .btn-voice:hover { border-color: rgba(255,107,0,0.4); color: #fb923c; }
+  .btn-voice.listening { background: rgba(239,68,68,0.15); border-color: #ef4444; color: #f87171; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .btn-send {
+    height: 34px; padding: 0 14px; border-radius: 8px; border: none;
+    background: #ff6b00; color: #fff; font-size: 0.78rem; font-weight: 700;
+    font-family: inherit; cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+  }
+  .btn-send:hover { background: #ff8533; }
+  .no-access { font-size: 0.72rem; color: #334155; font-style: italic; margin-top: 6px; }
+</style>
+
+<script>
+const SB_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
+
+/*  == USERS == */
+const USERS = {
+  'Grizzly123': { role: 'mark',   label: 'Mark',   canComplete: true,  canComment: true },
+  'STS-Vigen':  { role: 'vigen',  label: 'Vigen',  canComplete: true,  canComment: true },
+  'STS-Terry':  { role: 'terry',  label: 'Terry',  canComplete: false, canComment: true },
+  'STS-Jake':   { role: 'jake',   label: 'Jake',   canComplete: false, canComment: true },
+  'STS-Team':   { role: 'team',   label: 'Team',   canComplete: false, canComment: false }
+};
+let currentUser = null;
+
+/*  == AUTH == */
+function checkPw() {
+  const v = document.getElementById('pwInput').value.trim();
+  if (USERS[v]) {
+    localStorage.setItem('sts_auth', v);
+    currentUser = USERS[v];
+    launch();
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
+function launch() {
+  document.getElementById('passwordScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  init();
+  setInterval(loadAndRender, 60000);
+}
+function autoLogin() {
+  const saved = localStorage.getItem('sts_auth');
+  if (saved && USERS[saved]) {
+    currentUser = USERS[saved];
+    launch();
+    return true;
+  }
+  return false;
+}
+if (!autoLogin()) { /* show password screen */ }
+
+/*  == SUPABASE HELPERS == */
+const SB_H = { 'Content-Type':'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
+
+async function fetchTasks() {
+  const res = await fetch(`${SB_URL}/rest/v1/agent_tasks?to_agent=eq.sts_tracker&limit=300&order=created_at.asc`, { headers: SB_H });
+  if (!res.ok) return [];
+  return (await res.json()).map(r => {
+    let ctx = {};
+    try { ctx = JSON.parse(r.context || '{}'); } catch(e) {}
+    const completedAt  = r.completed_at ? new Date(r.completed_at) : null;
+    const completedStr = completedAt ? completedAt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : null;
+    return {
+      id: r.id,
+      col: ctx.col || 'app-pending',
+      name: r.task.replace(/^\[STS:[^\]]+\]\s*/,''),
+      owner: ctx.owner || 'team',
+      note: ctx.note || '',
+      comments: ctx.comments || [],
+      status: r.status,
+      completedStr,
+      ctx
+    };
+  });
+}
+
+async function patchTask(id, body) {
+  await fetch(`${SB_URL}/rest/v1/agent_tasks?id=eq.${id}`, {
+    method:'PATCH', headers: SB_H, body: JSON.stringify(body)
+  });
+}
+
+/*  == MARK COMPLETE == */
+async function toggleComplete(id, currentStatus, ctx) {
+  if (!currentUser || !currentUser.canComplete) return;
+  const isDone  = currentStatus === 'done';
+  const newStat = isDone ? 'active' : 'done';
+  const newCtx  = { ...ctx, col: isDone ? (ctx._prevCol || 'app-active') : 'app-done' };
+  if (!isDone) newCtx._prevCol = ctx.col;
+  await patchTask(id, {
+    status: newStat,
+    context: JSON.stringify(newCtx),
+    completed_at: isDone ? null : new Date().toISOString()
+  });
+  loadAndRender();
+}
+
+/*  == COMMENTS == */
+async function submitComment(id, ctx, textareaEl) {
+  const text = textareaEl.value.trim();
+  if (!text || !currentUser) return;
+  const comments = ctx.comments || [];
+  comments.push({ user: currentUser.role, label: currentUser.label, text, ts: new Date().toISOString() });
+  const newCtx = { ...ctx, comments };
+  await patchTask(id, { context: JSON.stringify(newCtx) });
+  textareaEl.value = '';
+  loadAndRender();
+}
+
+/*  == VOICE INPUT == */
+let activeVoiceBtn = null;
+let recognition    = null;
+function startVoice(btn, textareaEl) {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) { alert('Voice not supported in this browser. Try Chrome.'); return; }
+  if (recognition) { recognition.stop(); return; }
+  recognition = new SpeechRec();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+  btn.classList.add('listening');
+  activeVoiceBtn = btn;
+  recognition.onresult = e => {
+    textareaEl.value += (textareaEl.value ? ' ' : '') + e.results[0][0].transcript;
+  };
+  recognition.onend = () => {
+    btn.classList.remove('listening');
+    recognition = null;
+    activeVoiceBtn = null;
+  };
+  recognition.start();
+}
+
+/*  == TOGGLE COMMENT PANEL == */
+function togglePanel(panelEl) {
+  panelEl.classList.toggle('open');
+}
+
+/*  == RENDER == */
+const rowClass = {
+  'app-done':'done','app-active':'active','app-pending':'pending','app-blocked':'blocked',
+  mkt1:'active',mkt2:'pending',mkt3:'pending',milestones:'milestone'
+};
+const containers = {
+  'app-done':'appDone','app-active':'appActive','app-pending':'appPending','app-blocked':'appBlocked',
+  mkt1:'mkt1',mkt2:'mkt2',mkt3:'mkt3',milestones:'milestones'
+};
+const counters = {
+  'app-done':'appDoneCount','app-active':'appActiveCount','app-pending':'appPendingCount','app-blocked':'appBlockedCount',
+  mkt1:'mkt1Count',mkt2:'mkt2Count',mkt3:'mkt3Count',milestones:'milestonesCount'
+};
+
+function fmtTs(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+}
+
+function renderComments(comments) {
+  if (!comments || !comments.length) return '<div style="font-size:0.75rem;color:#334155;margin-bottom:8px;">No comments yet.</div>';
+  return comments.map(c => `
+    <div class="comment-item">
+      <div class="comment-avatar avatar-${c.user}">${(c.label||c.user).substring(0,2).toUpperCase()}</div>
+      <div class="comment-body">
+        <div class="comment-meta"><strong>${c.label || c.user}</strong> &nbsp;&middot;&nbsp; ${fmtTs(c.ts)}</div>
+        <div class="comment-text">${c.text}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderTask(t, colKey) {
+  const cls        = rowClass[colKey] || 'pending';
+  const isDone     = cls === 'done';
+  const commentCnt = (t.comments || []).length;
+  const commentLbl = commentCnt ? `&#128172; ${commentCnt}` : '&#128172; Comment';
+  const panelId    = `panel-${t.id}`;
+  const taId       = `ta-${t.id}`;
+  const vbId       = `vb-${t.id}`;
+
+  const canComplete = currentUser && currentUser.canComplete;
+  const canComment  = currentUser && currentUser.canComment;
+
+  const checkBtn = canComplete ? `
+    <button class="btn-complete ${isDone ? 'checked' : ''}"
+      onclick="event.stopPropagation();toggleComplete('${t.id}','${t.status}',${JSON.stringify(t.ctx).replace(/'/g,'&#39;')})"
+      title="${isDone ? 'Mark as not done' : 'Mark as complete'}"></button>` : '';
+
+  const commentBtn = `
+    <button class="btn-comment ${commentCnt ? 'has-comments' : ''}"
+      onclick="event.stopPropagation();togglePanel(document.getElementById('${panelId}'))">
+      ${commentLbl}
+    </button>`;
+
+  const inputRow = canComment ? `
+    <div class="comment-input-row">
+      <textarea id="${taId}" class="comment-textarea" placeholder="Add a comment..." rows="1"
+        oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+      <button id="${vbId}" class="btn-voice" title="Voice input"
+        onclick="startVoice(document.getElementById('${vbId}'),document.getElementById('${taId}'))">&#127908;</button>
+      <button class="btn-send"
+        onclick="submitComment('${t.id}',${JSON.stringify(t.ctx).replace(/'/g,'&#39;')},document.getElementById('${taId}'))">Send</button>
+    </div>` : `<div class="no-access">Sign in with your access code to comment.</div>`;
+
+  const doneStamp = (isDone && t.completedStr)
+    ? `<div class="task-note" style="color:#22c55e;opacity:0.8;">&#10003; Completed ${t.completedStr}</div>` : '';
+  const noteHtml = t.note ? `<div class="task-note">${t.note}</div>` : '';
+  const ownerTag = t.owner ? `<span class="tag ${t.owner}">${t.owner.toUpperCase()}</span>` : '';
+
+  return `
+    <div class="task-row ${cls}" onclick="togglePanel(document.getElementById('${panelId}'))">
+      <div class="task-body" style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;min-width:0;">
+            <div class="task-name">${t.name}</div>
+            ${noteHtml}${doneStamp}
+          </div>
+          <div class="task-actions" onclick="event.stopPropagation()">
+            ${checkBtn}
+            ${ownerTag}
+            ${commentBtn}
+          </div>
+        </div>
+        <div id="${panelId}" class="comment-panel">
+          ${renderComments(t.comments)}
+          ${inputRow}
+        </div>
+      </div>
+    </div>`;
+}
+
+async function loadAndRender() {
+  const tasks = await fetchTasks();
+  const groups = {};
+  tasks.forEach(t => { if (!groups[t.col]) groups[t.col] = []; groups[t.col].push(t); });
+
+  Object.keys(containers).forEach(k => {
+    const items = groups[k] || [];
+    const el  = document.getElementById(containers[k]);
+    const cnt = document.getElementById(counters[k]);
+    if (el)  el.innerHTML = items.map(t => renderTask(t, k)).join('');
+    if (cnt) cnt.textContent = `${items.length} item${items.length !== 1 ? 's' : ''}`;
+  });
+
+  const done    = (groups['app-done']    || []).length;
+  const active  = (groups['app-active']  || []).length;
+  const pending = (groups['app-pending'] || []).length;
+  const blocked = (groups['app-blocked'] || []).length;
+  const total   = done + active + pending + blocked;
+  const pct     = total ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('cntDone').textContent    = done;
+  document.getElementById('cntActive').textContent  = active;
+  document.getElementById('cntPending').textContent = pending;
+  document.getElementById('cntBlocked').textContent = blocked;
+  document.getElementById('progressPct').textContent = pct + '%';
+  setTimeout(() => { document.getElementById('progressFill').style.width = pct + '%'; }, 100);
+
+  const who = currentUser ? ` &nbsp;&middot;&nbsp; Signed in as <strong style="color:#94a3b8">${currentUser.label}</strong>` : '';
+  document.querySelector('.updated-bar').innerHTML =
+    `Refreshed ${new Date().toLocaleTimeString()}${who} &nbsp;&middot;&nbsp; <a href="/cc" style="color:#334155;text-decoration:none;">&#8592; Mission Control</a>`;
+}
+
+function init() {
+  const diff = Math.ceil((new Date('2026-04-21T09:00:00-04:00') - new Date()) / 86400000);
+  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '0';
+  loadAndRender();
+}
+</script>
+>>>>>>> Stashed changes
 </body>
 </html>
