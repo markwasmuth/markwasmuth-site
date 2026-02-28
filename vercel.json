@@ -15,6 +15,10 @@
     {
       "source": "/cc",
       "destination": "/cc.html"
+    },
+    {
+      "source": "/cc/snaptosell",
+      "destination": "/cc/snaptosell.html"
     }
   ],
   "redirects": [
