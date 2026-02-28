@@ -462,6 +462,9 @@ function autoLogin() {
 }
 if (!autoLogin()) { /* show password screen */ }
 
+/*  == TASK CACHE (avoids JSON-in-onclick escaping issues) == */
+const taskCache = {};
+
 /*  == SUPABASE HELPERS == */
 const SB_H = { 'Content-Type':'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
 
@@ -473,7 +476,7 @@ async function fetchTasks() {
     try { ctx = JSON.parse(r.context || '{}'); } catch(e) {}
     const completedAt  = r.completed_at ? new Date(r.completed_at) : null;
     const completedStr = completedAt ? completedAt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : null;
-    return {
+    const t = {
       id: r.id,
       col: ctx.col || 'app-pending',
       name: r.task.replace(/^\[STS:[^\]]+\]\s*/,''),
@@ -484,6 +487,8 @@ async function fetchTasks() {
       completedStr,
       ctx
     };
+    taskCache[r.id] = t;
+    return t;
   });
 }
 
@@ -494,12 +499,14 @@ async function patchTask(id, body) {
 }
 
 /*  == MARK COMPLETE == */
-async function toggleComplete(id, currentStatus, ctx) {
+async function toggleComplete(id) {
   if (!currentUser || !currentUser.canComplete) return;
-  const isDone  = currentStatus === 'done';
+  const t = taskCache[id];
+  if (!t) return;
+  const isDone  = t.status === 'done';
   const newStat = isDone ? 'active' : 'done';
-  const newCtx  = { ...ctx, col: isDone ? (ctx._prevCol || 'app-active') : 'app-done' };
-  if (!isDone) newCtx._prevCol = ctx.col;
+  const newCtx  = { ...t.ctx, col: isDone ? (t.ctx._prevCol || 'app-active') : 'app-done' };
+  if (!isDone) newCtx._prevCol = t.ctx.col;
   await patchTask(id, {
     status: newStat,
     context: JSON.stringify(newCtx),
@@ -509,12 +516,14 @@ async function toggleComplete(id, currentStatus, ctx) {
 }
 
 /*  == COMMENTS == */
-async function submitComment(id, ctx, textareaEl) {
+async function submitComment(id, textareaEl) {
   const text = textareaEl.value.trim();
   if (!text || !currentUser) return;
-  const comments = ctx.comments || [];
+  const t = taskCache[id];
+  if (!t) return;
+  const comments = [...(t.ctx.comments || [])];
   comments.push({ user: currentUser.role, label: currentUser.label, text, ts: new Date().toISOString() });
-  const newCtx = { ...ctx, comments };
+  const newCtx = { ...t.ctx, comments };
   await patchTask(id, { context: JSON.stringify(newCtx) });
   textareaEl.value = '';
   loadAndRender();
@@ -595,7 +604,7 @@ function renderTask(t, colKey) {
 
   const checkBtn = canComplete ? `
     <button class="btn-complete ${isDone ? 'checked' : ''}"
-      onclick="event.stopPropagation();toggleComplete('${t.id}','${t.status}',${JSON.stringify(t.ctx).replace(/'/g,'&#39;')})"
+      onclick="event.stopPropagation();toggleComplete('${t.id}')"
       title="${isDone ? 'Mark as not done' : 'Mark as complete'}"></button>` : '';
 
   const commentBtn = `
@@ -611,7 +620,7 @@ function renderTask(t, colKey) {
       <button id="${vbId}" class="btn-voice" title="Voice input"
         onclick="startVoice(document.getElementById('${vbId}'),document.getElementById('${taId}'))">&#127908;</button>
       <button class="btn-send"
-        onclick="submitComment('${t.id}',${JSON.stringify(t.ctx).replace(/'/g,'&#39;')},document.getElementById('${taId}'))">Send</button>
+        onclick="submitComment('${t.id}',document.getElementById('${taId}'))">Send</button>
     </div>` : `<div class="no-access">Sign in with your access code to comment.</div>`;
 
   const doneStamp = (isDone && t.completedStr)
