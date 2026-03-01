@@ -503,21 +503,35 @@ async function submitComment(id, textareaEl) {
 /*  == VOICE INPUT == */
 let activeVoiceBtn = null;
 let recognition    = null;
-function startVoice(btn, textareaEl) {
+let voiceBaseText  = '';
+function startVoice(e, btn, textareaEl) {
+  e.stopPropagation();
   const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRec) { alert('Voice not supported in this browser. Try Chrome.'); return; }
   if (recognition) { recognition.stop(); return; }
   recognition = new SpeechRec();
-  recognition.continuous = false;
-  recognition.interimResults = false;
+  recognition.continuous = true;
+  recognition.interimResults = true;
   recognition.lang = 'en-US';
   btn.classList.add('listening');
+  btn.title = 'Listening... click to stop';
   activeVoiceBtn = btn;
+  voiceBaseText = textareaEl.value;
   recognition.onresult = e => {
-    textareaEl.value += (textareaEl.value ? ' ' : '') + e.results[0][0].transcript;
+    let interim = '';
+    let final   = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) final   += e.results[i][0].transcript;
+      else                       interim += e.results[i][0].transcript;
+    }
+    if (final) voiceBaseText += (voiceBaseText ? ' ' : '') + final.trim();
+    textareaEl.value = voiceBaseText + (interim ? ' ' + interim : '');
+    textareaEl.style.height = 'auto';
+    textareaEl.style.height = textareaEl.scrollHeight + 'px';
   };
   recognition.onend = () => {
     btn.classList.remove('listening');
+    btn.title = 'Voice input';
     recognition = null;
     activeVoiceBtn = null;
   };
@@ -585,13 +599,14 @@ function renderTask(t, colKey) {
     </button>`;
 
   const inputRow = canComment ? `
-    <div class="comment-input-row">
+    <div class="comment-input-row" onclick="event.stopPropagation()">
       <textarea id="${taId}" class="comment-textarea" placeholder="Add a comment..." rows="1"
+        onclick="event.stopPropagation()"
         oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
       <button id="${vbId}" class="btn-voice" title="Voice input"
-        onclick="startVoice(document.getElementById('${vbId}'),document.getElementById('${taId}'))">&#127908;</button>
+        onclick="startVoice(event,document.getElementById('${vbId}'),document.getElementById('${taId}'))">&#127908;</button>
       <button class="btn-send"
-        onclick="submitComment('${t.id}',document.getElementById('${taId}'))">Send</button>
+        onclick="event.stopPropagation();submitComment('${t.id}',document.getElementById('${taId}'))">Send</button>
     </div>` : `<div class="no-access">Sign in with your access code to comment.</div>`;
 
   const doneStamp = (isDone && t.completedStr)
