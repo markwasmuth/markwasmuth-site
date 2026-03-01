@@ -19,6 +19,26 @@
     {
       "source": "/cc/snaptosell",
       "destination": "/cc/snaptosell.html"
+    },
+    {
+      "source": "/cc/sts",
+      "destination": "/cc/snaptosell.html"
+    },
+    {
+      "source": "/cc/TEW",
+      "destination": "/cc/tew.html"
+    },
+    {
+      "source": "/cc/tew",
+      "destination": "/cc/tew.html"
+    },
+    {
+      "source": "/cc/SU",
+      "destination": "/cc/su.html"
+    },
+    {
+      "source": "/cc/su",
+      "destination": "/cc/su.html"
     }
   ],
   "redirects": [

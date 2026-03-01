@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Enemy Within &mdash; Command Center</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #060d1f;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(220,38,38,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(59,130,246,0.05) 0%, transparent 50%);
+    color: #f1f5f9;
+    min-height: 100vh;
+  }
+
+  /* PASSWORD */
+  #passwordScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .pw-box {
+    background: linear-gradient(145deg, #0d1a35, #111827);
+    border: 1px solid rgba(220,38,38,0.5);
+    border-radius: 20px; padding: 52px; text-align: center;
+    max-width: 400px; width: 90%;
+    box-shadow: 0 0 60px rgba(220,38,38,0.12), 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .pw-logo { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; color: #fff; }
+  .pw-logo span { color: #dc2626; }
+  .pw-sub { color: #94a3b8; font-size: 0.8rem; margin-bottom: 32px; letter-spacing: 1px; text-transform: uppercase; }
+  .pw-input {
+    width: 100%; padding: 14px 18px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; color: #f1f5f9; font-size: 1rem; font-family: inherit;
+    margin-bottom: 14px; outline: none;
+  }
+  .pw-input:focus { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.15); }
+  .pw-btn {
+    width: 100%; padding: 14px; background: #dc2626; border: none; border-radius: 10px;
+    color: #fff; font-size: 1rem; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(220,38,38,0.4);
+  }
+  .pw-btn:hover { background: #ef4444; }
+  .pw-error { color: #f87171; font-size: 0.85rem; margin-top: 12px; display: none; }
+
+  /* DASHBOARD */
+  #dashboard { display: none; }
+
+  header {
+    background: rgba(6,13,31,0.98);
+    border-bottom: 1px solid rgba(220,38,38,0.2);
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(20px);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .header-left h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+  .header-left h1 span { color: #dc2626; }
+  .header-meta { font-size: 0.7rem; color: #64748b; margin-top: 3px; letter-spacing: 0.5px; }
+
+  .launch-countdown {
+    background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(220,38,38,0.05));
+    border: 1px solid rgba(220,38,38,0.4);
+    border-radius: 12px; padding: 12px 24px; text-align: center;
+    box-shadow: 0 0 20px rgba(220,38,38,0.1);
+  }
+  .countdown-label { font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; }
+  .countdown-days { font-size: 2.4rem; font-weight: 800; color: #dc2626; line-height: 1; text-shadow: 0 0 20px rgba(220,38,38,0.4); }
+  .countdown-date { font-size: 0.72rem; color: #64748b; margin-top: 3px; }
+
+  .main-content { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+
+  /* SECTION HEADERS */
+  .section-title {
+    font-size: 0.7rem; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+  /* METRIC CARDS GRID */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .metric-card {
+    background: linear-gradient(145deg, #0d1a35, #111827);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 22px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .metric-card:hover { border-color: rgba(220,38,38,0.3); box-shadow: 0 4px 20px rgba(220,38,38,0.08); }
+  .metric-card.highlight { border-color: rgba(220,38,38,0.35); background: linear-gradient(145deg, #1a0d0d, #1a0f0f); }
+  .metric-label { font-size: 0.68rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .metric-value { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1; }
+  .metric-value.accent { color: #dc2626; text-shadow: 0 0 15px rgba(220,38,38,0.3); }
+  .metric-sub { font-size: 0.75rem; color: #64748b; margin-top: 6px; }
+  .metric-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 99px;
+    font-size: 0.68rem; font-weight: 600; margin-top: 8px;
+    background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3);
+  }
+  .metric-badge.green { background: rgba(34,197,94,0.12); color: #4ade80; border-color: rgba(34,197,94,0.25); }
+  .metric-badge.yellow { background: rgba(234,179,8,0.12); color: #fbbf24; border-color: rgba(234,179,8,0.25); }
+  .metric-badge.blue { background: rgba(59,130,246,0.12); color: #60a5fa; border-color: rgba(59,130,246,0.25); }
+
+  /* TIMELINE */
+  .timeline-card {
+    background: linear-gradient(145deg, #0d1a35, #111827);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: flex; align-items: stretch; gap: 0;
+    position: relative;
+  }
+  .tl-left { width: 120px; min-width: 120px; text-align: right; padding-right: 20px; padding-top: 4px; padding-bottom: 24px; }
+  .tl-date { font-size: 0.72rem; font-weight: 600; color: #64748b; }
+  .tl-center { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+    border: 2px solid #dc2626; background: #dc2626;
+    box-shadow: 0 0 8px rgba(220,38,38,0.5);
+    margin-top: 2px;
+  }
+  .tl-dot.done { background: #22c55e; border-color: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+  .tl-dot.future { background: #0d1a35; border-color: #334155; box-shadow: none; }
+  .tl-line { width: 2px; flex: 1; background: rgba(255,255,255,0.06); margin-top: 2px; }
+  .timeline-item:last-child .tl-line { display: none; }
+  .tl-right { padding-left: 20px; padding-bottom: 24px; flex: 1; }
+  .tl-title { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+  .tl-desc { font-size: 0.78rem; color: #64748b; }
+  .tl-status {
+    display: inline-block; padding: 2px 8px; border-radius: 99px;
+    font-size: 0.65rem; font-weight: 600; margin-top: 6px;
+  }
+  .tl-status.active { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+  .tl-status.done { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+  .tl-status.upcoming { background: rgba(148,163,184,0.08); color: #94a3b8; border: 1px solid rgba(148,163,184,0.15); }
+
+  /* STAGING FILES */
+  .files-card {
+    background: linear-gradient(145deg, #0d1a35, #111827);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .file-list { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+  .file-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.82rem; color: #94a3b8;
+  }
+  .file-icon { font-size: 1rem; flex-shrink: 0; }
+  .file-name { flex: 1; font-family: monospace; font-size: 0.8rem; }
+  .file-empty { color: #334155; font-style: italic; font-size: 0.82rem; padding: 10px 14px; }
+
+  /* REFRESH */
+  .refresh-btn {
+    background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25);
+    color: #f87171; border-radius: 8px; padding: 8px 16px;
+    font-size: 0.78rem; font-weight: 600; font-family: inherit; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .refresh-btn:hover { background: rgba(220,38,38,0.2); }
+  .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .last-updated { font-size: 0.7rem; color: #334155; margin-top: 4px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; }
+    .main-content { padding: 16px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .tl-left { width: 80px; min-width: 80px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <div class="pw-box">
+    <div class="pw-logo">THE <span>ENEMY</span> WITHIN</div>
+    <div class="pw-sub">Command Center &bull; Book Tracker</div>
+    <input type="password" class="pw-input" id="pwInput" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="pw-btn" onclick="checkPw()">Enter</button>
+    <div class="pw-error" id="pwError">Incorrect code</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <header>
+    <div class="header-left">
+      <h1>THE <span>ENEMY</span> WITHIN</h1>
+      <div class="header-meta">Book Launch Command Center &bull; markwasmuth.com/cc/TEW</div>
+    </div>
+    <div class="launch-countdown">
+      <div class="countdown-label">Launch In</div>
+      <div class="countdown-days" id="countdownDays">—</div>
+      <div class="countdown-date">July 4, 2026</div>
+    </div>
+  </header>
+
+  <div class="main-content">
+
+    <!-- METRICS ROW -->
+    <div class="section-title">Live Metrics</div>
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-label">Videos in Staging</div>
+        <div class="metric-value accent" id="stagingCount">—</div>
+        <div class="metric-sub">Folder 07 · Ready to post</div>
+        <button class="refresh-btn" id="refreshBtn" onclick="refreshMetrics()" style="margin-top:10px;font-size:0.7rem;padding:5px 12px">↻ Refresh</button>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Videos Posted</div>
+        <div class="metric-value" id="postedCount">—</div>
+        <div class="metric-sub">Folder 04 · Live content</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Scripts Ready</div>
+        <div class="metric-value" id="scriptsCount">—</div>
+        <div class="metric-sub">Docs in staging folder</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">YouTube Subscribers</div>
+        <div class="metric-value" id="ytSubs">—</div>
+        <div class="metric-sub" id="ytViews">— total views</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Facebook Followers</div>
+        <div class="metric-value" id="fbFollowers">—</div>
+        <div class="metric-sub">TheEnemyWithinbyMarkWasmuth</div>
+        <div class="last-updated" id="fbNote">Manual update needed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Substack Subscribers</div>
+        <div class="metric-value" id="substackSubs">—</div>
+        <div class="metric-sub">substack.com/@mwasmuth</div>
+        <div class="last-updated" id="substackNote">Manual update needed</div>
+      </div>
+    </div>
+
+    <div class="last-updated" id="lastUpdated" style="margin-bottom:20px">Drive metrics: not yet loaded</div>
+
+    <!-- BOOK PRODUCTION TIMELINE -->
+    <div class="section-title">Book Production Timeline</div>
+    <div class="timeline-card">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">Mar 15</div></div>
+          <div class="tl-center"><div class="tl-dot done"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">Barry Begins Copyediting</div>
+            <div class="tl-desc">Full manuscript edit underway</div>
+            <span class="tl-status done">✓ Completed</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">~Apr 26</div></div>
+          <div class="tl-center"><div class="tl-dot active"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">Barry Finishes Editing</div>
+            <div class="tl-desc">Manuscript returned to Mark for review</div>
+            <span class="tl-status active">🔴 In Progress</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">Ongoing</div></div>
+          <div class="tl-center"><div class="tl-dot active"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">Cover Design</div>
+            <div class="tl-desc">Cover artwork in progress</div>
+            <span class="tl-status active">🔴 In Progress</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">Apr 28</div></div>
+          <div class="tl-center"><div class="tl-dot future"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">Damonza Interior Layout Begins</div>
+            <div class="tl-desc">Interior book design starts</div>
+            <span class="tl-status upcoming">Upcoming</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">Jun 20</div></div>
+          <div class="tl-center"><div class="tl-dot future"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">Print-Ready Files Deadline</div>
+            <div class="tl-desc">All files submitted for print production</div>
+            <span class="tl-status upcoming">Upcoming</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-left"><div class="tl-date">Jul 4, 2026</div></div>
+          <div class="tl-center"><div class="tl-dot future"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-title">🚀 LAUNCH DAY</div>
+            <div class="tl-desc">The Enemy Within goes live — Independence Day!</div>
+            <span class="tl-status upcoming">T-<span id="launchDaysInline">—</span> days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGING FILES -->
+    <div class="section-title">Staging Videos <span id="stagingCountLabel" style="color:#dc2626;font-size:0.85rem;margin-left:8px;text-transform:none;letter-spacing:0;font-weight:800">—</span></div>
+    <div class="files-card">
+      <div class="file-list" id="stagingFiles">
+        <div class="file-empty">Loading staging files…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const USERS = {
+  'Grizzly123': 'mark',
+  'STS-Vigen':  'vigen',
+  'STS-Arno':   'arno',
+  'STS-Team':   'team',
+};
+
+function checkPw() {
+  const v = document.getElementById('pwInput').value.trim();
+  if (USERS[v]) {
+    localStorage.setItem('tew_auth', v);
+    launch();
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
+
+function launch() {
+  document.getElementById('passwordScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  initCountdown();
+  refreshMetrics();
+  loadStoredMetrics();
+}
+
+function autoLogin() {
+  const saved = localStorage.getItem('tew_auth');
+  if (saved && USERS[saved]) { launch(); return true; }
+  return false;
+}
+
+if (!autoLogin()) { /* show password screen */ }
+
+/* COUNTDOWN */
+function initCountdown() {
+  function update() {
+    const launch = new Date('2026-07-04T00:00:00');
+    const now = new Date();
+    const days = Math.ceil((launch - now) / (1000 * 60 * 60 * 24));
+    document.getElementById('countdownDays').textContent = days;
+    document.getElementById('launchDaysInline').textContent = days;
+  }
+  update();
+  setInterval(update, 60000);
+}
+
+/* STORED METRICS (from localStorage cache) */
+function loadStoredMetrics() {
+  const cached = localStorage.getItem('tew_metrics');
+  if (cached) {
+    try {
+      const d = JSON.parse(cached);
+      applyMetrics(d);
+    } catch(e) {}
+  }
+}
+
+/* SUPABASE DIRECT */
+const SB_URL = 'https://cmdcitqfrzfmeghrvily.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtZGNpdHFmcnpmbWVnaHJ2aWx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTgwMDIsImV4cCI6MjA4NTk3NDAwMn0.wrx599rkgJeSTa4N15DRSn4Tp1_3vrtwx2XF7HEviMo';
+const SB_H = { 'Content-Type': 'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY };
+
+/* REFRESH FROM SUPABASE */
+async function refreshMetrics() {
+  const btn = document.getElementById('refreshBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '↻ Loading…'; }
+  try {
+    const r = await fetch(
+      `${SB_URL}/rest/v1/agent_tasks?to_agent=eq.tew_metrics&status=eq.active&order=created_at.desc&limit=50`,
+      { headers: SB_H }
+    );
+    const rows = await r.json();
+    if (Array.isArray(rows) && rows.length > 0) {
+      const d = {};
+      for (const row of rows) {
+        try { d[row.task] = JSON.parse(row.context || '{}'); } catch(e) {}
+      }
+      const merged = mergeMetrics(d);
+      localStorage.setItem('tew_metrics', JSON.stringify(merged));
+      applyMetrics(merged);
+    } else {
+      showFallback('No metrics stored yet — run update-cc-metrics.mjs');
+    }
+  } catch(e) {
+    showFallback('Could not reach Supabase: ' + e.message);
+  }
+  if (btn) { btn.disabled = false; btn.textContent = '↻ Refresh'; }
+}
+
+function mergeMetrics(d) {
+  const out = {};
+  if (d.drive) {
+    out.stagingCount = d.drive.stagingCount;
+    out.postedCount = d.drive.postedCount;
+    out.scriptsCount = d.drive.scriptsCount;
+    out.stagingFiles = d.drive.stagingFiles || [];
+    out.fetchedAt = d.drive.fetchedAt;
+  }
+  if (d.youtube) {
+    out.ytSubscribers = d.youtube.subscribers;
+    out.ytViews = d.youtube.views;
+  }
+  if (d.social) {
+    out.fbFollowers = d.social.fbFollowers;
+    out.substackSubs = d.social.substackSubs;
+  }
+  return out;
+}
+
+function applyMetrics(d) {
+  setText('stagingCount', d.stagingCount ?? '—');
+  setText('postedCount', d.postedCount ?? '—');
+  setText('scriptsCount', d.scriptsCount ?? '—');
+  setText('stagingCountLabel', d.stagingCount != null ? `(${d.stagingCount} videos)` : '');
+
+  if (d.ytSubscribers != null) {
+    setText('ytSubs', fmtNum(d.ytSubscribers));
+    setText('ytViews', fmtNum(d.ytViews) + ' total views');
+  }
+
+  if (d.stagingFiles && d.stagingFiles.length > 0) {
+    const el = document.getElementById('stagingFiles');
+    el.innerHTML = d.stagingFiles.map(n =>
+      `<div class="file-item"><span class="file-icon">🎬</span><span class="file-name">${esc(n)}</span></div>`
+    ).join('');
+  } else {
+    document.getElementById('stagingFiles').innerHTML = '<div class="file-empty">No videos in staging</div>';
+  }
+
+  if (d.fetchedAt) {
+    const ts = new Date(d.fetchedAt).toLocaleString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+    setText('lastUpdated', `Drive metrics last updated: ${ts}`);
+  }
+}
+
+function showFallback(msg) {
+  setText('lastUpdated', msg || 'Could not load metrics — run update-cc-metrics.mjs');
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function fmtNum(n) {
+  if (!n && n !== 0) return '—';
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
